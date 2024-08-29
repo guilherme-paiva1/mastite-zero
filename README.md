@@ -1,4 +1,4 @@
-# projeto mastite zero
+# Projeto CBSafe
 
-# temos por objetivo reduzir os casos de mastite causados por alta umidade em vacas leiteiras que vivem em fazendas
-# compost barn.
+# Temos por objetivo reduzir os casos de mastite causados pela alta umidade nos solos de sistemas compost barn, que afetam a saúde e produção de leite em vacas leiteiras.
+
