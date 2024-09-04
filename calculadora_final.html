@@ -51,14 +51,13 @@
         lote3 = Number(input_lote3.value);
         preco_leite = Number(input_preco_leite.value);
 
-
         //cálculo das vacas doentes e da porcentagem de vacas doentes entre as sadias
         vacas_doentes = lote1 + lote2 + lote3;
         porcentagem_vacas_doentes = (vacas_doentes/vacas) * 100;
 
         //criação das variáveis de mensagem
         var mensagem = "";
-        var mensagem_porcentagem = `<b >${porcentagem_vacas_doentes}%</b>`;
+        var mensagem_porcentagem = `<b>${porcentagem_vacas_doentes}%</b>`;
 
         //caso a porcentagem seja maior que 10, a mensagem mudará para 'Atenção!'
         if (porcentagem_vacas_doentes > 10) {
