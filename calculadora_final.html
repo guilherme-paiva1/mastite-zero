@@ -22,33 +22,49 @@
 </html>
 
 <script>
+    // criação das variáveis
     var vacas = "";
     var vacas_doentes = "";
     var lote1 = "";
     var lote2 = "";
     var lote3 = "";
 
+    //função acionada ao clicar no botão
     function calcular(){
+        //captação das informações inseridas pelo usuário
         vacas = Number(input_vacas.value);
         lote1 = Number(input_lote1.value);
         lote2 = Number(input_lote2.value);
         lote3 = Number(input_lote3.value);
-        vacas_doentes = lote1 + lote2 + lote3
-        porcentagem = (vacas_doentes/vacas)*100;
+
+        //cálculo das vacas doentes
+        vacas_doentes = lote1 + lote2 + lote3;
+
+        //lógica para cálculo da porcentagem de vacas doentes entre as sadias
+        porcentagem = (vacas_doentes/vacas) * 100;
+
+        //primeira definição da mensagem
         var mensagem = `Seu Compost Barn está com ${porcentagem}% de vacas doentes!`;
 
+        //caso a porcentagem seja maior que 10, a mensagem mudará para 'Atenção!'
         if (porcentagem > 10) {
             mensagem = `Atenção! Seu Compost Barn está com <b style="color:darkgoldenrod;">${porcentagem}%</b> de vacas doentes!`
         }
+
+        //caso a porcentagem seja maior que 20, a mensagem mudará para 'Perigo!'
         if (porcentagem > 20) {
             mensagem = `Perigo! Seu Compost Barn está com <b style="color:red;">${porcentagem}%</b> de vacas doentes!`
         }
         
-        var litros = lote1*315 + lote2*262.5 + lote3*126
-        
-        var dinheiro = litros*2.46;
-        mensagem = mensagem + ` Sua produção foi reduzida em ${litros}L e perdendo <b style="color:red">R$${dinheiro}</b> em 1 semana`;
+        //cálculo de litros perdidos
+        var litros_perdidos = (lote1 * 315) + (lote2 * 262.5) + (lote3 * 126);
+        //cálculo de dinheiro perdido
+        var dinheiro_perdido = litros_perdidos * 2.46;
 
+        //estruturação da mensagem de acordo + perda na produção
+        mensagem = mensagem + ` Sua produção foi reduzida em ${litros_perdidos}L e perdendo <b style="color:red">R$${dinheiro_perdido}</b> em 1 semana`;
+
+        //exibição da mensagem na tela
         div_mensagem.innerHTML = mensagem;
     }
 </script>
