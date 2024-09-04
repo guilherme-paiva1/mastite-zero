@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body style="color: brown; background-color: beige;">
+    <h1>Quanto você pode perder não controlando a umidade do seu Compost Barn e deixando suas vacas leiteiras doentes?</h1>
+    Quantidade de vacas no CB: <br>
+    <input id="input_vacas" type="number"><br><br>
+    Quantidade de vacas doentes no primeiro lote de lactação: <br>
+    <input id="input_lote1" type="text"> <br><br>
+    Quantidade de vacas doentes no segundo lote de lactação: <br>
+    <input id="input_lote2" type="text"> <br><br>
+    Quantidade de vacas doentes no terceiro lote de lactação: <br>
+    <input id="input_lote3" type="text"> <br><br>
+    <button onclick="calcular()">Calcular</button>
 
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    var vacas = "";
+    var vacas_doentes = "";
+    var lote1 = "";
+    var lote2 = "";
+    var lote3 = "";
+
+    function calcular(){
+        vacas = Number(input_vacas.value);
+        lote1 = Number(input_lote1.value);
+        lote2 = Number(input_lote2.value);
+        lote3 = Number(input_lote3.value);
+        vacas_doentes = lote1 + lote2 + lote3
+        porcentagem = (vacas_doentes/vacas)*100;
+        var mensagem = `Seu Compost Barn está com ${porcentagem}% de vacas doentes!`;
+
+        if (porcentagem > 10) {
+            mensagem = `Atenção! Seu Compost Barn está com <b style="color:darkgoldenrod;">${porcentagem}%</b> de vacas doentes!`
+        }
+        if (porcentagem > 20) {
+            mensagem = `Perigo! Seu Compost Barn está com <b style="color:red;">${porcentagem}%</b> de vacas doentes!`
+        }
+        
+        var litros = lote1*315 + lote2*262.5 + lote3*126
+        
+        var dinheiro = litros*2.46;
+        mensagem = mensagem + ` Sua produção foi reduzida em ${litros}L e perdendo <b style="color:red">R$${dinheiro}</b> em 1 semana`;
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>
