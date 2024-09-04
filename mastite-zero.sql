@@ -2,7 +2,7 @@ CREATE DATABASE mastite_zero;
 
 USE mastite_zero;
 
-CREATE TABLE cadastro (
+CREATE TABLE usuario (
 	id INT PRIMARY KEY auto_increment,
     empresa VARCHAR(45),
     supervisor VARCHAR(45),
@@ -10,17 +10,17 @@ CREATE TABLE cadastro (
     senha VARCHAR(20)
 );
 
-DESC cadastro;
+DESC usuario;
 
-INSERT INTO cadastro VALUES
+INSERT INTO usuario VALUES
 	(default, 'Fazenda Leite Feliz', 'Antônio', 'antonio@leitefeliz.com', 'amoleite@2024'),
     (default, 'Fazenda Atibaia', 'Mariana', 'mariana@atibaia.com', 'l3it3ehbom!'),
     (default, 'Senhor Fagundes', 'Mercedes', 'mercedes@fagundes.com', 'vacas2eu#'),
     (default, 'Fazenda HappyCow', 'Pablo', 'pablo@happycow.com', 'milkis11to10!');
     
-SELECT * FROM cadastro;
+SELECT * FROM usuario;
 
-SELECT * FROM cadastro ORDER BY empresa;
+SELECT * FROM usuario ORDER BY empresa;
 
 CREATE TABLE dados (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -45,15 +45,17 @@ SELECT umidade, data_hora FROM dados
     
 CREATE TABLE litrosLeite (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    loteVaca VARCHAR(10)
-    constraint chklote
-		CHECK(loteVaca IN('Primeiro', 'Segundo', 'Terceiro')),
+    loteVaca VARCHAR(10),
 	qtdLeite INT,
-    dtInicio DATE
+    dtInicio DATE,
+
+    CONSTRAINT chklote
+		CHECK(loteVaca IN('Primeiro', 'Segundo', 'Terceiro'))
 ) AUTO_INCREMENT = 1000;
 
-ALTER TABLE litrosLeite ADD COLUMN doente CHAR(3)
-constraint chkdoente CHECK (doente IN ('sim', 'não'));
+ALTER TABLE litrosLeite 
+	ADD COLUMN doente CHAR(3)
+	CONSTRAINT chkdoente CHECK (doente IN ('sim', 'não'));
 
 INSERT INTO litrosLeite VALUES
 	(DEFAULT, 'Primeiro', 50, '2024-08-02', 'não'),
@@ -68,4 +70,4 @@ SELECT id, qtdLeite FROM litrosLeite
 	WHERE doente = 'sim';
     
 SELECT id as 'Código de cadastro da vaca', loteVaca as 'Lote da vaca', qtdLeite as 'Litros de leite por dia',
-dtInicio as 'Início do lote', doente FROM litrosLeite;
+	dtInicio as 'Início do lote', doente FROM litrosLeite;
