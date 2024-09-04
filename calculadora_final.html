@@ -20,6 +20,9 @@
     Quantidade de vacas doentes no terceiro lote de lactação: <br>
     <input id="input_lote3" type="text"> <br><br>
 
+    Preço do litro do leite atual:
+    <input id="input_preco_leite" type="number"> <br><br> 
+
     <button onclick="calcular()">Calcular</button>
     <br>
 
@@ -35,6 +38,7 @@
     var lote1 = "";
     var lote2 = "";
     var lote3 = "";
+    var preco_leite = "";
     
 
     //função acionada ao clicar no botão
@@ -44,36 +48,36 @@
         lote1 = Number(input_lote1.value);
         lote2 = Number(input_lote2.value);
         lote3 = Number(input_lote3.value);
+        preco_leite = Number(input_preco_leite.value);
+
 
         //cálculo das vacas doentes e da porcentagem de vacas doentes entre as sadias
         vacas_doentes = lote1 + lote2 + lote3;
-        porcentagem = (vacas_doentes/vacas) * 100;
+        var porcentagem_vacas_doentes = (vacas_doentes/vacas) * 100;
 
         //criação das variáveis de mensagem
         var mensagem = "";
         var mensagem_porcentagem = "";
 
         //caso a porcentagem seja maior que 10, a mensagem mudará para 'Atenção!'
-        if (porcentagem > 10) {
+        if (porcentagem_vacas_doentes > 10) {
             mensagem = "Atenção! ";
-            mensagem_porcentagem = `<b style="color:darkgoldenrod;">${porcentagem}%</b>`;
+            mensagem_porcentagem = `<b style="color:darkgoldenrod;">${porcentagem_vacas_doentes}%</b>`;
         }
 
         //caso a porcentagem seja maior que 20, a mensagem mudará para 'Perigo!'
-        if (porcentagem > 20) {
+        if (porcentagem_vacas_doentes > 20) {
             mensagem = "Perigo! ";
-            mensagem_porcentagem = `<b style="color:red;">${porcentagem}%</b>`;
+            mensagem_porcentagem = `<b style="color:red;">${porcentagem_vacas_doentes}%</b>`;
         }
         
-        //cálculo de litros perdidos por conta da mastite na produção
-        var litros_perdidos = (lote1 * 315) + (lote2 * 262.5) + (lote3 * 126);
-
         //cálculo de quantidade de litros e lucro ideal da produção
         var litros_ideal = ((315 + 262.5 + 126)/3) * vacas;
-        var lucro_ideal = litros_ideal * 2.46;
+        var lucro_ideal = litros_ideal * preco_leite;
 
-        //cálculo de dinheiro perdido
-        var lucro_perdido = litros_perdidos * 2.46;
+        //cálculo de quantidade de litros e lucro perdidos por conta da mastite na produção
+        var litros_perdidos = (lote1 * 315) + (lote2 * 262.5) + (lote3 * 126);
+        var lucro_perdido = litros_perdidos * preco_leite;
 
         //estruturação da mensagem de acordo + perda na produção
         mensagem = mensagem + `Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem} do total de vacas no seu Compost Barn! <br><br>
@@ -85,7 +89,7 @@
         Caso todas as suas ${vacas} estivessem saudáveis a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <b style="color:blue;">${litros_ideal}L</b> por semana, dando um lucro de <b style="color:blue;">R$${lucro_ideal}</b>.`;
 
         //caso a inserção de dados seja inválida, será informado ao usuário
-        if (porcentagem > 100) {
+        if (porcentagem_vacas_doentes > 100) {
             mensagem = "Entrada inválida. Você tem mais vacas doentes do que vacas no Compost Barn. Revise.";
         }
 
