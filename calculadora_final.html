@@ -7,14 +7,19 @@
 </head>
 <body style="color: brown; background-color: beige;">
     <h1>Quanto você pode perder não controlando a umidade do seu Compost Barn e deixando suas vacas leiteiras doentes?</h1>
+
     Quantidade de vacas no CB: <br>
     <input id="input_vacas" type="number"><br><br>
+
     Quantidade de vacas doentes no primeiro lote de lactação: <br>
     <input id="input_lote1" type="text"> <br><br>
+
     Quantidade de vacas doentes no segundo lote de lactação: <br>
     <input id="input_lote2" type="text"> <br><br>
+
     Quantidade de vacas doentes no terceiro lote de lactação: <br>
     <input id="input_lote3" type="text"> <br><br>
+
     <button onclick="calcular()">Calcular</button>
 
     <div id="div_mensagem"></div>
@@ -28,6 +33,7 @@
     var lote1 = "";
     var lote2 = "";
     var lote3 = "";
+    
 
     //função acionada ao clicar no botão
     function calcular(){
@@ -37,32 +43,49 @@
         lote2 = Number(input_lote2.value);
         lote3 = Number(input_lote3.value);
 
-        //cálculo das vacas doentes
+        //cálculo das vacas doentes e da porcentagem de vacas doentes entre as sadias
         vacas_doentes = lote1 + lote2 + lote3;
-
-        //lógica para cálculo da porcentagem de vacas doentes entre as sadias
         porcentagem = (vacas_doentes/vacas) * 100;
 
-        //primeira definição da mensagem
-        var mensagem = `Seu Compost Barn está com ${porcentagem}% de vacas doentes!`;
+        //criação das variáveis de mensagem
+        var mensagem = "";
+        var mensagem_porcentagem = "";
 
         //caso a porcentagem seja maior que 10, a mensagem mudará para 'Atenção!'
         if (porcentagem > 10) {
-            mensagem = `Atenção! Seu Compost Barn está com <b style="color:darkgoldenrod;">${porcentagem}%</b> de vacas doentes!`
+            mensagem = "Atenção! ";
+            mensagem_porcentagem = `<b style="color:darkgoldenrod;">${porcentagem}%</b>`;
         }
 
         //caso a porcentagem seja maior que 20, a mensagem mudará para 'Perigo!'
         if (porcentagem > 20) {
-            mensagem = `Perigo! Seu Compost Barn está com <b style="color:red;">${porcentagem}%</b> de vacas doentes!`
+            mensagem = "Perigo! ";
+            mensagem_porcentagem = `<b style="color:red;">${porcentagem}%</b>`;
         }
         
-        //cálculo de litros perdidos
+        //cálculo de litros perdidos por conta da mastite na produção
         var litros_perdidos = (lote1 * 315) + (lote2 * 262.5) + (lote3 * 126);
+
+        //cálculo de quantidade de litros e lucro ideal da produção
+        var litros_ideal = ((315 + 262.5 + 126)/3) * vacas;
+        var lucro_ideal = litros_ideal * 2.46;
+
         //cálculo de dinheiro perdido
-        var dinheiro_perdido = litros_perdidos * 2.46;
+        var lucro_perdido = litros_perdidos * 2.46;
 
         //estruturação da mensagem de acordo + perda na produção
-        mensagem = mensagem + ` Sua produção foi reduzida em ${litros_perdidos}L e perdendo <b style="color:red">R$${dinheiro_perdido}</b> em 1 semana`;
+        mensagem = mensagem + `Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem} do total de vacas! <br><br>
+        Vacas saudáveis produzem em média por semana: <br>
+        - 315L no primeiro lote; <br>
+        - 262.5L no segundo lote; <br>
+        - 126L no terceiro lote; <br>
+        Sua produção foi reduzida em <b style="color:red;">${litros_perdidos}L</b> e perdendo <b style="color:red;">R$${lucro_perdido}</b> em 1 semana. <br><br>
+        Caso todas as suas ${vacas} estivessem saudáveis a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <b style="color:blue;">${litros_ideal}L</b> por semana, dando um lucro de <b style="color:blue;">R$${lucro_ideal}</b>.`;
+
+        //caso a inserção de dados seja inválida, será informado ao usuário
+        if (porcentagem > 100) {
+            mensagem = "Entrada inválida. Você tem mais vacas doentes do que vacas no Compost Barn. Revise.";
+        }
 
         //exibição da mensagem na tela
         div_mensagem.innerHTML = mensagem;
