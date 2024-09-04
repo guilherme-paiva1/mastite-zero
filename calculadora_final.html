@@ -21,8 +21,10 @@
     <input id="input_lote3" type="text"> <br><br>
 
     <button onclick="calcular()">Calcular</button>
+    <br>
 
     <div id="div_mensagem"></div>
+    
 </body>
 </html>
 
@@ -74,12 +76,12 @@
         var lucro_perdido = litros_perdidos * 2.46;
 
         //estruturação da mensagem de acordo + perda na produção
-        mensagem = mensagem + `Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem} do total de vacas! <br><br>
+        mensagem = mensagem + `Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem} do total de vacas no seu Compost Barn! <br><br>
         Vacas saudáveis produzem em média por semana: <br>
         - 315L no primeiro lote; <br>
         - 262.5L no segundo lote; <br>
         - 126L no terceiro lote; <br>
-        Sua produção foi reduzida em <b style="color:red;">${litros_perdidos}L</b> e perdendo <b style="color:red;">R$${lucro_perdido}</b> em 1 semana. <br><br>
+        Sua produção foi reduzida em <b style="color:red;">${litros_perdidos}L</b> e está perdendo <b style="color:red;">R$${lucro_perdido}</b> em 1 semana. <br><br>
         Caso todas as suas ${vacas} estivessem saudáveis a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <b style="color:blue;">${litros_ideal}L</b> por semana, dando um lucro de <b style="color:blue;">R$${lucro_ideal}</b>.`;
 
         //caso a inserção de dados seja inválida, será informado ao usuário
