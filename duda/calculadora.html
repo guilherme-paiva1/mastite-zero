@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1>Calculadora Financeira</h1>
+    Informe quantas vacas tem no barracão:
+    <input id="input_qtdVaca" type="text">
+    <br>
+    Informe quantas vacas desenvolveram mastite?
+    <input id="input_mastite" type="text">
+    <br>
+    Informe quantos litros de leite a sua vaca leiteira produz por dia aproximadamente:
+    <input id="input_leite" type="text">
+    <br>
+    <button onclick="calcular()"> Calcular Prejuízo </button>
+    <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function calcular() {
+        var leite = Number(input_leite.value)
+        var qtdVaca = Number(input_qtdVaca.value)
+        var mastite = Number(input_mastite.value)
+        var totalLeite = qtdVaca * leite *2.5
+        var totalMastite = mastite * leite *2.5
+        var prejuizo = totalMastite *7
+        var porcentagem = prejuizo * 100 / (totalLeite * 7)
+        var mensagem = ` Considerando que ${mastite} vacas desenvolveram mastite, durante o tratamento mínimo de 1 semana haverá um prejuízo na produção de leite de <b>R$${prejuizo}</b>, equivalente à ${porcentagem}%`
+        div_mensagem.innerHTML = mensagem
+    }
+</script>
+
