@@ -9,18 +9,20 @@
   
     <h1>Faturamento</h1>
 
-    Quantidade de Vacas: <input type="text" id="input_vacas">
-    <br>
-    Preço do litro do Leite (hoje): <input type="text" id="input_preco">
-    <br>
-    Quantidade de litros total: <input type="text" id="input_litros"> 
-    <br>
-    Quantidade de vacas com mastite: <input type="text" id="input_qtd_mast">
-    <!-- Período de lactação: <input type="text" id="input_periodo"> -->
-    <br>
+    Umidade do solo: <input Number="text" id="input_umidade">
+    <br><br>
+    Quantidade de Vacas: <input Number="text" id="input_vacas">
+    <br><br>
+    Preço do litro do Leite (hoje em reais): <input Number="text" id="input_preco">
+    <br><br>
+    Quantidade de litros total: <input Number="text" id="input_litros"> 
+    <br><br>
+    Quantidade de vacas com mastite: <input Number="text" id="input_qtd_mast">
+    <br><br>
     <button onclick="calcular()">Calcular</button>
-    <br>
+    <br><br>
     <div id="div_mensagem2" ></div>
+    <br>
     <div id="div_mensagem" ></div>
 
 </body>
@@ -38,13 +40,33 @@ function calcular (){
     var lucro = litros * preco;
     var perda = (qtdmast * preco) * 7;
     var lucro_p_vaca = media * preco;
+    var umidadeSolo = Number(input_umidade.value);
+  
+if (umidadeSolo > 45){    
+    alert (`Cuidado! Seu solo está muito úmido, ligue os ventiladores`);
+}
 
-div_mensagem2.innerHTML = `Parabéns, cada vaca rendeu em média ${media} litros de leite e seu ganho por cabeça foi de R$${lucro_p_vaca}, totalizando R$${lucro} de lucro`;
+if (umidadeSolo <= 45){
+    if (umidadeSolo >= 30){
+    alert (`Seu solo está em ótimas condições!`)
+    }
+} 
+    
+
+if (umidadeSolo < 30){    
+    alert (`Cuidado! seu solo está muito seco, irregue-o`);
+}  
+
+var idade = 10
+var dinheiro = 100
+
+div_mensagem2.innerHTML = `Parabéns, <b>cada vaca</b> rendeu em média <b>${media} litros de leite </b> e seu <b>ganho por cabeça</b> foi de <b>R$${lucro_p_vaca}</b>, totalizando <b style="color:green";>R$${lucro} de lucro.</b>`;
 
 if (qtdmast >= 3) {
-div_mensagem.innerHTML = `Cuidado você pode estar perdendo R$${perda} por semana`;
-} else {
-div_mensagem.innerHTML = `Cuidado, dê atenção à umidade do solo!!!`;
+div_mensagem.innerHTML = `Cuidado você pode estar <b style="color:red;">perdendo R$${perda} por semana</b>, e seu lucro indo de ${lucro} para <b style="color:orange;">${lucro - perda} por semana.</b>`;
+} 
+if (qtdmast == 0) {
+div_mensagem.innerHTML= `<b style="color:green;">Muito bem, continue dando atenção à umidade do solo!!!</b>`;
 }
 //  umidade do solo
 //  se umidade > X -- Tome mais cuidado alta umidade da cama 
