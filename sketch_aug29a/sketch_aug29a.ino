@@ -16,11 +16,13 @@ void loop() {
   
   // Lógica para conversão da leitura para porcentagem
   // 1023 = seco, 1 = úmido
-  // Para encontrarmos a leitura de umidade e nao quao seco, inãverte a porcentagem
+  // Para encontrarmos a leitura de umidade e nao quao seco, inverte a porcentagem
   float porcentagemUmidade =  (1 - (leituraSensor / 1023.0)) * 100;
 
-  // Cria gráfico para o usuário com dados convertidos
-  Serial.printlm (porcentagemUmidade);
+  // Escreve resultado da lógica para usuário
+  
+  Serial.println (porcentagemUmidade);
+ 
 
   // Define de quanto em quanto tempo a função se repetirá
   delay(1000);
