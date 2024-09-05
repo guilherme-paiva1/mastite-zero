@@ -1,0 +1,51 @@
+// Define constante pra entrada de dados
+const int PINO_SENSOR_UMIDADE_SOLO = A0;
+
+// Configura sensor para uso
+void setup() {
+  Serial.begin(9600);
+  pinMode(PINO_SENSOR_UMIDADE_SOLO, INPUT);
+}
+
+// Código principal, que se repete
+void loop() {
+  
+  // Captura a leitura do sensor e armazena em variável
+  int leituraSensor = analogRead(PINO_SENSOR_UMIDADE_SOLO);
+  float min = 30;
+  float max = 45;
+  
+  // Lógica para conversão da leitura para porcentagem
+  // 1023 = seco, 1 = úmido
+  // Para encontrarmos a leitura de umidade e nao quao seco, inverte a porcentagem
+  float porcentagemUmidade =  (1 - (leituraSensor / 1023.0)) * 100;
+
+  // Escreve resultado da lógica para usuário
+  
+  Serial.print ("Umidade:");
+  Serial.print (porcentagemUmidade);
+  Serial.print ("Umidade Mínima:");
+  Serial.print (min);
+  Serial.print ("Umidade Máxima:");
+  Serial.println (max);
+  
+
+  // Define de quanto em quanto tempo a função se repetirá
+  delay(1000);
+}
+
+//void min () {
+   float min = 30;
+   Serial.println (min);
+   delay (1000);
+   }
+
+//void max () {
+   float max = 45;
+   Serial.println (max);
+   delay (1000);
+   }
+
+
+
+  
