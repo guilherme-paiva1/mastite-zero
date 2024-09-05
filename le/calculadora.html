@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Coloque aqui quantas vacas sua fazenda possui: <input type="text" id="input_vacas"><br>
+    Coloque quantas vacas estão doentes: <input type="text" id="input_vacasDoentes"><br>
+    Qual a produção de leite: <input type="text" id="input_producao"><br>
+    Quanto você vende o litro de leite: <input type="text" id="input_valor_leite"><br>
+    Qual a umidade do seu solo em porcentagem: <input type="text" id="input_umidade">
+    <button onclick="NaoSei()">Clique aqui caso não saiba a umidade</button><br>
+    <button onclick="calculo()">Calcular produção de leite</button><br>
+    
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+
+    function calculo() {
+        var vacas = Number(input_vacas.value)
+        var vacasDoentes = Number(input_vacasDoentes.value)
+        var umidade = Number(input_umidade.value)
+        var preco = Number(input_valor_leite.value)
+        var producao_leite = Number(input_producao.value)
+        var producao = vacas*producao_leite
+        var producaoPerdas = (vacas - vacasDoentes)* producao_leite
+        var producaoTotal = (vacas + vacasDoentes )* producao_leite
+        var producaoPerdaComPreco = (vacas - vacasDoentes )* producao_leite * preco
+        var producaoComPreco = ((vacas + vacasDoentes )* producao_leite) * preco
+        var perda = ((vacas - vacasDoentes) * producao_leite)* preco
+        var mensagem = `Você está produzindo ${producao}L de leite e está deixando de produzir ${producaoPerdas}L de leite por ter ${vacasDoentes} vacas doentes. Seu lucro está sendo R$${producaoPerdaComPreco}, porém poderia ser R$${producaoComPreco}`
+        var mensagem2 = `Você está produzindo ${producaoTotal}L de leite, isto é 100% da sua capacidade, e esta recebendo R$${producaoComPreco}`
+
+        if ( vacasDoentes > 0) {
+            div_mensagem.innerHTML = mensagem
+            if (umidade > 45) {  
+                div_mensagem.innerHTML += `Cuidado, as ${vacasDoentes} vacas doentes que voce tem podem estar sendo contaminadas pelo solo e você esta perdendo R$${perda} nos três primeiros meses.` + mensagem
+            } 
+        
+        }
+        if (vacasDoentes <= 0 ) {
+            div_mensagem.innerHTML = mensagem2
+
+            if (umidade > 45) {  
+                div_mensagem.innerHTML = `Cuidado, apesar de você nao ter vacas doentes, seu solo está muito umido. Nosso serviço é para você <br>. ${mensagem2}` 
+                
+            } 
+        }
+
+    }
+    function NaoSei() {
+        alert ( "Você está correndo um serio risco ao não saber a umidade do solo. Nossa Solução é para você")
+    }
+</script>

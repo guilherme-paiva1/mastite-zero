@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body style="color: brown; background-color: beige;">
+    <h1>Quanto você pode perder não controlando a umidade do seu Compost Barn e deixando suas vacas leiteiras doentes?</h1>
+    Quantidade de vacas no CB: <br>
+    <input id="input_vacas" type="number"><br><br>
+    Quantidade de vacas doentes no primeiro lote de lactação: <br>
+    <input id="input_lote1" type="text"> <br><br>
+    Quantidade de vacas doentes no segundo lote de lactação: <br>
+    <input id="input_lote2" type="text"> <br><br>
+    Quantidade de vacas doentes no terceiro lote de lactação: <br>
+    <input id="input_lote3" type="text"> <br><br>
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    var vacas = "";
+    var vacasDoentes = "";
+    var lote1 = "";
+    var lote2 = "";
+    var lote3 = "";
+
+    function calcular(){
+        vacas = Number(input_vacas.value);
+        lote1 = Number(input_lote1.value);
+        lote2 = Number(input_lote2.value);
+        lote3 = Number(input_lote3.value);
+        vacasDoentes = lote1 + lote2 + lote3;
+        porcentagem = (vacasDoentes/vacas)*100;
+        var mensagem = "";
+        var mensagemPorcentagem = "";
+
+        if (porcentagem > 10) {
+            mensagem = "Atenção!";
+            mensagemPorcentagem = `<b style="color:darkgoldenrod;">${porcentagem}%</b>`;
+        }
+        if (porcentagem > 20) {
+            mensagem = "Perigo!";
+            mensagemPorcentagem = `<b style="color:red;">${porcentagem}%</b>`;
+        }
+        
+        var litros = lote1*315 + lote2*262.5 + lote3*126
+        var litrosIdeal = ((315 + 262.5 + 126)/3)*vacas;
+        var lucro = litrosIdeal*2.46;
+
+        var dinheiro = litros*2.46;
+        mensagem = mensagem + `Com ${lote1} de vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um total de ${vacasDoentes} vacas doentes, sendo ${mensagemPorcentagem} do total de vacas! <br><br>
+        Vacas saudáveis produzem em média por semana: <br>
+        - 315L no primeiro lote; <br>
+        - 262.5L no segundo lote; <br>
+        - 126L no terceiro lote; <br>
+        Sua produção foi reduzida em <b style="color:red;">${litros}L</b> e perdendo <b style="color:red;">R$${dinheiro}</b> em 1 semana. <br><br>
+        Caso todas as suas ${vacas} estivessem saudáveis a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <b style="color:blue;">${litrosIdeal}L</b> por semana, dando um lucro de <b style="color:blue;">R$${lucro}</b>.`;
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>
