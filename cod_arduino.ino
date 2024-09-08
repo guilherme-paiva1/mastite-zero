@@ -34,17 +34,6 @@ void loop() {
   delay(1000);
 }
 
-//void min () {
-   float min = 30;
-   Serial.println (min);
-   delay (1000);
-   }
-
-//void max () {
-   float max = 45;
-   Serial.println (max);
-   delay (1000);
-   }
 
 
 
