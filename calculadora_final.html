@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
 </head>
-<body style="color: brown; background-color: beige;">
+<body style="color: brown; background-color: rgb(239, 240, 231);">
     <h1>Quanto você pode perder não controlando a umidade do seu Compost Barn e deixando suas vacas leiteiras doentes?</h1>
 
     Quantidade de vacas no CB: <br>
@@ -61,14 +61,14 @@
 
         //caso a porcentagem seja maior que 10, a mensagem mudará para 'Atenção!'
         if (porcentagem_vacas_doentes > 10) {
-            mensagem = `<b style="color:red;">Atenção! </b>`;
-            mensagem_porcentagem = `<b style="color:red;">${porcentagem_vacas_doentes}%</b>`;
+            mensagem = `<h3 style="color:red;">Atenção! </h3>`;
+            mensagem_porcentagem = `<span style="color:red;">${porcentagem_vacas_doentes}%</span>`;
         }
 
         //caso a porcentagem seja maior que 20, a mensagem mudará para 'Perigo!'
         if (porcentagem_vacas_doentes > 20) {
-            mensagem = ` <b style="color:red;">Perigo! </b>`;
-            mensagem_porcentagem = `<b style="color:red;">${porcentagem_vacas_doentes}%</b>`;
+            mensagem = ` <h3 style="color:red;">Perigo! </h3>`;
+            mensagem_porcentagem = `<span style="color:red;">${porcentagem_vacas_doentes}%</span>`;
         }
         
         //cálculo de quantidade de litros e lucro ideal da produção
@@ -80,14 +80,13 @@
         var lucro_perdido = litros_perdidos * preco_leite;
 
         //estruturação da mensagem de acordo + perda na produção
-        mensagem = mensagem + `<h3>Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um <b>total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem}</b> do total de vacas no seu Compost Barn! <br><br>
-        Vacas saudáveis produzem em média por semana: <h3>
-        <br>
+        mensagem = mensagem + `<h3>Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um <b><i>total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem}</i></b> do total de vacas no seu Compost Barn! <br><br>
+        Vacas saudáveis produzem em média por semana:<br>
         - 315L no primeiro lote; <br>
         - 262.5L no segundo lote; <br>
         - 126L no terceiro lote; <br>
-        Sua produção foi reduzida em <b style="color:red;">${litros_perdidos}L</b> e está perdendo <b style="color:red;">R$${lucro_perdido}</b> em 1 semana. <br><br>
-        Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <b style="color:green;">${litros_ideal}L</b> por semana, dando um lucro de <b style="color:green;">R$${lucro_ideal}</b>.`;
+        Sua produção foi reduzida em <span style="color:red;">${litros_perdidos}L</span> e está perdendo <span style="color:red;">R$${lucro_perdido}</span> em 1 semana. <br>
+        Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <span style="color:green;">${litros_ideal}L</span> por semana, dando um lucro de <span style="color:green;">R$${lucro_ideal}</span>.</h3>`;
 
         //caso a inserção de dados seja inválida, será informado ao usuário
         if (porcentagem_vacas_doentes > 100) {
