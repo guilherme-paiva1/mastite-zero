@@ -20,12 +20,13 @@ void loop() {
   // Para encontrarmos a leitura de umidade e nao quao seco, inverte a porcentagem
   float porcentagemUmidade =  (1 - (leituraSensor / 1023.0)) * 100;
 
-  // Escreve resultado da lógica para usuário
-  
+  // Cria gráfico com dados e limite para usuário
   Serial.print ("Umidade:");
   Serial.print (porcentagemUmidade);
+  Serial.print (" ");
   Serial.print ("Umidade Mínima:");
   Serial.print (min);
+  Serial.print (" ");
   Serial.print ("Umidade Máxima:");
   Serial.println (max);
   
