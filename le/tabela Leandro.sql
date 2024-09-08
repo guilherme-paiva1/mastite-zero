@@ -61,7 +61,9 @@ select * from  dados_empresa
 select * from dados_empresa
 	where qtd_vacas > 1000;
     
-    
+-- Comentarios Cynthia: primeira tabela - como falei antes, acho que ter o CNPJ é importante
+-- segunda tabela - ta igual a da Lari, gosto desse jeito
+-- terceira tabela - gostei da ideia de ter uma tabela para controlarmos nossos clientes - escolheria essa
 
 
 

@@ -54,3 +54,7 @@ SELECT * FROM Compost_barn;
 -- EXIBIR TODOS OS CAMPOS DA TABELA ONDE A DATA É MENOR QUE 2 MESES DA DATA ATUAL
 SELECT * FROM Compost_barn WHERE data_ultima_manutencao < '2024-07-04';
 
+-- Comentarios Cynthia: primeira tabela - quantidade de campos bem razoavel, juntou a minha ideia e a da duda (acho bem suficiente e minha escolha seria essa)
+-- segunda tabela - acho que não tem muito o que fugir dessa tabela (a de todos estão bem semelhantes) mas o alerta em amarelo, vermelho e verde é mais legal
+-- terceira tabela - gostei da ideia de um campo para sabermos sobre a manutençao, ja da a ideia de continuidade do pós implementaçãoptimize
+-- na segunda tabela acredito que os alertas estão invertidos

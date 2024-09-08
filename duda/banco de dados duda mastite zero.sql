@@ -50,4 +50,7 @@ INSERT INTO mastite (id_empresa, qtdVacas, qtdVacas_mastite, preco_leite, prejui
 
 SELECT * FROM mastite;
 
-
+-- Comentarios da Cynthia: a primeira tabela ta bem legal, acho que esses dados são os necessarios;
+-- segunda tabela - não entendi o id_empresa (eles são para linkar a empresa que ta acessando?)
+-- terceira tabela - achei interessante, seria como linkar a calculadora na tabela
+-- lembra de colocar mais um select em cada tabela, pediram pelo menos 2

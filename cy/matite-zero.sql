@@ -69,3 +69,6 @@ SELECT id, qtdLeite FROM litrosLeite
     
 SELECT id as 'Código de cadastro da vaca', loteVaca as 'Lote da vaca', qtdLeite as 'Litros de leite por dia',
 dtInicio as 'Início do lote', doente FROM litrosLeite;
+
+-- Comentarios Cynthia: Só usaria o das minhas tabela o campo supervisor (só por achar que fica mais legal o nome mesmo)
+-- talvez usar algum dos meus selects (tipo esse ultimo da terceira tabela), é legal deixar os campos descritivos para o cliente entender bem o que estamos falando

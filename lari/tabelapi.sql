@@ -68,6 +68,8 @@ SELECT * FROM lotes
 SELECT * FROM lotes
 	WHERE producaoDeLeite = 40;
 
-
+-- Comentario Cynthia: primeira tabela - ta igual a minha, como falei na da gi, acho que ter o cnpj é legal porque linkaria com o contrato
+-- segunda tabela - ta perfeito, escolho essa
+-- terceira tabela - o que seria o mes de lactacao? quantos meses ela já deu leite? 
 
 

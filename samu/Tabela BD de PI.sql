@@ -68,3 +68,7 @@ INSERT INTO dadosSensor (nome, cnpj, estado, cidade, cep, logradouro, numero, ar
 SELECT * FROM dadosSensor WHERE area_do_cb_metros2 = 500;
 
 SELECT * FROM dadosSensor WHERE estado = 'Acre' AND cidade = 'Rio Branco';
+
+-- Comentarios Cynthia: primeira tabela - já tinha comentado antes, acho que ta com muitos campos, no contrato já pegariamos todos esses dados, seria mais facil pensar nessa questao para so usar nome da empresa e cnpj como dados importantes
+-- segunda tabela - a ideia de dizer se ta alto, ideal ou baixo é legal, mas prefiro o alerta com as cores
+-- terceira tabela - ta bem parecida com a do Le, acho que qualquer uma das duas seria bem legal de usar
