@@ -29,11 +29,11 @@ SELECT * FROM usuario
 -- TABELA 2 - DADOS COLETADOS DO SENSOR
 
 CREATE TABLE dadosSensor(
-id INT PRIMARY KEY AUTO_INCREMENT,
-umidade FLOAT,
+id INT PRIMARY KEY auto_increment,
+umidade FLOAT (4,2),
 dataHora DATETIME,
 alerta VARCHAR(20) CONSTRAINT chkAlerta CHECK (alerta in ('verde', 'amarelo', 'vermelho'))
-);
+) auto_increment = 100;
 
 INSERT INTO dadosSensor (umidade, dataHora, alerta) VALUES
 (70.9, '2024-08-01 16:44:00', 'vermelho'),
@@ -49,18 +49,17 @@ SELECT * FROM dadosSensor
 -- 3 TABELA COMPOST BARN
 -- CRIAR TABELA Compost_barn
 CREATE TABLE Compost_barn (
-idCb int PRIMARY KEY AUTO_INCREMENT,
-Area_m2 varchar (30),
-Qtd_lotes int,
-Qtd_vacas int,
+idCb int PRIMARY KEY auto_increment,
+area_m2 varchar (30),
+qtd_vacas int,
 data_ultima_manutencao date
-);
+) auto_increment = 1000;
 
 -- INSERIR VALORES NA TABELA
-INSERT INTO Compost_barn (Area_m2,Qtd_lotes, Qtd_vacas,data_ultima_manutencao) VALUES
-('1500','50','100','2024-05-20'),
-('75','3','5','2024-09-02'),
-('1200','16','80','2024-02-17');
+INSERT INTO Compost_barn (area_m2, qtd_vacas, data_ultima_manutencao) VALUES
+('1500','100','2024-05-20'),
+('1000','90','2024-09-02'),
+('1200','80','2024-02-17');
 
 -- EXIBIR TODOS OS CAMPOS DA TABELA
 SELECT * FROM Compost_barn;
@@ -68,19 +67,19 @@ SELECT * FROM Compost_barn;
 -- EXIBIR TODOS OS CAMPOS DA TABELA ONDE A DATA É MENOR QUE 2 MESES DA DATA ATUAL
 SELECT * FROM Compost_barn WHERE data_ultima_manutencao < '2024-07-04';
 
--- 4 TABELA DADOS DA EMPRESA
 
+-- 4 TABELA DADOS DA EMPRESA
 
 CREATE TABLE empresas (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR (50),
-cnpj VARCHAR (20),
+cnpj CHAR (18),
 estado VARCHAR (20),
 cidade VARCHAR (40),
 cep CHAR (9),
 logradouro VARCHAR (50),
 numero VARCHAR (5)
-);
+)auto_increment = 10000;
 
 INSERT INTO empresas (nome, cnpj, estado, cidade, cep, logradouro, numero) VALUES
 ('Grupo gui', '01.200.477/2121-03', 'Acre', 'Rio Branco', '69900-013', 'Rua Ari Rodrigues', '777'),
