@@ -12,8 +12,6 @@ void loop() {
   
   // Captura a leitura do sensor e armazena em variável
   int leituraSensor = analogRead(PINO_SENSOR_UMIDADE_SOLO);
-  float min = 30;
-  float max = 45;
   
   // Lógica para conversão da leitura para porcentagem
   // 1023 = seco, 1 = úmido
@@ -21,14 +19,17 @@ void loop() {
   float porcentagemUmidade =  (1 - (leituraSensor / 1023.0)) * 100;
 
   // Cria gráfico com dados e limite para usuário
+  Serial.print ("0");
+  Serial.print (0);
+  Serial.print (" ");
+  Serial.print ("UmiMínima:");
+  Serial.print (30);
+  Serial.print (" ");
   Serial.print ("Umidade:");
   Serial.print (porcentagemUmidade);
   Serial.print (" ");
-  Serial.print ("Umidade Mínima:");
-  Serial.print (min);
-  Serial.print (" ");
-  Serial.print ("Umidade Máxima:");
-  Serial.println (max);
+  Serial.print ("UmiMáxima:");
+  Serial.println (45);
   
 
   // Define de quanto em quanto tempo a função se repetirá
