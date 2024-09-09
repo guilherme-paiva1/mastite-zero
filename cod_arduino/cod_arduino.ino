@@ -19,7 +19,7 @@ void loop() {
   float porcentagemUmidade =  (1 - (leituraSensor / 1023.0)) * 100;
 
   // Cria gráfico com dados e limite para usuário
-  Serial.print ("0");
+  Serial.print ("0:");
   Serial.print (0);
   Serial.print (" ");
   Serial.print ("UmiMínima:");
