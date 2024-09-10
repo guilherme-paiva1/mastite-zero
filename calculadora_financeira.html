@@ -8,6 +8,11 @@
 <body style="color: brown; background-color: rgb(239, 240, 231);">
     <h1>Quanto você pode perder não controlando a umidade do seu Compost Barn e deixando suas vacas leiteiras doentes?</h1>
 
+    <h3>Uma vaca saudável produz em média por semana:<br>
+        - 315L no primeiro lote; <br>
+        - 262.5L no segundo lote; <br>
+        - 126L no terceiro lote; <br></h3>
+
     Quantidade de vacas no CB: <br>
     <input id="input_vacas" type="number"><br><br>
 
@@ -73,6 +78,7 @@
         
         //cálculo de quantidade de litros e lucro ideal da produção
         var litros_ideal = ((315 + 262.5 + 126)/3) * vacas;
+
         var lucro_ideal = litros_ideal * preco_leite;
 
         //cálculo de quantidade de litros e lucro perdidos por conta da mastite na produção
@@ -81,12 +87,8 @@
 
         //estruturação da mensagem de acordo + perda na produção
         mensagem = mensagem + `<h3>Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um <b><i>total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem}</i></b> do total de vacas no seu Compost Barn! <br><br>
-        Vacas saudáveis produzem em média por semana:<br>
-        - 315L no primeiro lote; <br>
-        - 262.5L no segundo lote; <br>
-        - 126L no terceiro lote; <br>
-        Sua produção foi reduzida em <span style="color:red;">${litros_perdidos}L</span> e está perdendo <span style="color:red;">R$${lucro_perdido}</span> em 1 semana. <br>
-        Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <span style="color:green;">${litros_ideal}L</span> por semana, dando um lucro de <span style="color:green;">R$${lucro_ideal}</span>.</h3>`;
+        Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <span style="color:green;">${litros_ideal}L</span> por semana, dando um lucro de <span style="color:green;">R$${lucro_ideal}</span>.<br><br>
+        Sua produção foi reduzida em <span style="color:red;">${litros_perdidos}L</span> e está perdendo <span style="color:red;">R$${lucro_perdido}</span> em 1 semana.</h3>`;
 
         // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
         if (porcentagem_vacas_doentes == 0) {
