@@ -88,6 +88,12 @@
         Sua produção foi reduzida em <span style="color:red;">${litros_perdidos}L</span> e está perdendo <span style="color:red;">R$${lucro_perdido}</span> em 1 semana. <br>
         Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <span style="color:green;">${litros_ideal}L</span> por semana, dando um lucro de <span style="color:green;">R$${lucro_ideal}</span>.</h3>`;
 
+        // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
+        if (porcentagem_vacas_doentes == 0) {
+            mensagem = `Parabéns! Seu Compost Barn está seguro.
+            Como todas as suas ${vacas} vacas estão saudáveis, sua produção deve ser de, considerando que temos quantidades iguais de vacas nos 3 lotes, <b style="color:green;">${litros_ideal}L</b> por semana, dando um lucro de <b style="color:green;">R$${lucro_ideal}</b>.`;
+        }
+
         //caso a inserção de dados seja inválida, será informado ao usuário
         if (porcentagem_vacas_doentes > 100) {
             mensagem = `<b style="color:red">Entrada inválida. </b>
@@ -103,13 +109,6 @@
             Preço do leite tem que ser maior 0. 
             <b style="color:darkgoldenrod">Revise.</b>`
         }
-
-        // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
-        if (porcentagem_vacas_doentes == 0) {
-            mensagem = `Parabéns! Seu Compost Barn está seguro.
-            Como todas as suas ${vacas} vacas estão saudáveis, sua produção deve ser de, considerando que temos quantidades iguais de vacas nos 3 lotes, <b style="color:green;">${litros_ideal}L</b> por semana, dando um lucro de <b style="color:green;">R$${lucro_ideal}</b>.`;
-        }
-
         //exibição da mensagem na tela
         div_mensagem.innerHTML = mensagem;
     }
