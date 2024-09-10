@@ -19,20 +19,22 @@
 9.1 escrever algumas raças
 (Girolanda, Holandesa, Gir)
 9.2 salvar com ctrl+o
-8.3 confirmar com enter
-8.4 sair com ctrl+x
+9.3 confirmar com enter
+9.4 sair com ctrl+x
 (aqui ele vai relatar um erro de permissão,
 ele acontece porque o usuario frizza não tem permissões sudo)
 
-9. cat "vacas.txt"
+10. cat "vacas.txt"
 
-10. rm "vacas.txt"
+11. rm "vacas.txt"
 
-11. ls
+12. ls
 
-12. cd
+13. cd
 (para voltar ao diretório inicial)
 
-13. rmdir fazenda-frizza
+14. rmdir fazenda-frizza
 
-14. ls
+15. ls
+
+16. exit
