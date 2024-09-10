@@ -98,7 +98,7 @@ INSERT INTO empresas (nome, cnpj, estado, cidade, cep, logradouro, numero) VALUE
 ('Grupo LA', '37.570.300/879-74', 'Paraiba', 'João Pessoa', '58010-010', 'Rua Manoel Soares Londres', '71'),
 ('JohnEnterprises', '20.780.209/5000-20', 'Rio Grande do Norte', 'Natal', '59010-015', 'Rua Miramar', '87'); 
 
--- MOSTRAR O NOME DAS EMPRESAS EM QUE O ID É 10001
+-- MOSTRAR O NOME DA EMPRESA EM QUE O ID É 10001
 SELECT nome FROM empresas WHERE id = 10001;
 
 -- MOSTRAR TODOS OS DADOS DA EMPRESA EM QUE O ESTADO É ACRE E A CIDADE É RIO BRANCO
