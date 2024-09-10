@@ -16,6 +16,9 @@
     Informe quantos litros de leite a sua vaca leiteira produz por dia aproximadamente:
     <input id="input_leite" type="text">
     <br>
+    Informe o preço do litro do leite:
+    <input id="input_preco" type="text">
+    <br>
     <button onclick="calcular()"> Calcular Prejuízo </button>
     <br>
     <div id="div_mensagem"></div>
@@ -27,8 +30,9 @@
         var leite = Number(input_leite.value)
         var qtdVaca = Number(input_qtdVaca.value)
         var mastite = Number(input_mastite.value)
-        var totalLeite = qtdVaca * leite *2.5
-        var totalMastite = mastite * leite *2.5
+        var precoLeite = Number(input_preco.value)
+        var totalLeite = qtdVaca * leite * precoLeite
+        var totalMastite = mastite * leite * precoLeite
         var prejuizo = totalMastite *7
         var porcentagem = prejuizo * 100 / (totalLeite * 7)
         var mensagem = ` Considerando que ${mastite} vacas desenvolveram mastite, durante o tratamento mínimo de 1 semana haverá um prejuízo na produção de leite de <b>R$${prejuizo}</b>, equivalente à ${porcentagem}%`
