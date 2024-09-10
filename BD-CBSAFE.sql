@@ -36,7 +36,7 @@ SELECT * FROM usuario
 -- CRIAR TABELA DADOS DO SENSOR
 CREATE TABLE dados_sensor(
 	id_dado INT PRIMARY KEY auto_increment,
-	umidade FLOAT (4,2),
+	umidade DECIMAL (4,2),
 	data_hora DATETIME,
 	alerta VARCHAR(20),
     
@@ -58,14 +58,10 @@ SELECT * FROM dados_sensor
 -- MOSTRAR OS DADOS DO SENSOR EM QUE O ALERTA É VERMELHO
 SELECT * FROM dados_sensor
 	WHERE alerta = 'vermelho';
-
-SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%, o que gerou um alerta ', alerta) AS mensagem
-	FROM dados_sensor
-		WHERE umidade > 45;
         
+-- MOSTRAR UMA MENSAGEM QUE UNE O HORÁRIO, REGISTRO E O ALERTA
 SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%, o que gerou um alerta ', alerta) AS mensagem
-	FROM dados_sensor
-		WHERE umidade < 30;
+	FROM dados_sensor;
 
 -- 3 TABELA COMPOST BARN
 -- CRIAR TABELA Compost_barn
