@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
 </head>
-<body>
+<body style="color: rgb(190, 97, 10); background-color: blanchedalmond">
     <h1>Calculadora Financeira de Perda de Lucro na Produção de Leite</h1> <br>
     Insira a Quantidade de Vacas no Barracão: <input type="number" id="input_qtd_vacas"> 
     <br>
@@ -20,12 +20,21 @@
         var vacasTotal = Number(input_qtd_vacas.value);
         var vacasMastite = Number(input_qtd_mastite.value);
 
-        var lucro = (vacasTotal * 40 * 7) * 2.46;
-        var perda = vacasMastite * 775;
+        var lucro = (vacasTotal * 40 * 7) * 2.46; /*40 representa a média diária em litro de produção de uma vaca leiteira multiplicado pelo total de vacas. Esse valor é multiplicado por 7 representando uma semana. 
+        O resultado será multiplicado por 2.46 que é média do litro de leite, resultando no lucro semanal.*/ 
 
-        var calculoPerda = lucro - perda;
+        var perda = vacasMastite * 775; /*O número de vacas com mastite é multiplicado por 775, que é a perda em dinheiro semanal para tratatamento da doença,
+        considerando tratamento farmacológico, visita médica veterinária e testes de controle da doença, além da perda estipulada em produção. */
 
-        div_resultado.innerHTML= `Você teria o lucro semanal de R$ ${lucro}, porém, após ${vacasMastite} contrairem mastite, houve perda de R$ ${perda}. O lucro foi de R$ ${calculoPerda}.` 
+        var calculoPerda = lucro - perda; // Calculo da perda que se dá pelo lucro subtraído pela perda.
+
+        var mensagem = `Você teria o lucro semanal de <b style="color:green">R$ ${lucro}</b>, porém, após ${vacasMastite} contrairem mastite, houve perda de <b style="color:red">R$ ${perda}</b>. Portanto, o lucro foi de <b style="color:green">R$ ${calculoPerda}</b>.` 
+
+        if (vacasMastite == 0){
+            mensagem += `<br> Parabéns, você não tem nenhuma vaca doente!`
+        }
+
+        div_resultado.innerHTML = mensagem
     }
 </script>
 
