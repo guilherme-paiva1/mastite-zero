@@ -20,7 +20,8 @@ input {
 
 label {
     color: #EEF7E6;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    font-size:large;
 }
 
 .campos-login {
@@ -40,7 +41,7 @@ label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 50px;
 }
 .nav-logo {
     display: flex;

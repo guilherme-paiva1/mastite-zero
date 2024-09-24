@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="./styles/style.css">
+
+    <script src="./models/login.js"></script>
+
 </head>
 
 
 <body>
-        <nav class="nav-logo">
-            <img src="./assets/iconeVaca.jpeg" alt="Icone vaca"> <h2>Mastite Zero</h2>
-        </nav>
+    <nav class="nav-logo">
+        <img src="./assets/iconeVaca.jpeg" alt="Icone vaca"> <h2>Mastite Zero</h2>
+    </nav>
     <div class="container-principal">
 
         <div class="container-login">
@@ -19,13 +22,17 @@
 
             <div class="campos-login">
                 <label for="inputCnpj">Cnpj: </label>
+
                 <input type="text" id="inputCnpj">
             </div>
+                <span id="mensagemAlertaCnpj" class="mensagem-alerta"></span>
             
             <div class="campos-login">
                 <label for="inputSenha">Senha: </label>
+
                 <input type="text" type="password" id="inputSenha">
             </div>
+            <span id="mensagemAlertaSenha" class="mensagem-alerta"></span>
             
             <button class="botao-login" onclick="logar()" type="submit">Entrar</button>
         </div>
