@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+
+<body>
+    <nav class="nav-logo">
+        <img src="./assets/iconeVaca.jpeg" alt="Icone vaca"> <h2>Mastite Zero</h2>
+    </nav>
+    <div class="container-principal">
+
+        <div class="container-cadastro">
+            <div class="texto-inserir"><h1>Insira suas informações de cadastro: </h1></div>
+
+            <div class="campos-cadastro">
+                <label for="inputCnpj">Cnpj: </label>
+
+                <input type="text" id="inputCnpj">
+            </div>
+                <span id="mensagemAlertaCnpj" class="mensagem-alerta"></span>
+
+            <div class="campo-cadastro-endereco">
+                <label for="inputEndereco">Endereço: </label>
+
+                <input class="input-cadastro" type="text" id="inputEndereco">
+
+                <label for="inputNumero">Numero: </label>
+
+                <input class="input-cadastro" type="number" id="inputNumero">
+                
+                <label for="inputCEP">CEP: </label>
+    
+                <input class="input-cadastro type="text" id="inputCEP">
+            </div>
+                <span id="mensagemAlertaEndereco" class="mensagem-alerta"></span>
+            
+            <div class="campos-cadastro">
+                <label for="inputSenha">Senha: </label>
+    
+                <input type="text" type="password" id="inputSenha">
+            </div>
+            <span id="mensagemAlertaSenha" class="mensagem-alerta"></span>
+            
+            <button class="botao-cadastro" onclick="logar()" type="submit">Entrar</button>
+        </div>
+    </div>
+    <div class="container-footer">
+        <p class="texto-contato">Entre em contato: <img src=""> </p> 
+        <p class="texto-email">contato.cbsafe@gmail.com</p>
+    </div>
+</body>
+</html>
+
+<script src="./models/login.js"></script>
