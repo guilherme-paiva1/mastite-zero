@@ -39,6 +39,16 @@ label {
 .texto-inserir {
     color: #FEDD54;
 }
+.container-home {
+    background-color: #7AA95B;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
 
 .container-login {
     background-color: #7AA95B;
@@ -59,10 +69,12 @@ label {
     gap: 20px;
     color: #EEF7E6;
 }
-img {
+
+
+/* img {
     width: 6%;
     border-radius: 50%;
-}
+} */
 
 .a-nav {
     font-size: 20px;
