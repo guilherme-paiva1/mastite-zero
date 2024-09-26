@@ -3,15 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>CBSafe - Cadastro</title>
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" href="./assets/icon_logo_transparente.png" type="image/icon type">
 </head>
 
 
 <body>
-    <nav class="nav-logo">
-        <img src="./assets/iconeVaca.jpeg" alt="Icone vaca"> <h2>Mastite Zero</h2>
-    </nav>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./assets/icon_logo_transparente.png" alt="Icone vaca">
+                <h2>CBSAFE</h2>
+            </div>
+
+            <ul class="link-navbar">
+                <li>
+                    <a href="index.html" class="a-nav">Home</a>
+                </li>
+                <li>
+                    <a href="#" class="a-nav">Sobre nós</a>
+                </li>
+                <li>
+                    <a href="#" class="a-nav">Sustentabilidade</a>
+                </li>
+                <li>
+                    <a href="cadastro.html" class="a-nav selected">Cadastre-se</a>
+                </li>
+                <li>
+                    <a href="login.html" class="a-nav">Entrar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="container-principal">
 
         <div class="container-cadastro">
@@ -35,7 +60,7 @@
                 
                 <label for="inputCEP">CEP: </label>
     
-                <input class="input-cadastro type="text" id="inputCEP">
+                <input class="input-cadastro" type="text" id="inputCEP">
             </div>
                 <span id="mensagemAlertaEndereco" class="mensagem-alerta"></span>
             
