@@ -94,11 +94,12 @@ body {
     color: #fed859;
     font-size: 60px;
     font-weight: bolder;
+    margin: 20px 0px 0px 0px;
 }
 
 .div-texto p {
-    font-weight: bold;
-    font-size: 25px;
+    font-weight: normal;
+    font-size: 20px;
 }
 
 .div-img {
@@ -186,27 +187,24 @@ label {
 }
 
 
-
-/* img {
-    width: 6%;
-    border-radius: 50%;
-    } */
-    
-    
-    
 .input-cadastro {
     width: 100px;
     height: 20px;
 }
-.container-footer{
+.footer .container{
     display: flex;
     flex-direction: row;
-    flex-direction: row;
-    gap: 20px;
     justify-content: center;
     margin: 0 auto;
-    margin-top: 130px ;
+    width: 100%;
+    align-items: center;
+    color: white;
 }
+
+.footer span{
+    font-weight: normal;
+}
+
 .texto-contato {
     color: #EEF7E6;
     font-weight: bold;
