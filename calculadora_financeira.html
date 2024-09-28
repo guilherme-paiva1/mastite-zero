@@ -102,6 +102,10 @@
         var litros_perdidos = (lote1 * 315) + (lote2 * 262.5) + (lote3 * 126);
         var lucro_perdido = litros_perdidos * preco_leite;
 
+        // cálculo da porcentagem de melhoria
+        var lucro_melhoria = lucro_perdido * 0.5;
+        var litros_melhoria = litros_perdidos * 0.5;
+
         //estruturação da mensagem de acordo + perda na produção
         mensagem = mensagem + `<h3>Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um <b><i>total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem}</i></b> do total de vacas no seu Compost Barn! <br><br>
         Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, <span style="color:green;">${litros_ideal}L</span> por semana, dando um lucro de <span style="color:green;">R$${lucro_ideal}</span>.<br><br>
@@ -128,6 +132,10 @@
             Preço do leite tem que ser maior 0. 
             <b style="color:darkgoldenrod">Revise.</b>`
         }
+
+        mensagem += `Com nosso sistema de controle diminuiriamos a chance da Mastite em 50%. <br>
+        Levando sua produção reduzida para: ${litros_melhoria} e sua perda para: R$${lucro_melhoria}`;
+
         //exibição da mensagem na tela
         div_mensagem.innerHTML = mensagem;
     }
