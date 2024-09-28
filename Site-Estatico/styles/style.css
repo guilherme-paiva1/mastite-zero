@@ -72,35 +72,17 @@ body {
 }
 
 .div-conteudo {
+    gap: 20px;
     background-color: #7AA95B;
     border-radius: 10px;
     display: flex;
-    gap: 20px;
     justify-content: space-between;
     align-items: center;
     padding: 50px;
     width: 80%;
 }
 
-.div-texto {
-    align-items: center;
-    text-align: center;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    color: white;
-}
-.div-texto h1 {
-    color: #fed859;
-    font-size: 56px;
-    font-weight: bolder;
-    margin: 20px 0px 0px 0px;
-}
 
-.div-texto p {
-    font-weight: normal;
-    font-size: 20px;
-}
 
 .div-img {
     width: 600px;
@@ -154,18 +136,6 @@ body {
 }
 
 /* ----------------- LOGIN --------------------- */
-.botao-login {
-    width: 120px;
-    height: 30px;
-    border-radius: 20px;
-    
-}
-
-.botao-cadastro {
-    width: 120px;
-    height: 30px;
-}
-
 input {
     border-radius: 5px;
     height: 25px;
@@ -178,20 +148,26 @@ label {
     font-size:large;
 }
 
-.campos-login {
+.div-login {
+    gap: 20px;
+    background-color: #7AA95B;
+    border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    width: 80%;
 }
 
-.texto-inserir {
-    color: #FEDD54;
+
+.div-login .campos-cadastro {
+    gap: 20px;
+}
+.div-login .div-texto {
+    gap:10px
 }
 
 
-.input-cadastro {
-    width: 100px;
-    height: 20px;
-}
 .footer .container{
     display: flex;
     flex-direction: row;
@@ -213,10 +189,12 @@ label {
 .texto-email {
     color: #C2F3C4;
 }
-.campo-cadastro-endereco{
-    margin-top: 40px;
-    margin-bottom: 40px;
+
+.texto-cadastrar {
+    font-weight: normal;
+    font-size: 20px;
 }
+
 
 /* CADASTRO */
 .container-cadastro {
@@ -229,39 +207,49 @@ label {
     flex-direction: column;
     align-items: center;
 }
+.div-texto {
+    align-items: center;
+    text-align: center;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.div-texto h1 {
+    color: #fed859;
+    font-size: 56px;
+    font-weight: bolder;
+    margin: 20px 0px 0px 0px;
+}
+
+.div-texto p {
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.botao-cadastro {
+    width: 120px;
+    height: 30px;
+}
+.input-cadastro {
+    width: 100px;
+    height: 20px;
+}
+.campo-cadastro-endereco{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 
 .div-texto #linkLogin {
     font-weight: 600;
     color: white;
 }
 
-.texto-cadastro p{
-    margin-top: 0px;
-    font-size: 16px;
-}
-
-.campos-cadastro{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-.campos-cadastro input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: none;
-    background-color: #D3EAB3;
-    margin: 2px;
-    padding: 5px;
-
-}
 
 ::placeholder{
     color: #1C5E20;
     font-family: "Poppins", sans-serif;
 }
-
 .btn-cadastro {
     cursor: pointer;
     border: none;
@@ -274,5 +262,25 @@ label {
     border-radius: 20px;
     margin-top: 20px;
 }
+.texto-cadastro p{
+    margin-top: 0px;
+    font-size: 16px;
+}
 
+.campos-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+}
+.campos-cadastro input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    background-color: #D3EAB3;
+    margin: 2px;
+    padding: 5px;
 
+}
