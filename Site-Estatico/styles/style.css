@@ -92,7 +92,7 @@ body {
 }
 .div-texto h1 {
     color: #fed859;
-    font-size: 60px;
+    font-size: 56px;
     font-weight: bolder;
     margin: 20px 0px 0px 0px;
 }
@@ -168,7 +168,7 @@ body {
 
 input {
     border-radius: 5px;
-    height: 20px;
+    height: 25px;
     width: 200px;
 }
 
@@ -218,5 +218,61 @@ label {
     margin-bottom: 40px;
 }
 
+/* CADASTRO */
+.container-cadastro {
+    background-color: #7AA95B;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    padding: 50px;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div-texto #linkLogin {
+    font-weight: 600;
+    color: white;
+}
+
+.texto-cadastro p{
+    margin-top: 0px;
+    font-size: 16px;
+}
+
+.campos-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.campos-cadastro input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    background-color: #D3EAB3;
+    margin: 2px;
+    padding: 5px;
+
+}
+
+::placeholder{
+    color: #1C5E20;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-cadastro {
+    cursor: pointer;
+    border: none;
+    background-color: #1C5E20;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    color: white; 
+    width: 160px;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
 
 

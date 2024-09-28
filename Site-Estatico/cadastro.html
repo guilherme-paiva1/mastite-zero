@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBSafe - Cadastro</title>
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="./assets/icon_logo_transparente.png" type="image/icon type">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
-
-
 <body>
     <div class="header">
         <div class="container">
@@ -38,47 +41,29 @@
     </div>
 
     <div class="container-conteudo">
-
-        <div class="container-cadastro">
-            <div class="texto-inserir"><h1>Insira suas informações de cadastro: </h1></div>
-
-            <div class="campos-cadastro">
-                <label for="inputCnpj">Cnpj: </label>
-
-                <input type="text" id="inputCnpj">
+        <div class="div-conteudo">
+            <div class="div-texto texto-cadastro">
+                <h1>Cadastre-se</h1>
+                <p>Já tem uma conta? <a id="linkLogin" href="login.html">Entre</a></p>
+                <div class="campos-cadastro">
+                    <input type="text" id="inputEmpresa" placeholder="Nome da empresa">
+                    <input type="text" id="inputCnpj" placeholder="CNPJ"> 
+                    <input type="text" id="inputResponsavel" placeholder="Nome do responsável">
+                    <input type="text" id="inputEmail" placeholder="E-mail">
+                    <input type="password" id="inputSenha" placeholder="Senha">
+                    <button class="btn-cadastro">Cadastrar</button>
+                </div>
             </div>
-                <span id="mensagemAlertaCnpj" class="mensagem-alerta"></span>
-
-            <div class="campo-cadastro-endereco">
-                <label for="inputEndereco">Endereço: </label>
-
-                <input class="input-cadastro" type="text" id="inputEndereco">
-
-                <label for="inputNumero">Numero: </label>
-
-                <input class="input-cadastro" type="number" id="inputNumero">
-                
-                <label for="inputCEP">CEP: </label>
-    
-                <input class="input-cadastro" type="text" id="inputCEP">
+            <div class="div-img">
+                <img src="assets/img_vacas.jpeg" alt="">
             </div>
-                <span id="mensagemAlertaEndereco" class="mensagem-alerta"></span>
-            
-            <div class="campos-cadastro">
-                <label for="inputSenha">Senha: </label>
-    
-                <input type="text" type="password" id="inputSenha">
-            </div>
-            <span id="mensagemAlertaSenha" class="mensagem-alerta"></span>
-            
-            <button class="botao-cadastro" onclick="logar()" type="submit">Entrar</button>
         </div>
     </div>
-    <div class="container-footer">
-        <p class="texto-contato">Entre em contato: <img src=""> </p> 
-        <p class="texto-email">contato.cbsafe@gmail.com</p>
+
+    <div class="footer">
+        <div class="container">
+            <p>Entre em contato: <span>contato.cbsafe@gmail.com</span></p>
+        </div>
     </div>
 </body>
 </html>
-
-<script src="./models/login.js"></script>
