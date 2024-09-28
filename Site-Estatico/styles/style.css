@@ -82,8 +82,6 @@ body {
     width: 80%;
 }
 
-
-
 .div-img {
     width: 600px;
     height: 400px;
@@ -135,38 +133,93 @@ body {
     height: 20px;
 }
 
-/* ----------------- LOGIN --------------------- */
-input {
+/* ----------------- LOGIN E CADASTRO (juntei pq os dois usam as mesmas classes num geral)--------------------- 
+(apaguem esses parenteses depois)*/
+
+.campo-cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.campo-cadastro input {
     border-radius: 5px;
     height: 25px;
     width: 200px;
-}
-
-label {
-    color: #EEF7E6;
-    margin-bottom: 20px;
-    font-size:large;
-}
-
-.div-login {
-    gap: 20px;
-    background-color: #7AA95B;
-    border-radius: 10px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 50px;
-    width: 80%;
+    border: none;
+    background-color: #D3EAB3;
+    margin: 2px;
+    padding: 5px;
 }
 
-
-.div-login .campos-cadastro {
+.div-conteudo .campo-cadastro {
     gap: 20px;
 }
-.div-login .div-texto {
+
+.campo-cadastro-endereco{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.div-conteudo .div-texto {
     gap:10px
 }
 
+.div-texto {
+    align-items: center;
+    text-align: center;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.div-texto h1 {
+    color: #fed859;
+    font-size: 56px;
+    font-weight: bolder;
+    margin: 20px 0px 0px 0px;
+}
+
+.div-texto p {
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.div-texto #linkLogin {
+    font-weight: 600;
+    color: white;
+}
+
+::placeholder{
+    color: #1C5E20;
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-cadastro {
+    cursor: pointer;
+    border: none;
+    background-color: #1C5E20;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    color: white; 
+    width: 160px;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.texto-cadastro p{
+    margin-top: 0px;
+    font-size: 16px;
+}
+
+/* --------------- FOOTER -------------- */
 
 .footer .container{
     display: flex;
@@ -180,107 +233,4 @@ label {
 
 .footer span{
     font-weight: normal;
-}
-
-.texto-contato {
-    color: #EEF7E6;
-    font-weight: bold;
-}
-.texto-email {
-    color: #C2F3C4;
-}
-
-.texto-cadastrar {
-    font-weight: normal;
-    font-size: 20px;
-}
-
-
-/* CADASTRO */
-.container-cadastro {
-    background-color: #7AA95B;
-    border-radius: 10px;
-    display: flex;
-    gap: 10px;
-    padding: 50px;
-    width: 80%;
-    flex-direction: column;
-    align-items: center;
-}
-.div-texto {
-    align-items: center;
-    text-align: center;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    color: white;
-}
-.div-texto h1 {
-    color: #fed859;
-    font-size: 56px;
-    font-weight: bolder;
-    margin: 20px 0px 0px 0px;
-}
-
-.div-texto p {
-    font-weight: normal;
-    font-size: 20px;
-}
-
-.botao-cadastro {
-    width: 120px;
-    height: 30px;
-}
-.input-cadastro {
-    width: 100px;
-    height: 20px;
-}
-.campo-cadastro-endereco{
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.div-texto #linkLogin {
-    font-weight: 600;
-    color: white;
-}
-
-
-::placeholder{
-    color: #1C5E20;
-    font-family: "Poppins", sans-serif;
-}
-.btn-cadastro {
-    cursor: pointer;
-    border: none;
-    background-color: #1C5E20;
-    font-size: 18px;
-    font-family: "Poppins", sans-serif;
-    color: white; 
-    width: 160px;
-    height: 40px;
-    border-radius: 20px;
-    margin-top: 20px;
-}
-.texto-cadastro p{
-    margin-top: 0px;
-    font-size: 16px;
-}
-
-.campos-cadastro{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    
-}
-.campos-cadastro input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: none;
-    background-color: #D3EAB3;
-    margin: 2px;
-    padding: 5px;
-
 }
