@@ -219,6 +219,42 @@ body {
     font-size: 16px;
 }
 
+/* ----------------- CALCULADORA --------------- */
+
+.div-conteudo {
+    justify-content: center;
+}
+
+.div-texto .titulo-calculadora {
+    font-size: 20px;
+}
+
+.div-calculadora {
+    gap: 20px;
+    background-color: #7AA95B;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    width: 60%;
+}
+
+.div-calculadora .campo-calculadora {
+    width: 80%;
+}
+
+.div-calculadora .campo-calculadora span {
+    width: 200px;
+    text-align: center;
+    color: white;
+}
+
+.div-calculadora .campo-calculadora input {
+    width: 60%;
+    text-align: center;
+}
+
 /* --------------- FOOTER -------------- */
 
 .footer .container{
