@@ -72,7 +72,7 @@ body {
 }
 
 .div-conteudo {
-    gap: 20px;
+    gap: 50px;
     background-color: #7AA95B;
     border-radius: 10px;
     display: flex;
@@ -133,21 +133,20 @@ body {
     height: 20px;
 }
 
-/* ----------------- LOGIN E CADASTRO (juntei pq os dois usam as mesmas classes num geral)--------------------- 
-(apaguem esses parenteses depois)*/
+/* ----------------- LOGIN E CADASTRO ---------------------  */
 
 .campo-cadastro{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    color: #ffffff;
     
 }
 
 .campo-cadastro input {
     border-radius: 5px;
     height: 25px;
-    width: 200px;
+    width: 270px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,7 +157,7 @@ body {
 }
 
 .div-conteudo .campo-cadastro {
-    gap: 20px;
+    gap: 10px;
 }
 
 .campo-cadastro-endereco{
@@ -173,7 +172,7 @@ body {
 .div-texto {
     align-items: center;
     text-align: center;
-    width: 400px;
+    width: 450px;
     display: flex;
     flex-direction: column;
     color: white;
@@ -222,13 +221,18 @@ body {
 /* ----------------- CALCULADORA --------------- */
 
 .div-conteudo {
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .div-texto .titulo-calculadora {
-    font-size: 20px;
+    font-size: 25px;
+    margin: auto;
 }
 
+#texto-calculadora{
+    text-align: left;
+
+}
 .div-calculadora {
     gap: 20px;
     background-color: #7AA95B;

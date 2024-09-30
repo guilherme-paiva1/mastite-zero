@@ -32,6 +32,9 @@
                     <a href="sobrenos.html" class="a-nav">Sobre nós</a>
                 </li>
                 <li>
+                    <a href="calculadora_financeira.html" class="a-nav selected">Simulador</a>
+                </li>
+                <li>
                     <a href="cadastro.html" class="a-nav">Cadastre-se</a>
                 </li>
                 <li>
@@ -42,15 +45,18 @@
     </div>
 
     <div class="container-conteudo">
-        <div class="div-calculadora">
-            <div class="div-texto texto-cadastro">
+        <div class="div-conteudo">
+            <div class="div-texto texto-cadastro" id="texto-calculadora">
                 <h1 class="titulo-calculadora">Quanto você pode perder não controlando a umidade do seu Compost Barn?
                 </h1>
 
-                <h3>Uma vaca saudável produz em média por semana:<br>
-                    - 315L no primeiro lote; <br>
-                    - 262.5L no segundo lote; <br>
-                    - 126L no terceiro lote; <br></h3>
+                <p>
+                    Uma vaca saudável produz em média por semana:<br>
+                        - 315L no primeiro lote; <br>
+                        - 262.5L no segundo lote; <br>
+                        - 126L no terceiro lote; <br>
+                </p>
+                <div id="div_mensagem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi architecto accusantium ipsum repellendus quasi?</div>
             </div>
             <div class="campo-calculadora">
                 <div class="campo-cadastro">
@@ -65,7 +71,6 @@
 
                     <button onclick="calcular()" class="btn-cadastro">Calcular</button>
                 </div>
-                <div id="div_mensagem"></div>
             </div>
         </div>
     </div>
