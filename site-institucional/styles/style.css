@@ -274,3 +274,38 @@ body {
 .footer span{
     font-weight: normal;
 }
+/* --------------- SOBRE NOS -------------- */
+
+.sobre {
+    display: flex;
+}
+
+#conteudo-sobre{
+    display: flex;
+    flex-direction: column;
+    background-color: #7AA95B;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 80%;
+    border-radius: 10px;
+    padding:30px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+.sobre h1 {
+    color: #fed859;
+    font-size: 56px;
+    font-weight: bolder;
+}
+.sobre p {
+    color: white;
+    width: 60%;
+    margin-left: 20px;
+}
+.sobre ul {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 60%;
+}
