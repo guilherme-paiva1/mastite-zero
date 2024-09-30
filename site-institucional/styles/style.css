@@ -220,8 +220,8 @@ body {
 
 /* ----------------- CALCULADORA --------------- */
 
-.div-conteudo {
-    justify-content: space-between;
+.div-conteudo.calculadora {
+    justify-content: space-evenly;
 }
 
 .div-texto .titulo-calculadora {
@@ -229,10 +229,15 @@ body {
     margin: auto;
 }
 
-#texto-calculadora{
-    text-align: left;
-
+.texto-calculadora {
+    text-align: center;
 }
+
+.texto-calculadora p{
+    margin-top: 0;
+    font-size: 16px;
+}
+
 .div-calculadora {
     gap: 20px;
     background-color: #7AA95B;
