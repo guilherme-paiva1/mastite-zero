@@ -51,6 +51,12 @@ body {
     opacity: 0.5;
 }
 
+.a-nav:hover {
+    opacity: 1;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
 .a-nav.selected {
     opacity: 1;
     font-weight: bold;
@@ -80,6 +86,7 @@ body {
     align-items: center;
     padding: 50px;
     width: 80%;
+    margin-bottom: 50px;
 }
 
 .div-img {
@@ -105,6 +112,11 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+.botao-simulacao:hover{
+    background-color: white;
+    color: #1C5E20;
+    transition: 0.4s;
 }
 
 
@@ -135,28 +147,43 @@ body {
 
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 
-.campo-cadastro{
+.campo-input {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #ffffff;
-    
+    width: 550px;
 }
 
-.campo-cadastro input {
-    border-radius: 5px;
+.campo-input input {
+    border-radius: 10px;
     height: 25px;
-    width: 270px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    outline: none;
     border: none;
     background-color: #D3EAB3;
     margin: 2px;
     padding: 5px;
 }
 
-.div-conteudo .campo-cadastro {
+.linha-input {
+    display: flex;
+    flex-direction: row;
+    width: 90%
+}
+
+.linha-erro {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.div-conteudo .campo-input {
     gap: 10px;
 }
 
@@ -190,7 +217,7 @@ body {
     font-size: 20px;
 }
 
-.div-texto #linkLogin {
+.div-texto .link {
     font-weight: 600;
     color: white;
 }
@@ -213,8 +240,14 @@ body {
     margin-top: 20px;
 }
 
-.texto-cadastro p{
-    margin-top: 0px;
+.btn-cadastro:hover {
+    background-color: white;
+    color: #1C5E20;
+    transition: 0.4s;
+}
+
+.texto-subtitulo p{
+    margin-top: 0;
     font-size: 16px;
 }
 
@@ -229,6 +262,12 @@ body {
     margin: auto;
 }
 
+<<<<<<< HEAD
+#texto-calculadora{
+    text-align: left;
+}
+
+=======
 .texto-calculadora {
     text-align: center;
 }
@@ -238,6 +277,7 @@ body {
     font-size: 16px;
 }
 
+>>>>>>> da86e75c2720980437a6c813aa89d8a2c28482ba
 .div-calculadora {
     gap: 20px;
     background-color: #7AA95B;
@@ -279,38 +319,30 @@ body {
 .footer span{
     font-weight: normal;
 }
+
 /* --------------- SOBRE NOS -------------- */
 
 .sobre {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#conteudo-sobre{
-    display: flex;
-    flex-direction: column;
-    background-color: #7AA95B;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 80%;
-    border-radius: 10px;
-    padding:30px;
-    padding-top: 0px;
-    padding-bottom: 20px;
+.erro {
+    font-size: 15px;
 }
-.sobre h1 {
-    color: #fed859;
-    font-size: 56px;
-    font-weight: bolder;
+
+/* --------------- SUSTENTABILIDADE -------------- */
+
+.sobre .div-texto {
+    width: 55%;
 }
-.sobre p {
-    color: white;
-    width: 60%;
-    margin-left: 20px;
+
+.sobre .div-texto p{
+    font-size: 20px;
 }
-.sobre ul {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 60%;
+
+.sobre .div-texto ul {
+    font-size: 20p;
 }

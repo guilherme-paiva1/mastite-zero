@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
     <div class="header">
         <div class="container">
@@ -42,17 +44,37 @@
 
     <div class="container-conteudo">
         <div class="div-conteudo">
-            <div class="div-texto texto-cadastro">
+            <div class="div-texto texto-subtitulo">
                 <h1>Cadastre-se</h1>
-                <p>Já tem uma conta? <a id="linkLogin" href="login.html">Entre</a></p>
-                <div class="campo-cadastro">
-                    <input type="text" id="inputEmpresa" placeholder="Nome da empresa">
-                    <input type="text" id="inputResponsavel" placeholder="Nome do responsável">
-                    <input type="text" id="inputCnpj" placeholder="CNPJ"> 
-                    <input type="text" id="inputEmail" placeholder="E-mail">
-                    <input type="password" id="inputSenha" placeholder="Senha">
-                    <input type="password" id="inputConfirmaSenha" placeholder="Confirmar senha">
-                    <button class="btn-cadastro">Cadastrar</button>
+                <p>Já tem uma conta? <a class="link" href="login.html">Entre</a></p>
+                <div class="campo-input">
+                    <div class="linha-input">
+                        <input type="text" id="inputEmpresa" placeholder="Nome da empresa">
+                        <input type="text" id="inputResponsavel" placeholder="Nome do responsável">
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanErroEmpresa"></span>
+                        <span class="erro" id="spanErroResponsavel"></span>
+                    </div>
+                    <div class="linha-input">
+                        <input type="text" id="inputCnpj" placeholder="CNPJ">
+                        <input type="email" id="inputEmail" placeholder="E-mail">
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanErroCnpj"></span>
+                        <span class="erro" id="spanErroEmail"></span>
+                    </div>
+                    <div class="linha-input">
+                        <input type="password" id="inputSenha" placeholder="Senha">
+                        <input type="password" id="inputConfirmaSenha" placeholder="Confirmar senha">
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanErroSenha"></span>
+                        <span class="erro" id="spanErroConfirmarSenha"></span>
+                    </div>
+                    <div id="divMensagem"></div>
+
+                    <button class="btn-cadastro" onclick="cadastrar()">Cadastrar</button>
                 </div>
             </div>
             <div class="div-img">
@@ -67,4 +89,6 @@
         </div>
     </div>
 </body>
+
 </html>
+<script src="./models/cadastro.js"></script>
