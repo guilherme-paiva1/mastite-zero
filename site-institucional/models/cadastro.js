@@ -19,8 +19,8 @@ function cadastrar(){
         spanErroSenha.innerHTML = "As senhas não são identicas"
         spanErroConfirmarSenha.innerHTML = "As senhas não são identicas"
     }else if(senha == 0 || senha < 4){
-        spanErroSenha.innerHTML = "Senha inválida, curta de mais"
-        spanErroConfirmarSenha.innerHTML = "Senha inválida, curta de mais"
+        spanErroSenha.innerHTML = "Senha inválida, curta demais"
+        spanErroConfirmarSenha.innerHTML = "Senha inválida, curta demais"
     }else if(email == 0 || email < 7){
         spanErroEmail.innerHTML = "Email inválido"
     }else if(responsavel == 0 || responsavel < 4){

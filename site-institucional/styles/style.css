@@ -262,12 +262,6 @@ body {
     margin: auto;
 }
 
-<<<<<<< HEAD
-#texto-calculadora{
-    text-align: left;
-}
-
-=======
 .texto-calculadora {
     text-align: center;
 }
@@ -277,7 +271,6 @@ body {
     font-size: 16px;
 }
 
->>>>>>> da86e75c2720980437a6c813aa89d8a2c28482ba
 .div-calculadora {
     gap: 20px;
     background-color: #7AA95B;
@@ -340,9 +333,12 @@ body {
 }
 
 .sobre .div-texto p{
-    font-size: 20px;
+    font-size: 18px;
+    text-align: left;
 }
 
 .sobre .div-texto ul {
-    font-size: 20p;
+    font-size: 18px;
 }
+
+
