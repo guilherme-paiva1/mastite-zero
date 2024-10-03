@@ -19,15 +19,8 @@ void loop() {
   float porcentagemUmidade =  (1 - (leituraSensor / 1023.0)) * 100;
 
   // Cria gráfico com dados e limite para usuário
-  Serial.print ("UmiMínima:");
-  Serial.print (30);
-  Serial.print (" ");
-  Serial.print ("Umidade:");
-  Serial.print (porcentagemUmidade);
-  Serial.print (" ");
-  Serial.print ("UmiMáxima:");
-  Serial.println (45);
-  
+  Serial.println (porcentagemUmidade);
+
   // Define de quanto em quanto tempo a função se repetirá
   delay(1000);
 }
