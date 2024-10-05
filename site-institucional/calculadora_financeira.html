@@ -45,7 +45,7 @@
     </div>
 
     <div class="container-conteudo">
-        <div class="div-conteudo">
+        <div class="div-conteudo calculadora">
             <div class="div-texto texto-subtitulo" id="texto-calculadora">
                 <h1 class="titulo-calculadora">Quanto você pode perder não controlando a umidade do seu Compost Barn?
                 </h1>
@@ -56,7 +56,7 @@
                         - 262.5L no segundo lote; <br>
                         - 126L no terceiro lote; <br>
                 </p>
-                <div id="div_mensagem">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi architecto accusantium ipsum repellendus quasi?</div>
+                <div id="div_mensagem"></div>
             </div>
             <div class="campo-calculadora">
                 <div class="campo-input">
@@ -69,7 +69,7 @@
                     <span>Preço do litro de leite atual:</span>
                     <input id="input_preco_leite" type="number" placeholder="Preço atual">
 
-                    <button class="btn-cadastro">Calcular</button>
+                    <button class="btn-cadastro" onclick="calcular()">Calcular</button>
                 </div>
             </div>
         </div>
@@ -174,9 +174,9 @@
             mensagem = `Entrada inválida. Preço do leite tem que ser maior 0. Revise.`
         }
 
-        
+        console.log(mensagem);
 
         //exibição da mensagem na tela
-        alert(mensagem);
+        div_mensagem.innerHTML = mensagem;
     }
 </script>
