@@ -57,7 +57,7 @@
                         <span class="erro" id="spanErroResponsavel"></span>
                     </div>
                     <div class="linha-input">
-                        <input type="text" id="inputCnpj" placeholder="CNPJ">
+                        <input type="text" id="inputCnpj" oninput="validar()" placeholder="CNPJ">
                         <input type="email" id="inputEmail" placeholder="E-mail">
                     </div>
                     <div class="linha-erro">
@@ -74,7 +74,7 @@
                     </div>
                     <div id="divMensagem"></div>
 
-                    <button class="btn-cadastro">Cadastrar</button>
+                    <button class="btn-cadastro" onclick="cadastrar()">Cadastrar</button>
                 </div>
             </div>
             <div class="div-img">

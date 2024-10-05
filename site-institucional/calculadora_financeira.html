@@ -155,9 +155,16 @@
         var litros_melhoria = litros_perdidos * 0.5;
 
         //estruturação da mensagem de acordo + perda na produção
-        mensagem = mensagem + `Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro lote doentes, seu Compost Barn está com um total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem} do total de vacas no seu Compost Barn! Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria de, considerando que temos quantidades iguais de vacas nos 3 lotes, ${litros_ideal}L por semana, dando um lucro de R$${lucro_ideal} Sua produção foi reduzida em ${litros_perdidos}L e está perdendo R$${lucro_perdido} em 1 semana.`;
+        mensagem += `Com ${lote1} vacas no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro 
+        lote doentes, seu Compost Barn está com um total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem}
+        do total de vacas no seu Compost Barn! Caso todas as suas ${vacas} vacas estivessem saudáveis, a produção seria
+        de, considerando que temos quantidades iguais de vacas nos 3 lotes, ${litros_ideal}L por semana, 
+        <span class="texto-lucro"> dando um lucro de R$${lucro_ideal} </span> <span class="texto-perda"> Sua produção foi reduzida em ${litros_perdidos}L 
+        e está perdendo R$${lucro_perdido} em 1 semana. </span>`;
 
-        mensagem += `Com nosso sistema de controle diminuiriamos a chance da Mastite em 50%. Levando sua produção reduzida para: ${litros_melhoria} e sua perda para: R$${lucro_melhoria}`;
+        
+        mensagem += `Com nosso sistema de controle <span class="texto-lucro"> diminuiriamos a chance da Mastite em 50% </span>. 
+        Levando sua produção reduzida para: ${litros_melhoria} e sua perda para: R$${lucro_melhoria}`;
 
         // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
         if (porcentagem_vacas_doentes == 0) {
