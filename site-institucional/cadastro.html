@@ -57,16 +57,16 @@
                         <span class="erro" id="spanErroResponsavel"></span>
                     </div>
                     <div class="linha-input">
-                        <input type="text" id="inputCnpj" oninput="validar()" placeholder="CNPJ">
-                        <input type="email" id="inputEmail" placeholder="E-mail">
+                        <input type="number" id="inputCnpj" oninput="validar()" placeholder="CNPJ (apenas números)">
+                        <input type="email" id="inputEmail" oninput="validarEmail()" placeholder="E-mail">
                     </div>
                     <div class="linha-erro">
                         <span class="erro" id="spanErroCnpj"></span>
                         <span class="erro" id="spanErroEmail"></span>
                     </div>
                     <div class="linha-input">
-                        <input type="password" id="inputSenha" placeholder="Senha">
-                        <input type="password" id="inputConfirmaSenha" placeholder="Confirmar senha">
+                        <input type="password" id="inputSenha" oninput="validarSenha()" placeholder="Senha">
+                        <input type="password" id="inputConfirmaSenha" oninput="validarSenha()" placeholder="Confirmar senha">
                     </div>
                     <div class="linha-erro">
                         <span class="erro" id="spanErroSenha"></span>
