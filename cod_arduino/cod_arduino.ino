@@ -22,7 +22,7 @@ void loop() {
   Serial.println (porcentagemUmidade);
 
   // Define de quanto em quanto tempo a função se repetirá
-  delay(1000);
+  delay(2000);
 }
 
 
