@@ -84,11 +84,11 @@ CREATE TABLE compost_barn (
 ) AUTO_INCREMENT = 1000;
 
 -- INSERIR VALORES NA TABELA
-INSERT INTO compost_barn (area_m2, qtd_vacas, data_ultima_manutencao, fk_empresa) VALUES
-	('1500',100,'2024-05-20', 10001),
-	('1000',90,'2024-09-02', 10002),
-	('1200',80,'2024-02-17', 10003),
-    ('1100', 110, '2024-03-15', 10000);
+INSERT INTO compost_barn (area_m2, data_ultima_manutencao, fk_empresa) VALUES
+	('1500', '2024-05-20', 10001),
+	('1000', '2024-09-02', 10002),
+	('1200', '2024-02-17', 10003),
+    ('1100', '2024-03-15', 10000);
 
 -- EXIBIR TODOS OS DADOS DA TABELA
 SELECT * FROM compost_barn;
@@ -115,33 +115,21 @@ CREATE TABLE dados_sensor(
 	id_dado INT PRIMARY KEY auto_increment,
 	umidade DECIMAL (4,2),
 	data_hora DATETIME,
-	alerta VARCHAR(20),
     fk_compost_barn INT,
     
     CONSTRAINT fk_compost_barn_dados
 		FOREIGN KEY (fk_compost_barn)
-			REFERENCES compost_barn(id_cb),
-    
-    CONSTRAINT chk_alerta
-		CHECK (alerta IN ('verde', 'amarelo', 'vermelho'))
+			REFERENCES compost_barn(id_cb)
         
 ) AUTO_INCREMENT = 100;
 
 -- INSERIR DADOS NA TABELA
-INSERT INTO dados_sensor (umidade, data_hora, alerta, fk_compost_barn) VALUES
-	(70.9, '2024-08-01 16:44:00', 'vermelho', 1000),
-	(35.6, '2024-08-09 16:50:09', 'verde', 1001),
-	(44.8, '2024-08-09 18:00:01', 'amarelo', 1002),
-    (25.6, '2024-08-09 18:00:01', 'vermelho', 1003);
+INSERT INTO dados_sensor (umidade, data_hora, fk_compost_barn) VALUES
+	(70.9, '2024-08-01 16:44:00', 1000),
+	(35.6, '2024-08-09 16:50:09', 1001),
+	(44.8, '2024-08-09 18:00:01', 1002),
+    (25.6, '2024-08-09 18:00:01', 1003);
 
--- MOSTRAR OS DADOS DO SENSOR EM QUE O ALERTA É VERDE
-SELECT * FROM dados_sensor
-	WHERE alerta = 'verde';
-
--- MOSTRAR OS DADOS DO SENSOR EM QUE O ALERTA É VERMELHO
-SELECT * FROM dados_sensor
-	WHERE alerta = 'vermelho';
-        
 -- MOSTRAR UMA MENSAGEM QUE UNE O HORÁRIO, REGISTRO E O ALERTA
 SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%, o que gerou um alerta ', alerta) AS mensagem
 	FROM dados_sensor;
