@@ -89,19 +89,19 @@
 
 <script>
     // criação das variáveis
-    var vacas = 0;
-    var vacas_doentes = 0;
-    var lote1 = 0;
-    var lote2 = 0;
-    var lote3 = 0;
-    var preco_leite = 0;
-    var porcentagem_vacas_doentes = 0;
-    var litros_ideal = 0;
-    var numero_media = 0;
-
-
+    
     //função acionada ao clicar no botão
     function calcular() {
+        var vacas = 0;
+        var vacas_doentes = 0;
+        var lote1 = 0;
+        var lote2 = 0;
+        var lote3 = 0;
+        var preco_leite = 0;
+        var porcentagem_vacas_doentes = 0;
+        var litros_ideal = 0;
+        var numero_media = 0;
+    
         //captação das informações inseridas pelo usuário
         vacas = Number(input_vacas.value);
         lote1 = Number(input_lote1.value);
@@ -111,7 +111,7 @@
 
         //cálculo das vacas doentes e da porcentagem de vacas doentes entre as sadias
         vacas_doentes = lote1 + lote2 + lote3;
-        porcentagem_vacas_doentes = (vacas_doentes / vacas) * 100;
+        porcentagem_vacas_doentes = ((vacas_doentes / vacas) * 100).toFixed(2);
 
         //criação das variáveis de mensagem
         var mensagem = "";
