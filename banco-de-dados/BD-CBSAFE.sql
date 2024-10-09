@@ -10,15 +10,19 @@ numero CHAR(9),
 cep CHAR(9),
 bairro VARCHAR(45),
 cidade VARCHAR(45),
-estado VARCHAR (45)
+estado VARCHAR (45),
+CONSTRAINT chckEstado CHECK (estado IN("AC", "AL", "AP", "AM",
+ "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB",
+ "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+ ))
 )AUTO_INCREMENT = 200;
 
 INSERT INTO endereco (id_endereco, rua, numero, cep, bairro, cidade, estado) VALUES
 
-(default, 'Rua Ari Rodrigues', '777', '69900-013', 'São João',  'Rio Branco',  'Acre'),
-(default, 'Rua Manoel Soares Londres', '71', '58010-010', 'Manaira', 'João Pessoa', 'Paraiba'),
-(default, 'Rua Miramar', '87', '59010-015', 'Alecrim', 'Rio Grande do Norte', 'Natal'), 
-(default, 'Rua Libero', '242', '60011-014', 'Tucanos', 'Londrina', 'Paraná');
+(default, 'Rua Ari Rodrigues', '777', '69900-013', 'São João',  'Rio Branco',  'AC'),
+(default, 'Rua Manoel Soares Londres', '71', '58010-010', 'Manaira', 'João Pessoa', 'PA'),
+(default, 'Rua Miramar', '87', '59010-015', 'Alecrim', 'Natal', 'RN'), 
+(default, 'Rua Libero', '242', '60011-014', 'Tucanos', 'Londrina', 'PR');
 
 select * from endereco;
 
@@ -50,7 +54,7 @@ SELECT emp.nome, ende.rua FROM Empresa AS emp JOIN Endereco AS ende ON id_endere
 
 
 CREATE TABLE usuario (
-	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+	id_usuario INT AUTO_INCREMENT,
     supervisor VARCHAR (20),
     email VARCHAR (30),
     senha VARCHAR (15),
@@ -58,7 +62,10 @@ CREATE TABLE usuario (
     
     CONSTRAINT fk_empresa_user
 		FOREIGN KEY (fk_empresa)
-			REFERENCES empresa(id_empresa)
+			REFERENCES empresa(id_empresa),
+	
+    CONSTRAINT pk_user_empresa
+		PRIMARY KEY (id_usuario, fk_empresa)
     );
 
 -- DESCREVER USUÁRIO
@@ -159,7 +166,7 @@ SELECT * FROM dados_sensor
 	WHERE alerta = 'vermelho';
         
 -- MOSTRAR UMA MENSAGEM QUE UNE O HORÁRIO, REGISTRO E O ALERTA
-SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%, o que gerou um alerta ', alerta) AS mensagem
+SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%, o que gerou um alerta ', alerta) AS "Registro do dado"
 	FROM dados_sensor;
     
 SELECT 
