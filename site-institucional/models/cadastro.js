@@ -1,7 +1,8 @@
+
+
 function cadastrar(){
     var empresa =  inputEmpresa.value 
     var responsavel = inputResponsavel.value 
-    var cnpj = inputCnpj.value 
     var email = inputEmail.value
     var senha = inputSenha.value
     var confirmarSenha = inputConfirmaSenha.value
@@ -49,13 +50,7 @@ function cadastrar(){
 }
 
 function validar(){
-
-    var empresa =  inputEmpresa.value 
-    var responsavel = inputResponsavel.value 
     var cnpj = inputCnpj.value 
-    var email = inputEmail.value
-    var senha = inputSenha.value
-    var confirmarSenha = inputConfirmaSenha.value
 
     console.log(cnpj.length)
 
@@ -84,16 +79,26 @@ function validarEmail(){
 }
 
 function validarSenha(){
-    var senha = inputSenha.value
-    var confirmarSenha = inputConfirmaSenha.value   
+    var senha = inputSenha.value;
+    var possuiEspecial = true;
+    var possuiNumero = true;
 
-    if(senha != confirmarSenha){
-        spanErroSenha.innerHTML = "As senhas não são identicas"
-        spanErroConfirmarSenha.innerHTML = "As senhas não são identicas"
+    for(var i=0; i <= senha.length; i++){   
+        if(senha[i] == "@" || senha[i] == "#" || senha[i] == "$" || senha[i] == "%" || senha[i] == "&" || senha[i] == "*"){
+            possuiEspecial = false;
+        }
+        if(senha[i] >= "0" && senha[i] <= "9"){
+            possuiNumero = false;
+        }
+    }
+
+    if(senha == senha.toLowerCase() || possuiEspecial || possuiNumero){
+        spanErroSenha.innerHTML = `Senha inválida, não atende os requisitos <br> <b>
+                                    (1 caractere especial, 1 letra maiúscula e pelo menos 1 numero) </b>`
         inputSenha.style.border = "solid 1px red";
-        inputConfirmaSenha.style.border = "solid 1px red";
-
-    }else if(senha == 0 || senha < 4){
+    }
+    
+    else if(senha == 0 || senha < 4){
         spanErroSenha.innerHTML = "Senha inválida, curta demais"
         spanErroConfirmarSenha.innerHTML = "Senha inválida, curta demais"
         inputSenha.style.border = "solid 1px red";
