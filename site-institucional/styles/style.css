@@ -270,22 +270,22 @@ body {
 .div-conteudo {
     justify-content: space-around;
 }
+
 .div-conteudo .calculadora {
     height: 100%;
 }
-
 
 .div-texto .titulo-calculadora {
     width: 100%;
     font-size: 30px;
 }
+
 #texto-calculadora{
     display: flex;
     gap: 40px;
     height: 100%;
     width: 50%;
 } 
-
 
 .texto-calculadora {
     text-align: center;
@@ -308,6 +308,7 @@ body {
     width: 230px;
     text-align: center;
 }
+
 #div_mensagem {
     width: 100%;
     background-color: #D3EAB3;  
@@ -318,8 +319,40 @@ body {
 .texto-lucro {
     color: #1F6A07;
 }
+
 .texto-perda {
     color: rgb(184, 17, 17);
+}
+
+/* --------------- SOBRE NOS -------------- */
+
+.sobre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.erro {
+    font-size: 15px;
+    font-weight: normal;
+}
+.div-texto li {
+    border-bottom: 8px;
+}
+/* --------------- SUSTENTABILIDADE -------------- */
+
+.sobre .div-texto {
+    width: 55%;
+}
+
+.sobre .div-texto p{
+    font-size: 18px;
+    text-align: left;
+}
+
+.sobre .div-texto ul {
+    font-size: 18px;
 }
 
 /* --------------- FOOTER -------------- */
@@ -338,34 +371,3 @@ body {
 .footer span{
     font-weight: normal;
 }
-
-/* --------------- SOBRE NOS -------------- */
-
-.sobre {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.erro {
-    font-size: 15px;
-    font-weight: normal;
-}
-
-/* --------------- SUSTENTABILIDADE -------------- */
-
-.sobre .div-texto {
-    width: 55%;
-}
-
-.sobre .div-texto p{
-    font-size: 18px;
-    text-align: left;
-}
-
-.sobre .div-texto ul {
-    font-size: 18px;
-}
-
-
