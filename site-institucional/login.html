@@ -49,11 +49,26 @@
             <div class="div-texto texto-subtitulo">
                 <h1>Login</h1>
                 <p>Não tem uma conta? <a class="link" href="cadastro.html">Cadastre-se </a></p>
-                <div class="campo-input">
-                    <input type="text" id="inputCnpj" placeholder="CNPJ"> 
-                    <input type="password" id="inputSenha" placeholder="Senha">
-                    <button class="btn-cadastro">Entrar</button>
+
+                <div class="select">
+                    <select id="selectTipo" onchange="mudarOpcao()" >
+                        <option value="usuario" selected>Usuario</option>
+                        <option value="empresa">Empresa</option>
+                    </select>
                 </div>
+
+                <div class="campo-input" id="campoInput">
+                    <input type="text" id="inputCnpj" placeholder="CNPJ" oninput="validarCnpj()"> 
+                    <input type="password" id="inputSenha" placeholder="Senha">
+                    <button class="btn-cadastro" onclick="logar()">Entrar</button>
+                </div>
+                        <div id="spans">
+                            <span class="erro" id="spanErro"></span>
+                        </div>
+
+                        <div id="sucesso">
+                            <span id="spanSucesso"></span>
+                        </div>
             </div>
         </div>
     </div>
@@ -65,3 +80,6 @@
     </div>
 </body>
 </html>
+<script src="./models/login.js">
+
+</script>
