@@ -55,13 +55,24 @@ const serial = async (
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
 
+        const dataAtual = new Date();
+
+        var dataFinal = "";
+
+        dataFinal += dataAtual.getFullYear().toString() + "-";
+        dataFinal += dataAtual.getMonth().toString() + "-";
+        dataFinal += dataAtual.getDate().toString() + " ";
+        dataFinal += dataAtual.getHours().toString() + ":";
+        dataFinal += dataAtual.getMinutes().toString() + ":";
+        dataFinal += dataAtual.getSeconds().toString();
+
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO dados_sensor (umidade) VALUES (?)',
-                [sensorAnalogico]
+                'INSERT INTO dados_sensor (umidade,data_hora) VALUES (?, ?)',
+                [sensorAnalogico], dataFinal
             );
             console.log("valores inseridos no banco: ", sensorAnalogico);
 
