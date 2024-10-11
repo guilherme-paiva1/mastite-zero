@@ -319,12 +319,18 @@ body {
     text-align: center;
 }
 
-#div_mensagem {
+.div_mensagem {
     width: 100%;
     background-color: #D3EAB3;  
     color: black;
     border-radius: 10px;
+    height: 320px;
 }   
+
+#mensagem-calculadora {
+    text-align: center;
+    align-items: center;
+}
 
 .texto-lucro {
     color: #1F6A07;

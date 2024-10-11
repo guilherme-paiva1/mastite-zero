@@ -19,7 +19,7 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'teste',
+            user: 'svc_insert',
             password: 'urubu100',
             database: 'cbsafe',
             port: 3306
@@ -49,8 +49,9 @@ const serial = async (
     // processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
-        // const valores = data.split('');
-        const sensorAnalogico = parseFloat(data);
+        const valores = data.split(';');
+        const sensorAnalogico = parseFloat(valores[0]);
+        const fkCompostBarn = parseInt(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
@@ -71,8 +72,8 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO dados_sensor (umidade,data_hora) VALUES (?, ?)',
-                [sensorAnalogico], dataFinal
+                'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
+                [sensorAnalogico, dataFinal, fkCompostBarn]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico);
 

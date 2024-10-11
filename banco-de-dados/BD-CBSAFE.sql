@@ -1,4 +1,3 @@
-DROP DATABASE cbsafe;
 CREATE DATABASE cbsafe;
 USE cbsafe;
 
