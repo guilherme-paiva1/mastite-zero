@@ -320,11 +320,16 @@ body {
 }
 
 .div_mensagem {
+    display: flex;
     width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
     background-color: #D3EAB3;  
     color: black;
     border-radius: 10px;
     height: 320px;
+    padding: 30px;
 }   
 
 #mensagem-calculadora {
