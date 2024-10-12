@@ -53,20 +53,7 @@
                 <h1 class="titulo-calculadora">Quanto você pode perder não controlando a umidade do seu Compost Barn?
                 </h1>
 
-                <p>
-                    Uma vaca saudável produz em média por semana:<br>
-                        - 315L no primeiro lote; <br>
-                        - 262.5L no segundo lote; <br>
-                        - 126L no terceiro lote; <br>
-                </p>
-                <div class="div_mensagem">
-                    <p id="mensagem_calculadora">
-                        Seus resultados serão mostrados aqui!
-                    </p>
-                </div>
-            </div>
-            <div class="campo-calculadora">
-                <div class="campo-input">
+                <div class="campo-calculadora campo-input">
                     <span>Quantidade de vacas no Compost Barn (total):</span>
                     <input id="input_vacas" type="number" placeholder="Quantidade de vacas no CB">
                     <span>Quantidade de vacas doentes:</span>
@@ -78,6 +65,26 @@
 
                     <button class="btn-cadastro" onclick="calcular()">Calcular</button>
                 </div>
+
+                
+            </div>
+            <!-- <div class="campo-calculadora">
+                
+            </div> -->
+            <div class="resultado-calculadora">
+                <p id="legenda-calculadora">
+                    Uma vaca saudável produz em média por semana:<br>
+                        - 315L no primeiro lote; <br>
+                        - 262.5L no segundo lote; <br>
+                        - 126L no terceiro lote; <br>
+                </p>
+                <div class="div_mensagem">
+                    <p id="mensagem_calculadora">
+                        Seus resultados serão mostrados aqui!
+                    </p>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -169,11 +176,11 @@
         e você está perdendo <b>R$${lucro_perdido}</b> em 1 semana. </span><br> <br>`;
 
         
-        mensagem += `Com nosso sistema de controle <span class="texto-lucro"> diminuiriamos a chance da Mastite em <b>50%</b></span>, levando sua produção reduzida para: <span class="texto-lucro"><b>${litros_melhoria}L</b></span> e diminuindo sua perda para: <span class="texto-lucro"><b>R$${lucro_melhoria}</b></span>`;
+        mensagem += `Com nosso sistema de controle <span class="texto-lucro"> poderíamos diminuir a chance de mastite em até <b>50%</b></span>, levando sua produção reduzida para: <span class="texto-lucro"><b>${litros_melhoria}L</b></span> e diminuindo sua perda para: <span class="texto-lucro"><b>R$${lucro_melhoria}</b></span>`;
 
         // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
         if (porcentagem_vacas_doentes == 0) {
-            mensagem = `Parabéns! Seu Compost Barn está seguro. Como todas as suas ${vacas} vacas estão saudáveis, sua produção deve ser de, considerando que temos quantidades iguais de vacas nos 3 lotes, ${litros_ideal}L por semana, dando um lucro de R$${lucro_ideal}.`;
+            mensagem = `Parabéns! Seu Compost Barn está seguro. Como todas as suas ${vacas} vacas estão saudáveis, considerando que temos quantidades iguais de vacas nos 3 lotes, sua produção deve ser de ${litros_ideal}L por semana, dando um lucro de R$${lucro_ideal}.`;
         }
 
         //caso a inserção de dados seja inválida, será informado ao usuário

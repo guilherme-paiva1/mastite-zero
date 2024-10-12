@@ -319,16 +319,22 @@ body {
     text-align: center;
 }
 
+.resultado-calculadora #legenda-calculadora {
+    color: #ffffff;
+    font-weight: normal;
+    text-align: center;
+}
+
 .div_mensagem {
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     align-items: center;
     text-align: center;
     justify-content: center;
     background-color: #D3EAB3;  
     color: black;
     border-radius: 10px;
-    height: 320px;
+    min-height: 100%;
     padding: 30px;
 }   
 
