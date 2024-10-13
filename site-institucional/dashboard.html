@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Graphics</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html" class="a-logo">
+                    <img src="./assets/icon_logo_transparente.png" alt="Icone vaca">
+                    <h2>CBSAFE</h2>
+                </a>
+            </div>
+
+
+            <ul class="link-navbar">
+                <li>
+                    <a href="#" class="a-nav">Home</a>
+                </li>
+                <li>
+                    <a href="sobrenos.html" class="a-nav">Sobre nós</a>
+                </li>
+                <li>
+                    <a href="calculadora_financeira.html" class="a-nav">Simulador</a>
+                </li>
+                <li>
+                    <a href="./dashboard.html" class="a-nav selected">Dashboard</a>
+                </li>
+                <li>
+                    <a href="cadastro.html" class="a-nav">Cadastre-se</a>
+                </li>
+                <li>
+                    <a href="login.html" class="a-nav">Entrar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-conteudo">
+        <div class="div-conteudo dashboard">
+            <div class="opcao-barn">
+                <select id="opcaoDadoBarn">
+                    <option value="Compost1">Compost-1</option>
+                    <option value="Compost2">Compost-2</option>
+                    <option value="Compost3">Compost-3</option>
+                    <option value="Compost4">Compost-4</option>
+                    <option value="VisaoGeral">Visão geral</option>
+                </select>
+            </div>
+        
+            <div class="container-situacao">
+                <h1>Situação atual</h1>
+                <h2>OK</h2>
+            </div>
+
+           <!--  <div class="container-niveis">
+                <div class="nivel-maior">
+                    <h1>Maior nível registrado</h1>
+                    <h2>41% às 15:00</h2>
+                </div>
+                <div class="nivel-medio">
+                    <h1>Nível médio registrado</h1>
+                    <h2>34%</h2>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+
+  <!--   <div class="div-grafico">
+        <canvas id="sensorAnalogico"></canvas>
+    </div> -->
+
+    <div class="footer">
+        <div class="container">
+            <p>Entre em contato: <span>contato.cbsafe@gmail.com</span></p>
+        </div>
+    </div>
+
+    <script>
+        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Analogico',
+                    borderColor: '#63B1BC',
+                    backgroundColor: '#ED145B',
+                    data: [10,20,30,40,50,60]
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(%)',
+                        },
+                        beginAtZero: false
+                    },
+                },
+            }
+        });
+
+        var paginacao = {};
+        var tempo = {};
+
+        function obterDados(grafico, endpoint) {
+            fetch('http://localhost:3300/sensores/' + endpoint)
+                .then(response => response.json())
+                .then(valores => {
+                    if (paginacao[endpoint] == null) {
+                        paginacao[endpoint] = 0;
+                    }
+                    if (tempo[endpoint] == null) {
+                        tempo[endpoint] = 0;
+                    }
+
+                    var ultimaPaginacao = paginacao[endpoint];
+                    paginacao[endpoint] = valores.length;
+                    valores = valores.slice(ultimaPaginacao);
+
+                    valores.forEach((valor) => {
+                        if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                            grafico.data.labels.shift();
+                            grafico.data.datasets[0].data.shift();
+                        }
+
+                        grafico.data.labels.push(tempo[endpoint]++);
+                        grafico.data.datasets[0].data.push(parseFloat(valor));
+                        grafico.update();
+                    });
+                })
+                .catch(error => console.error('Erro ao obter dados:', error));
+        }
+
+        setInterval(() => {
+            obterDados(sensorAnalogico, 'analogico');
+        }, 1500);
+
+    </script>
+</body>
+
+</html>

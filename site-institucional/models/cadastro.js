@@ -6,6 +6,7 @@ function cadastrar(){
     var email = inputEmail.value
     var senha = inputSenha.value
     var confirmarSenha = inputConfirmaSenha.value
+    var razao = inputRazao.value;
 
     spanErroSenha.innerHTML = "";
     spanErroConfirmarSenha.innerHTML = "";
@@ -38,19 +39,22 @@ function cadastrar(){
 
     }else if((email == 0 || email < 7) || email.indexOf("@") < 0 || email.indexOf(".com") < 0){
         inputEmail.style.border = "solid 1px red";
-        spanErroEmail.innerHTML = "Email inválido"
+        spanErroEmail.innerHTML = "Email inválido";
 
     }else if(responsavel == 0 || responsavel < 4){
-        spanErroResponsavel.innerHTML = "Responsável inválido"
-    }else if(empresa == 0){
-        spanErroEmpresa.innerHTML = "Empresa inválida"
+        spanErroResponsavel.innerHTML = "Representante inválido, mínimo de 4 letras ";
+    }else if(empresa == 0 || empresa < 3){
+        spanErroEmpresa.innerHTML = "Nome fantasia inválido, mínimo de 3 letras";
+    }else if(razao == 0 ||  razao < 3){
+        spanErroRazao.innerHTML = "Razão social inválida, mínimo de 3 letras";
     }else {
         divMensagem.innerHTML = `Cadastro realizado com sucesso! Bem-vindo ${empresa}`
     }
 }
 
 function validar(){
-    var cnpj = inputCnpj.value 
+    var cnpj = inputCnpj.value  
+ 
 
     console.log(cnpj.length)
 

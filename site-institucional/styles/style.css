@@ -12,7 +12,7 @@ body {
 /*-------------------- NAV -------------------------- */
 
 .header {
-    height: 120px;
+    height: 85px;
     display: flex;
     gap: 20px;
     color: #EEF7E6;
@@ -23,7 +23,7 @@ body {
 .header .container {
     justify-content: space-between;
     align-items: center;
-    height: 100%;
+    height: 80%;
 }
 
 .container {
@@ -89,6 +89,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .div-conteudo {
@@ -159,6 +160,55 @@ body {
     height: 20px;
 }
 
+/* ----------------- DASHBOARD ---------------------  */
+
+.dashboard {
+    color:#1F6A07 ;
+}
+
+.opcao-barn {
+    width: 100%;
+}
+
+.container-situacao {
+    display: flex;
+    flex-direction: column;
+    color: #1F6A07;
+    background-color: #D3EAB3;
+    width: 70%;
+    height: 100%;
+    align-items: center;
+    border-radius: 10px;
+}
+.container-situacao h1 {
+    font-size: 25px;
+    font-weight:600;
+}
+.container-situacao h2 {
+    font-size: 40px;
+    font-weight: bolder;
+    margin: 0px;
+}
+
+.container-niveis{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: self-end;
+}
+
+#opcaoDadoBarn {
+    display: flex;
+    background-color:#D3EAB3 ;
+    border: none;
+    padding: 8px;
+    border-radius: 10px;
+    width: 200px;
+    height: 80px;
+    font-size: 20px;
+    color: #1F6A07;
+    align-self: flex-start;
+}
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 
 #selectTipo {

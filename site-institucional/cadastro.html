@@ -36,6 +36,9 @@
                     <a href="calculadora_financeira.html" class="a-nav">Simulador</a>
                 </li>
                 <li>
+                    <a href="./dashboard.html" class="a-nav">Dashboard</a>
+                </li>
+                <li>
                     <a href="#" class="a-nav selected">Cadastre-se</a>
                 </li>
                 <li>
@@ -52,10 +55,12 @@
                 <p>Já tem uma conta? <a class="link" href="login.html">Entre</a></p>
                 <div class="campo-input">
                     <div class="linha-input">
-                        <input type="text" id="inputEmpresa" placeholder="Nome da empresa">
-                        <input type="text" id="inputResponsavel" placeholder="Nome do responsável">
+                        <input type="text" id="inputRazao" placeholder="Razão social">
+                        <input type="text" id="inputEmpresa" placeholder="Nome fantasia">
+                        <input type="text" id="inputResponsavel" placeholder="Representante legal">
                     </div>
                     <div class="linha-erro">
+                        <span class="erro" id="spanErroRazao"></span>
                         <span class="erro" id="spanErroEmpresa"></span>
                         <span class="erro" id="spanErroResponsavel"></span>
                     </div>
