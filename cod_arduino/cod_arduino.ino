@@ -1,6 +1,6 @@
 // Define constante pra entrada de dados
 const int PINO_SENSOR_UMIDADE_SOLO = A0;
-const int FK_COMPOST_BARN = 1000;
+const int FK_SENSOR = 1;
 
 // Configura sensor para uso
 void setup() {
@@ -22,7 +22,7 @@ void loop() {
   // Cria gráfico com dados e limite para usuário
   Serial.print (porcentagemUmidade);
   Serial.print (';');
-  Serial.println (FK_COMPOST_BARN);
+  Serial.println (FK_SENSOR);
 
   // Define de quanto em quanto tempo a função se repetirá
   delay(2000);
