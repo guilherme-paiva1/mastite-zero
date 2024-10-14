@@ -4,30 +4,28 @@ USE cbsafe;
 -- CRIAÇÃO DA TABELA EMPRESA
 CREATE TABLE Empresa (
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR (50),
+    razao_social VARCHAR (50),
+	nome_fantasia VARCHAR (50),
 	cnpj CHAR (18)
-    
-) AUTO_INCREMENT = 10000;
+);
 
 -- INSERIR DADOS NA TABELA EMPRESA
-INSERT INTO Empresa (nome, cnpj) VALUES
-	('Grupo Compost Barn', '01.200.477/0001-03'),
-	('Grupo LA', '37.570.300/0001-74'),
-	('JohnEnterprises Milk', '20.780.209/0001-20'), 
-    ('Grupo João & Maria Laticínios', '33.790.210/0001-30');
+INSERT INTO Empresa (razao_social, nome_fantasia, cnpj) VALUES
+	('Grupo Compost Barn S/A', 'Leite Feliz', '01.200.477/0001-03'),
+	('Grupo LA Laticínios', 'Fazenda Raio de Sol', '37.570.300/0001-74'),
+	('JohnEnterprises Milk', 'Vaca Sorridente', '20.780.209/0001-20'), 
+    ('Grupo João & Maria Laticínios', 'João & Maria', '33.790.210/0001-30');
     
-    -- MOSTRAR O NOME DA EMPRESA EM QUE O ID É 10001
-SELECT nome FROM Empresa
-	WHERE id_empresa = 10001;
+-- MOSTRAR O NOME DA EMPRESA EM QUE O ID É 1
+SELECT nome_fantasia FROM Empresa
+	WHERE id_empresa = 1;
 
 SELECT * FROM Empresa;
 
-SELECT emp.nome
+SELECT emp.nome_fantasia
 	FROM Empresa AS emp;
     
-        
 SELECT cnpj FROM Empresa;
-
 
 CREATE TABLE Endereco (
 	id_endereco INT PRIMARY KEY AUTO_INCREMENT,
@@ -37,7 +35,7 @@ CREATE TABLE Endereco (
 	logradouro VARCHAR(45),
 	numero CHAR(9),
 	complemento VARCHAR(45),
-	fk_empresa int,
+	fk_empresa INT,
     
 	CONSTRAINT chkEstado 
 		CHECK (estado IN(
@@ -53,13 +51,13 @@ CREATE TABLE Endereco (
 		FOREIGN KEY (fk_empresa) 
 			REFERENCES Empresa(id_empresa)
             
-) AUTO_INCREMENT = 200;
+);
 
 INSERT INTO Endereco (logradouro, numero, cep, cidade, estado, complemento, fk_empresa) VALUES
-	('Rua Ari Rodrigues', '777', '69900-013', 'Rio Branco',  'AC', 'Portão 2',10000),
-	('Rua Manoel Soares Londres', '71', '58010-010', 'João Pessoa', 'PA', 'Apartamento Nº45', 10001),
-	('Rua Miramar', '87', '59010-015', 'Natal', 'RN', 'Portaria 5', 10002), 
-	('Rua Libero', '242', '60011-014', 'Londrina', 'PR', 'Portão 1',10003);
+	('Rua Ari Rodrigues', '777', '69900-013', 'Rio Branco',  'AC', 'Portão 2', 1),
+	('Rua Manoel Soares Londres', '71', '58010-010', 'João Pessoa', 'PA', 'Apartamento Nº45', 2),
+	('Rua Miramar', '87', '59010-015', 'Natal', 'RN', 'Portaria 5', 3), 
+	('Rua Libero', '242', '60011-014', 'Londrina', 'PR', 'Portão 1', 4);
 
 CREATE TABLE Usuario (
 	id_usuario INT AUTO_INCREMENT,
@@ -68,8 +66,7 @@ CREATE TABLE Usuario (
     senha VARCHAR (15),
     fk_supervisor INT,
     fk_empresa INT,
-    CONSTRAINT pk_usuario_empresa
-		PRIMARY KEY (id_usuario, fk_empresa),
+    CONSTRAINT PRIMARY KEY (id_usuario, fk_empresa),
         
     CONSTRAINT fk_empresa_user
 		FOREIGN KEY (fk_empresa)
@@ -85,16 +82,16 @@ DESC Usuario;
 
 -- INSERIR DADOS NA TABELA
 INSERT INTO Usuario (nome, email, senha, fk_empresa) VALUES
-	('Marcos', 'marcos@compost.com', '12345', 10000),
-    ('Paulo', 'paulo@la.com', 'amominhamae', 10001),
-    ('Fiona', 'fiona@johnent.com', 'shrek123', 10002),
-    ('Ruan', 'ruan@jmlat.com', 'maionesedeovo', 10003);
+	('Marcos', 'marcos@compost.com', '12345', 1),
+    ('Paulo', 'paulo@la.com', 'amominhamae', 2),
+    ('Fiona', 'fiona@johnent.com', 'shrek123', 3),
+    ('Ruan', 'ruan@jmlat.com', 'maionesedeovo', 4);
     
 INSERT INTO Usuario (nome, email, senha, fk_supervisor, fk_empresa) VALUES
-	('João', 'joao@compost.com', '54321', 1, 10000),
-    ('Genildo', 'genildo@la.com', 'amominhatia', 2, 10001),
-    ('Ana', 'ana@johnent.com', 'john123', 3, 10002),
-    ('Sara', 'sara@jmlat.com', 'queijominhavida', 4, 10003);
+	('João', 'joao@compost.com', '54321', 1, 1),
+    ('Genildo', 'genildo@la.com', 'amominhatia', 2, 2),
+    ('Ana', 'ana@johnent.com', 'john123', 3, 3),
+    ('Sara', 'sara@jmlat.com', 'queijominhavida', 4, 4);
 
 -- MOSTRAR OS DADOS DA TABELA
 SELECT * FROM Usuario;
@@ -104,7 +101,7 @@ SELECT * FROM Usuario
     WHERE nome LIKE "%a%"
         ORDER BY id_usuario;
 
-SELECT e.nome as 'Empresa', f.nome as 'Funcionário', s.nome as 'Supervisor' 
+SELECT e.nome_fantasia as 'Empresa', f.nome as 'Funcionário', s.nome as 'Supervisor' 
 	FROM Empresa as e
 	JOIN Usuario as f
 		ON e.id_empresa = f.fk_empresa
@@ -112,41 +109,38 @@ SELECT e.nome as 'Empresa', f.nome as 'Funcionário', s.nome as 'Supervisor'
 		ON s.id_usuario = f.fk_supervisor;
         
 CREATE TABLE Log_login(
-id_log_login INT AUTO_INCREMENT,
-data_ultimo_acesso DATETIME,
-fk_usuario INT UNIQUE,
-fk_empresa INT,
-	CONSTRAINT pk_log_usuario_empresa
-		PRIMARY KEY(id_log_login, fk_usuario, fk_empresa),
-	
-    CONSTRAINT fk_log_usuario
-		FOREIGN KEY (fk_usuario)
-			REFERENCES Usuario(id_usuario),
-	
-    CONSTRAINT fk_log_empresa
-		FOREIGN KEY (fk_empresa)
-			REFERENCES Empresa(id_empresa)
+	id_log_login INT AUTO_INCREMENT,
+	data_ultimo_acesso DATETIME,
+	fk_usuario INT UNIQUE,
+	fk_empresa INT,
+		CONSTRAINT PRIMARY KEY(id_log_login, fk_usuario, fk_empresa),
+		
+		CONSTRAINT fk_log_usuario
+			FOREIGN KEY (fk_usuario)
+				REFERENCES Usuario(id_usuario),
+		
+		CONSTRAINT fk_log_empresa
+			FOREIGN KEY (fk_empresa)
+				REFERENCES Empresa(id_empresa)
 );
 
-INSERT INTO Log_login (data_ultimo_acesso,fk_usuario, fk_empresa) VALUES
-("2019-10-09 18:10:59", 1, 10000),
-("2021-05-10 21:09:40", 2,10001),
-("2022-09-30 22:10:35", 3,10002),
-("2024-05-03 17:30:30", 4,10003);
+INSERT INTO Log_login (data_ultimo_acesso, fk_usuario, fk_empresa) VALUES
+("2019-10-09 18:10:59", 1, 1),
+("2021-05-10 21:09:40", 2, 2),
+("2022-09-30 22:10:35", 3, 2),
+("2024-05-03 17:30:30", 4, 3);
 
 SELECT * FROM Log_login
 	WHERE data_ultimo_acesso LIKE "2024%";
     
-SELECT l.data_ultimo_acesso as "Ultimo acesso", u.nome as "Usuario", u.email as "Email", e.nome as "Empresa"
+SELECT l.data_ultimo_acesso as "Ultimo acesso", u.nome as "Usuario", u.email as "Email", e.nome_fantasia as "Empresa"
 	FROM Log_login AS l
 	JOIN Usuario AS u
 		ON l.fk_usuario = u.id_usuario
 	JOIN Empresa AS e
 		ON e.id_empresa = l.fk_empresa
-    WHERE e.nome = "Grupo Compost Barn";
+    WHERE e.razao_social = "Grupo Compost Barn S/A";
 
-
- 
 -- CRIAR TABELA Compost_barn
 CREATE TABLE Compost_barn (
 	id_cb INT PRIMARY KEY AUTO_INCREMENT,
@@ -161,10 +155,10 @@ CREATE TABLE Compost_barn (
 
 -- INSERIR VALORES NA TABELA
 INSERT INTO Compost_barn (area_m2, data_ultima_manutencao, fk_empresa) VALUES
-	('1100', '2024-03-15', 10000),
-    ('1500', '2024-05-20', 10001),
-	('1000', '2024-09-02', 10002),
-	('1200', '2024-02-17', 10003);
+	('1100', '2024-03-15', 1),
+    ('1500', '2024-05-20', 2),
+	('1000', '2024-09-02', 3),
+	('1200', '2024-02-17', 4);
     
 
 -- EXIBIR TODOS OS DADOS DA TABELA
@@ -175,44 +169,66 @@ SELECT * FROM Compost_barn
 	WHERE data_ultima_manutencao < '2024-07-04';
     
 SELECT 
-	Empresa.nome, 
+	Empresa.nome_fantasia, 
 	Compost_barn.area_m2,
     Compost_barn.data_ultima_manutencao 
 		FROM Empresa
 		JOIN Compost_barn 
 			ON id_empresa = fk_empresa;
 
+-- CRIAR TABELA SENSOR
+CREATE TABLE Sensor(
+	id_sensor INT PRIMARY KEY AUTO_INCREMENT,
+    grupo VARCHAR (45),
+    fk_cb INT,
+    
+    CONSTRAINT fk_sensor_cb 
+		FOREIGN KEY (fk_cb)
+			REFERENCES Compost_barn(id_cb)
+);
+
+INSERT INTO Sensor (grupo, fk_cb) VALUES
+	('Grupo 1', 1000),
+    ('Grupo 1', 1000),
+    ('Grupo 2', 1000),
+    ('Grupo 1', 1001);
+
 -- CRIAR TABELA DADOS DO SENSOR
 CREATE TABLE Dados_sensor(
-	id_dado INT PRIMARY KEY auto_increment,
+	id_dado INT AUTO_INCREMENT,
 	umidade DECIMAL (4,2),
 	data_hora DATETIME,
-    fk_compost_barn INT,
+    fk_sensor INT,
     
-    CONSTRAINT fk_compost_barn_dados
-		FOREIGN KEY (fk_compost_barn)
-			REFERENCES Compost_barn(id_cb)
-) AUTO_INCREMENT = 100;
+    CONSTRAINT PRIMARY KEY (id_dado, fk_sensor),
+    
+    CONSTRAINT fk_sensor_dados
+		FOREIGN KEY (fk_sensor)
+			REFERENCES Sensor(id_sensor)
+);
 
 -- INSERIR DADOS NA TABELA
-INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES
-	(70.9, '2024-08-01 16:44:00', 1000),
-	(35.6, '2024-08-09 16:50:09', 1001),
-	(44.8, '2024-08-09 18:00:01', 1002),
-    (25.6, '2024-08-09 18:00:01', 1003);
+INSERT INTO Dados_sensor (umidade, data_hora, fk_sensor) VALUES
+	(70.9, '2024-08-01 16:44:00', 1),
+	(35.6, '2024-08-09 16:50:09', 2),
+	(44.8, '2024-08-09 18:00:01', 3),
+    (25.6, '2024-08-09 18:00:01', 4);
         
 -- MOSTRAR UMA MENSAGEM QUE UNE O HORÁRIO E O REGISTRO
 SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%') AS "Registro do dado"
 	FROM Dados_sensor;
     
-SELECT 
-	Compost_barn.area_m2,
-    Compost_barn.data_ultima_manutencao,
+SELECT
+	Sensor.grupo, 
 	Dados_sensor.umidade,
-    Dados_sensor.data_hora
+    Dados_sensor.data_hora,
+	Empresa.nome_fantasia,
+	Compost_barn.area_m2,
+    Compost_barn.data_ultima_manutencao
 		FROM Dados_sensor
+        JOIN Sensor
+			ON id_sensor = fk_sensor
 		JOIN Compost_barn 
-			ON id_cb = fk_compost_barn;
-
-    
-
+			ON id_cb = fk_cb
+		JOIN Empresa 
+			ON id_empresa = fk_empresa;
