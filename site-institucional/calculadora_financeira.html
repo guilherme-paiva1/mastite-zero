@@ -60,9 +60,9 @@
                     <span>Quantidade de vacas no Compost Barn (total):</span>
                     <input id="input_vacas" type="number" placeholder="Quantidade de vacas no CB">
                     <span>Quantidade de vacas doentes:</span>
-                    <input id="input_lote1" type="number" placeholder="No 1º lote de lactação">
-                    <input id="input_lote2" type="number" placeholder="No 2º lote de lactação">
-                    <input id="input_lote3" type="number" placeholder="No 3º lote de lactação">
+                    No 1º lote de lactação:<input id="input_lote1" type="number" placeholder="1º lote de lactação">
+                    No 2º lote de lactação:<input id="input_lote2" type="number" placeholder="2º lote de lactação">
+                    No 3º lote de lactação<input id="input_lote3" type="number" placeholder="3º lote de lactação">
                     <span>Preço do litro de leite atual (em R$):</span>
                     <input id="input_preco_leite" type="number" placeholder="Preço atual (R$)">
 
@@ -144,17 +144,17 @@
         }
 
         //Validações para calcular a média com maior precisão
-        if (lote1 > 0) {
+        if (lote1 >= 0) {
             litros_ideal = 315;
             numero_media++;
         }
 
-        if (lote2 > 0) {
+        if (lote2 >= 0) {
             litros_ideal += 265.5;
             numero_media++;
         }
 
-        if (lote3 > 0) {
+        if (lote3 >= 0) {
             litros_ideal += 126;
             numero_media++;
         }
@@ -183,7 +183,8 @@
 
         // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
         if (porcentagem_vacas_doentes == 0) {
-            mensagem = `Parabéns! Seu Compost Barn está seguro. Como todas as suas ${vacas} vacas estão saudáveis, considerando que temos quantidades iguais de vacas nos 3 lotes, sua produção deve ser de ${litros_ideal}L por semana, dando um lucro de R$${lucro_ideal}.`;
+            mensagem = `Parabéns! Seu Compost Barn está seguro. Como todas as suas ${vacas} vacas estão saudáveis, considerando que temos quantidades iguais de vacas nos 3 lotes, sua produção deve ser de ${litros_ideal}L por semana, dando um lucro de R$${lucro_ideal}.<br>
+            <b>No entanto, é importante tomar medidas preventivas visto que a taxa média anual de incidência da mastite clínica varia de <b class="texto-perda">10</b> a <b class="texto-perda">12%</b> para a maioria dos rebanhos leiteiros e a mastite subclínica pode afetar de <b class="texto-perda">20</b> a <b class="texto-perda">50%</b> de suas vacas leiteiras sendo considerada a forma mais frequente de mastite.</b>`;
         }
 
         //caso a inserção de dados seja inválida, será informado ao usuário
