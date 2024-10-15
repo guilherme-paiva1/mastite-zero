@@ -116,3 +116,7 @@ function validarSenha(){
     }
 
 }
+
+function validarCEP() {
+    
+}
