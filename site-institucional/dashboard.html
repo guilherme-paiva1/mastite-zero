@@ -51,8 +51,10 @@
         <div class="div-conteudo dashboard">
             <div class="div-linha">
                 <div class="div-texto">
-                    <h1>Dados - DD/MM/AAAA</h1>
-                    <p>Nessa página você terá acesso aos dados do seu negócio referente ao dia DD/MM/AAAA.</p>
+                    <h1 id="titulo_dashboard"></h1>
+                    <!-- <h1>Dados - DD/MM/AAAA</h1> -->
+                    <!-- <p>Nessa página você terá acesso aos dados do seu negócio referente ao dia DD/MM/AAAA.</p> -->
+                    <p id="legenda_dashboard"></p>
                 </div>
                 <div class="div-kpi">
                     <h2>Situação atual</h2>
@@ -127,6 +129,14 @@
     </div>
 
     <script>
+        var dataAtual = new Date()
+        var diaAtual = dataAtual.getDate()
+        var mesAtual = (dataAtual.getMonth() + 1)
+        var anoAtual = dataAtual.getFullYear()
+
+        titulo_dashboard.innerHTML = `Dados - ${diaAtual}/${mesAtual}/${anoAtual}`
+        legenda_dashboard.innerHTML = `Nessa página você terá acesso aos dados do seu negócio referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
+
         var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
             type: 'line',
             data: {
@@ -158,7 +168,7 @@
 
                 scales: {
                     x: {
-                        beginAtZero: true,
+                        beginAtZero: false,
                         ticks: {
                             color: "#fffff"
                         }
@@ -168,7 +178,7 @@
                             display: true,
                             text: '(%)',
                         },
-                        beginAtZero: true
+                        beginAtZero: false
                     },
                 },
             }
@@ -241,7 +251,7 @@
 
                 scales: {
                     x: {
-                        beginAtZero: true,
+                        beginAtZero: false,
                         ticks: {
                             color: "#fffff"
                         }
@@ -251,7 +261,7 @@
                             display: true,
                             text: '(%)',
                         },
-                        beginAtZero: true
+                        beginAtZero: false
                     },
                 },
             }
