@@ -50,23 +50,23 @@
 
     <div class="container-conteudo">
         <div class="div-conteudo">
-            <div class="div-texto texto-subtitulo">
+            <div class="div-texto texto-subtitulo" id="campos_empresa">
                 <h1>Cadastre-se</h1>
                 <p>Já tem uma conta? <a class="link" href="login.html">Entre</a></p>
                 <div class="campo-input">
                     <div class="linha-input">
                         <input type="text" id="inputRazao" placeholder="Razão social">
                         <input type="text" id="inputEmpresa" placeholder="Nome fantasia">
-                       
+
                     </div>
                     <div class="linha-erro">
                         <span class="erro" id="spanErroRazao"></span>
                         <span class="erro" id="spanErroEmpresa"></span>
-                        
+
                     </div>
                     <div class="linha-input">
                         <input type="text" id="inputResponsavel" placeholder="Representante legal">
-                        <input type="number" id="inputCnpj" oninput="validar()" placeholder="CNPJ (apenas números)">
+                        <input type="number" id="inputCnpj" oninput="validarCnpj()" placeholder="CNPJ (apenas números)">
                     </div>
                     <div class="linha-erro">
                         <span class="erro" id="spanErroResponsavel"></span>
@@ -83,19 +83,72 @@
 
                     <div class="linha-input">
                         <input type="password" id="inputSenha" oninput="validarSenha()" placeholder="Senha">
-                        <input type="password" id="inputConfirmaSenha" oninput="validarSenha()" placeholder="Confirmar senha">
+                        <input type="password" id="inputConfirmaSenha" oninput="validarSenha()"
+                            placeholder="Confirmar senha">
                     </div>
                     <div class="linha-erro">
                         <span class="erro" id="spanErroSenha"></span>
                         <span class="erro" id="spanErroConfirmarSenha"></span>
                     </div>
+                    
+                    <button class="btn-cadastro" onclick="avancar()">Próximo</button>
+                </div>
+
+
+
+            </div>
+            
+            <div class="div-texto texto-subtitulo" id="campos_endereco">
+                <h1>Cadastre seu endereço</h1>
+                <p>Já tem uma conta? <a class="link" href="login.html">Entre</a></p>
+                <div class="campo-input">
+                    <div class="linha-input">
+                        <input type="number" id="inputCEP" oninput="validarCEP()"
+                            placeholder="CEP (apenas números)">
+                        <input type="text" id="inputLogradouro" placeholder="Logradouro">
+
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanErroCEP"></span>
+                        <span class="erro" id="spanLogradouro"></span>
+
+                    </div>
+                    <div class="linha-input">
+                        <input type="text" id="inputCidade" placeholder="Cidade">
+                        <input type="text" id="inputEstado" placeholder="Estado">
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanCidade"></span>
+                        <span class="erro" id="spanEstado"></span>
+                    </div>
+
+                    <!-- <div class="linha-input">
+                        <input type="email" id="inputEmail" oninput="validarEmail()" placeholder="E-mail">
+                    </div> -->
+
+                    <!-- <div class="linha-erro">
+                        <span class="erro" id=""></span>
+                    </div> -->
+
+                    <div class="linha-input">
+                        <input type="number" id="inputNumero" placeholder="Número">
+                        <input type="text" id="inputComplemento" placeholder="Complemento">
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanNumero"></span>
+                        <span class="erro" id="spanComplemento"></span>
+                    </div>
                     <div id="divMensagem"></div>
 
-                    <a href="cadastro_endereço.html">
+                    <div class="div-botoes">
+                        <button class="btn-anterior" onclick="voltar()">Voltar</button>
                         <button class="btn-cadastro" onclick="cadastrar()">Cadastrar</button>
-                    </a>
+                    </div>
+                    
+                    <div id="divMensagem"></div>
                 </div>
             </div>
+
             <div class="div-img">
                 <img src="assets/img_vacas.jpeg" alt="">
             </div>

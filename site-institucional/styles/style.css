@@ -51,7 +51,7 @@ body {
     text-decoration: none;
     color: rgb(255, 255, 255);
     opacity: 0.5;
-    
+
 }
 
 .a-logo {
@@ -128,7 +128,8 @@ body {
     flex-direction: row;
     justify-content: center;
 }
-.botao-simulacao:hover{
+
+.botao-simulacao:hover {
     background-color: white;
     color: #1C5E20;
     transition: 0.4s;
@@ -142,7 +143,7 @@ body {
     justify-content: space-between;
     gap: 15px;
     text-decoration: none;
-    color:black;
+    color: black;
 }
 
 .seta {
@@ -166,11 +167,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px 20px 20px 20px;
+    padding: 20px;
+
 }
 
 .dashboard {
-    color:#1F6A07;
+    color: #1F6A07;
 }
 
 .div-linha {
@@ -187,12 +189,12 @@ body {
     width: 50%;
 }
 
-.div-linha .div-texto h1{
+.div-linha .div-texto h1 {
     font-size: 40px;
     font-weight: bolder;
 }
 
-.div-linha .div-texto p{
+.div-linha .div-texto p {
     font-size: 15px;
 }
 
@@ -209,14 +211,14 @@ body {
     padding: 0px 12px 0px 12px;
 }
 
-.div-sublinha .div-kpi h2{
+.div-sublinha .div-kpi h2 {
     font-size: 20px;
     font-weight: normal;
     margin: 0;
     padding: 7px 0px 7px 0px;
 }
 
-.div-kpi p{
+.div-kpi p {
     font-size: 30px;
     font-weight: bolder;
     margin: 0;
@@ -237,7 +239,7 @@ body {
     /* margin: 10px 5px 10px 5px; */
 }
 
-.div-kpi h1{
+.div-kpi h1 {
     font: bolder;
     font-size: 50px;
     margin-top: 0;
@@ -264,6 +266,7 @@ body {
     color: #1F6A07;
     align-self: flex-start;
 }
+
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 
 #selectTipo {
@@ -320,13 +323,13 @@ body {
     gap: 10px;
 }
 
-.campo-cadastro-endereco{
+.campo-cadastro-endereco {
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
 .div-conteudo .div-texto {
-    gap:10px
+    gap: 10px
 }
 
 .div-texto {
@@ -355,7 +358,7 @@ body {
     color: white;
 }
 
-::placeholder{
+::placeholder {
     color: #1C5E20;
     font-family: "Poppins", sans-serif;
 }
@@ -366,7 +369,20 @@ body {
     background-color: #1C5E20;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
-    color: white; 
+    color: white;
+    width: 160px;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.btn-anterior {
+    cursor: pointer;
+    border: none;
+    background-color: #b6e399;
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    color: #1C5E20;
     width: 160px;
     height: 40px;
     border-radius: 20px;
@@ -379,9 +395,20 @@ body {
     transition: 0.4s;
 }
 
-.texto-subtitulo p{
+.btn-anterior:hover {
+    background-color: white;
+    color: #8dd192;
+    transition: 0.4s;
+}
+
+.texto-subtitulo p {
     margin-top: 0;
     font-size: 16px;
+}
+
+.div-botoes{
+    display: flex;
+    gap: 20px;
 }
 
 /* ----------------- CALCULADORA --------------- */
@@ -399,18 +426,18 @@ body {
     font-size: 30px;
 }
 
-#texto-calculadora{
+#texto-calculadora {
     display: flex;
     gap: 40px;
     height: 100%;
     width: 50%;
-} 
+}
 
 .texto-calculadora {
     text-align: center;
 }
 
-.texto-calculadora p{
+.texto-calculadora p {
     margin-top: 0;
     font-size: 16px;
 }
@@ -440,12 +467,12 @@ body {
     align-items: center;
     text-align: center;
     justify-content: center;
-    background-color: #D3EAB3;  
+    background-color: #D3EAB3;
     color: black;
     border-radius: 10px;
     min-height: 100%;
     padding: 30px;
-}   
+}
 
 #mensagem-calculadora {
     text-align: center;
@@ -473,16 +500,18 @@ body {
     font-size: 15px;
     font-weight: normal;
 }
+
 .div-texto li {
     border-bottom: 8px;
 }
+
 /* --------------- SUSTENTABILIDADE -------------- */
 
 .sobre .div-texto {
     width: 55%;
 }
 
-.sobre .div-texto p{
+.sobre .div-texto p {
     font-size: 18px;
     text-align: left;
 }
@@ -494,7 +523,7 @@ body {
 
 /* --------------- FOOTER -------------- */
 
-.footer .container{
+.footer .container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -505,6 +534,6 @@ body {
     background-color: #0c4610;
 }
 
-.footer span{
+.footer span {
     font-weight: normal;
 }
