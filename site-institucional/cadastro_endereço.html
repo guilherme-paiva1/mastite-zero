@@ -51,43 +51,43 @@
     <div class="container-conteudo">
         <div class="div-conteudo">
             <div class="div-texto texto-subtitulo">
-                <h1>Cadastre-se</h1>
+                <h1>Cadastre seu endereço</h1>
                 <p>Já tem uma conta? <a class="link" href="login.html">Entre</a></p>
                 <div class="campo-input">
                     <div class="linha-input">
-                        <input type="text" id="inputRazao" placeholder="Razão social">
-                        <input type="text" id="inputEmpresa" placeholder="Nome fantasia">
+                        <input type="number" id="inputCEP" placeholder="CEP (apenas números)">
+                        <input type="text" id="inputLogradouro" placeholder="Logradouro">
                        
                     </div>
                     <div class="linha-erro">
-                        <span class="erro" id="spanErroRazao"></span>
-                        <span class="erro" id="spanErroEmpresa"></span>
+                        <span class="erro" id=""></span>
+                        <span class="erro" id=""></span>
                         
                     </div>
                     <div class="linha-input">
-                        <input type="text" id="inputResponsavel" placeholder="Representante legal">
-                        <input type="number" id="inputCnpj" oninput="validar()" placeholder="CNPJ (apenas números)">
+                        <input type="text" id="inputCidade" placeholder="Cidade">
+                        <input type="text" id="inputEstado" oninput="validar()" placeholder="Estado">
                     </div>
                     <div class="linha-erro">
-                        <span class="erro" id="spanErroResponsavel"></span>
-                        <span class="erro" id="spanErroCnpj"></span>
+                        <span class="erro" id=""></span>
+                        <span class="erro" id=""></span>
                     </div>
 
-                    <div class="linha-input">
+                    <!-- <div class="linha-input">
                         <input type="email" id="inputEmail" oninput="validarEmail()" placeholder="E-mail">
-                    </div>
+                    </div> -->
 
                     <div class="linha-erro">
-                        <span class="erro" id="spanErroEmail"></span>
+                        <span class="erro" id=""></span>
                     </div>
 
                     <div class="linha-input">
-                        <input type="password" id="inputSenha" oninput="validarSenha()" placeholder="Senha">
-                        <input type="password" id="inputConfirmaSenha" oninput="validarSenha()" placeholder="Confirmar senha">
+                        <input type="password" id="inputNumero" oninput="validarSenha()" placeholder="Número">
+                        <input type="password" id="inputComplemento" oninput="validarSenha()" placeholder="Complemento">
                     </div>
                     <div class="linha-erro">
-                        <span class="erro" id="spanErroSenha"></span>
-                        <span class="erro" id="spanErroConfirmarSenha"></span>
+                        <span class="erro" id=""></span>
+                        <span class="erro" id=""></span>
                     </div>
                     <div id="divMensagem"></div>
 
