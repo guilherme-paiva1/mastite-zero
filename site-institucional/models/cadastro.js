@@ -53,8 +53,7 @@ function cadastrar(){
 }
 
 function validar(){
-    var cnpj = inputCnpj.value  
- 
+    var cnpj = inputCnpj.value
 
     console.log(cnpj.length)
 
@@ -118,5 +117,16 @@ function validarSenha(){
 }
 
 function validarCEP() {
-    
+    var CEP = inputCEP.value
+
+    console.log(CEP.length)
+
+    if(CEP.length < 8 || CEP.length > 8){
+        inputCEP.style.border = "solid 1px red";
+        spanErroCEP.innerHTML = "CEP inválido! O CEP precisa ter 8 dígitos"
+    }else{
+        inputCEP.style.border = "none";
+        spanErroCEP.innerHTML = ""
+
+    }
 }
