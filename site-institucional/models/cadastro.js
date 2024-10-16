@@ -106,9 +106,11 @@ function validarLogradouro() {
 
         spanLogradouro.innerHTML = "Insira um logradouro valido";
         logradouroValido = false;
+        spanLogradouro.style.border = "solid 1px red";
     } else {
         logradouroValido = true;
         spanLogradouro.innerHTML = "";
+        spanLogradouro.style.border = "none";
     }
 }
 
@@ -120,9 +122,11 @@ function validarCidade() {
     ) {
         spanCidade.innerHTML = "Insira uma cidade valida";
         cidadeValida = false;
+        spanCidade.style.border = "none";
     } else {
         cidadeValida = true;
         spanCidade.innerHTML = "";
+        spanCidade.style.border = "solid 1px red";
     }
 }
 
@@ -131,9 +135,11 @@ function validarNumero() {
     if (numero.length == 0) {
         numeroValido = false;
         spanNumero.innerHTML = "Por favor insira um numero valido";
+        spanNumero.style.border = "solid 1px red";
     } else {
         numeroValido = true;
         spanNumero.innerHTML = "";
+        spanNumero.style.border = "none";
     }
 }
 
@@ -144,10 +150,12 @@ function validarComplemento() {
         complemento.includes("&") || complemento.includes("*")
     ) {
         spanComplemento.innerHTML = "Por favor insira um complemento valido";
+        spanComplemento.style.border = "solid 1px red";
         complementoValido = false;
     } else {
         complementoValido = true;
         spanComplemento.innerHTML = "";
+        spanComplemento.style.border = "none";
     }
 }
 
