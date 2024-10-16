@@ -1,5 +1,20 @@
 campos_endereco.style.display = 'none'
 
+var empresa = "";
+var responsavel = "";
+var email = "";
+var senha = "";
+var confirmarSenha = "";
+var razao = "";
+
+var logradouroValido = false;
+var cidadeValida = false;
+var numeroValido = false;
+var complementoValido = false;
+var cepValido = false;
+
+
+
 function voltar() {
     campos_endereco.style.display = 'none'
     campos_empresa.style.display = 'flex'
@@ -11,12 +26,12 @@ function avancar() {
 }
 
 function cadastrar() {
-    var empresa = inputEmpresa.value
-    var responsavel = inputResponsavel.value
-    var email = inputEmail.value
-    var senha = inputSenha.value
-    var confirmarSenha = inputConfirmaSenha.value
-    var razao = inputRazao.value;
+    empresa = inputEmpresa.value
+    responsavel = inputResponsavel.value
+    email = inputEmail.value
+    senha = inputSenha.value
+    confirmarSenha = inputConfirmaSenha.value
+    razao = inputRazao.value;
 
     spanErroSenha.innerHTML = "";
     spanErroConfirmarSenha.innerHTML = "";
@@ -58,7 +73,11 @@ function cadastrar() {
     } else if (razao == 0 || razao < 3) {
         spanErroRazao.innerHTML = "Razão social inválida, mínimo de 3 letras";
     } else {
-        divMensagem.innerHTML = `Cadastro realizado com sucesso! Bem-vindo ${empresa}`
+        if (logradouroValido && cidadeValida && numeroValido && complementoValido && cepValido) {
+            console.log("VALIDO");
+            divMensagem.innerHTML = `Cadastro realizado com sucesso! Bem-vindo ${empresa}`
+        }
+
     }
 }
 
@@ -78,7 +97,62 @@ function cadastrar() {
 
 // }
 
-function validarCnpj(){
+function validarLogradouro() {
+    var logradouro = inputLogradouro.value;
+    if (logradouro.length == 0 ||
+        logradouro.includes("@") || logradouro.includes("#") || logradouro.includes("$") || logradouro.includes("%") ||
+        logradouro.includes("&") || logradouro.includes("*")
+    ) {
+
+        spanLogradouro.innerHTML = "Insira um logradouro valido";
+        logradouroValido = false;
+    } else {
+        logradouroValido = true;
+        spanLogradouro.innerHTML = "";
+    }
+}
+
+function validarCidade() {
+    var cidade = inputCidade.value;
+    if (cidade.length == 0 ||
+        cidade.includes("@") || cidade.includes("#") || cidade.includes("$") || cidade.includes("%") ||
+        cidade.includes("&") || cidade.includes("*")
+    ) {
+        spanCidade.innerHTML = "Insira uma cidade valida";
+        cidadeValida = false;
+    } else {
+        cidadeValida = true;
+        spanCidade.innerHTML = "";
+    }
+}
+
+function validarNumero() {
+    var numero = inputNumero.value;
+    if (numero.length == 0) {
+        numeroValido = false;
+        spanNumero.innerHTML = "Por favor insira um numero valido";
+    } else {
+        numeroValido = true;
+        spanNumero.innerHTML = "";
+    }
+}
+
+function validarComplemento() {
+    var complemento = inputComplemento.value;
+    if (
+        complemento.includes("@") || complemento.includes("#") || complemento.includes("$") || complemento.includes("%") ||
+        complemento.includes("&") || complemento.includes("*")
+    ) {
+        spanComplemento.innerHTML = "Por favor insira um complemento valido";
+        complementoValido = false;
+    } else {
+        complementoValido = true;
+        spanComplemento.innerHTML = "";
+    }
+}
+
+
+function validarCnpj() {
     var cnpj = inputCnpj.value
 
     console.log(cnpj.length)
@@ -144,14 +218,17 @@ function validarSenha() {
 function validarCEP() {
     var CEP = inputCEP.value
 
-    console.log(CEP.length)
+    console.log(CEP)
 
-    if (CEP.length < 8 || CEP.length > 8) {
+    if (CEP.length < 9 || CEP.length > 9) {
         inputCEP.style.border = "solid 1px red";
         spanErroCEP.innerHTML = "CEP inválido! O CEP precisa ter 8 dígitos"
+        cepValido = false;
     } else {
+        cepValido = true;
         inputCEP.style.border = "none";
         spanErroCEP.innerHTML = ""
-
+    } if (CEP.length == 5) {
+        inputCEP.value = CEP + "-";
     }
 }
