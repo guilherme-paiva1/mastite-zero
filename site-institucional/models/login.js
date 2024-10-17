@@ -2,7 +2,8 @@
 function logar() {
     var opcao = selectTipo.value;
 
-    var CNPJ_EMPRESA_CONTA = "123. 456/7891-23";
+    // var CNPJ_EMPRESA_CONTA = "123. 456/7891-23";
+    var CNPJ_EMPRESA_CONTA = "12345678000112";
     var SENHA_EMPRESA_CONTA = "Cb_safe#009";
 
     var EMAIL_USUARIO_CONTA = "lucas@gmail.com";
@@ -13,7 +14,7 @@ function logar() {
         var senha = inputSenha.value;
         
         if(cnpj != CNPJ_EMPRESA_CONTA || SENHA_EMPRESA_CONTA != senha){
-           spanErro.innerHTML = `Senha ou cnpj invalidos !`
+           spanErro.innerHTML = `Senha ou CNPJ inválidos!`
         }else{
             spanErro.innerHTML = "";
             spanErro.innerHTML = "";
@@ -24,7 +25,7 @@ function logar() {
         var senha = inputSenha.value;
 
         if(email != EMAIL_USUARIO_CONTA || SENHA_USUARIO_CONTA != senha){
-            spanErro.innerHTML = `Senha ou email invalidos !`
+            spanErro.innerHTML = `Senha ou email inválidos!`
          }else{
              spanErro.innerHTML = "";
              spanErro.innerHTML = "";
@@ -34,6 +35,9 @@ function logar() {
 
     
 }
+
+
+
 
 function validarCnpj(){
     if(cnpj.length < 14 || cnpj.length > 14){
