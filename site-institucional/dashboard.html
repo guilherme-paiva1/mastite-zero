@@ -65,11 +65,11 @@
                 <div class="div-sublinha">
                     <div class="div-kpi">
                         <h2>Maior nível registrado</h2>
-                        <p>41% às 15:00</p>
+                        <p>63% às 17:00</p>
                     </div>
                     <div class="div-kpi">
                         <h2>Nível médio registrado</h2>
-                        <p>34%</p>
+                        <p>54%</p>
                     </div>
                 </div>
                 <div class="div-sublinha">
@@ -79,7 +79,7 @@
                     </div>
                     <div class="div-kpi">
                         <h2>Qtd. de alertas no total</h2>
-                        <p>13</p>
+                        <p>3</p>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                 datasets: [{
                     label: 'Umidade',
                     borderColor: '#1F6A07',
-                    data: [32+15, 35+15, 39+15, 32+15, 35+15, 41+15, 47+15, 33+15, 30+15]
+                    data: [47, 45, 50, 55, 61, 56, 48, 63, 61]
                 }]
             },
             options: {
@@ -187,9 +187,9 @@
         var relacaoColetas = new Chart(document.getElementById('relacaoColetas').getContext('2d'), {
             type: 'pie',
             data: {
-                labels: ["Acima do recomendado", "Recomendado"],
+                labels: ["Valor acima do ideal", "Valor ideal"],
                 datasets: [{
-                    data: [40, 60],
+                    data: [30, 70],
                     backgroundColor: ["#fed859", "#1F6A07"]
                 }]
             },
@@ -225,8 +225,8 @@
                     data: [32+15, 35+15, 39+15, 32+15, 35+15, 41+15, 36+15]
                 },  {
                     label: "Umidade ideal",
-                    borderColor: '#8dd192',
-                    backgroundColor: '#8dd192',
+                    borderColor: '#7AA95B',
+                    backgroundColor: '#7AA95B',
                     data :[35+15,35+15,35+15,35+15,35+15,35+15,35+15,35+15,35+15]
                 }]
             },
