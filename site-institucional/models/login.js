@@ -2,8 +2,7 @@
 function logar() {
     var opcao = selectTipo.value;
 
-    // var CNPJ_EMPRESA_CONTA = "123. 456/7891-23";
-    var CNPJ_EMPRESA_CONTA = "12345678000112";
+    var CNPJ_EMPRESA_CONTA = "12345678000112"; 
     var SENHA_EMPRESA_CONTA = "Cb_safe#009";
 
     var EMAIL_USUARIO_CONTA = "lucas@gmail.com";
@@ -35,8 +34,6 @@ function logar() {
 
     
 }
-
-
 
 
 function validarCnpj(){
