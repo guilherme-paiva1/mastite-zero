@@ -178,8 +178,8 @@
 
         // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
         if (porcentagem_vacas_doentes == 0) {
-            mensagem = `Parabéns! Seu Compost Barn está seguro. Como todas as suas ${vacas} vacas estão saudáveis, considerando que temos quantidades iguais de vacas nos 3 lotes, sua produção deve ser de ${litros_ideal}L por semana, dando um lucro de R$${lucro_ideal}.<br>
-            <b>No entanto, é importante tomar medidas preventivas visto que a taxa média anual de incidência da mastite clínica varia de <b class="texto-perda">10</b> a <b class="texto-perda">12%</b> para a maioria dos rebanhos leiteiros e a mastite subclínica pode afetar de <b class="texto-perda">20</b> a <b class="texto-perda">50%</b> de suas vacas leiteiras sendo considerada a forma mais frequente de mastite.</b>`;
+            mensagem = `Parabéns! Seu Compost Barn está seguro. Como todas as suas ${vacas} vacas estão saudáveis, considerando que temos quantidades iguais de vacas nos 3 lotes, sua produção deve ser de <b>${litros_ideal}L</b> por semana, dando um lucro de <b>R$${lucro_ideal}</b>.<br>
+            <b>No entanto, é importante tomar medidas preventivas visto que a taxa média anual de incidência da mastite clínica varia de <b class="texto-perda">10</b> a <b class="texto-perda">12%</b> para a maioria dos rebanhos leiteiros e a mastite subclínica pode afetar de <b class="texto-perda">20</b> a <b class="texto-perda">50%</b> de suas vacas leiteiras sendo considerada a forma mais frequente de mastite.</b><br> *Fonte: Embrapa `;
         }
 
         //caso a inserção de dados seja inválida, será informado ao usuário
