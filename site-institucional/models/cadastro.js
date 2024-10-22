@@ -9,6 +9,7 @@ var razao = "";
 
 var logradouroValido = false;
 var cidadeValida = false;
+var estadoValido = false;
 var numeroValido = false;
 var complementoValido = false;
 var cepValido = false;
@@ -47,9 +48,6 @@ function cadastrar() {
     inputSenha.style = "";
     inputConfirmaSenha.style = "";
 
-
-
-
     if (senha != confirmarSenha) {
         spanErroSenha.innerHTML = "As senhas não são identicas"
         spanErroConfirmarSenha.innerHTML = "As senhas não são identicas"
@@ -73,7 +71,7 @@ function cadastrar() {
     } else if (razao == 0 || razao < 3) {
         spanErroRazao.innerHTML = "Razão social inválida, mínimo de 3 letras";
     } else {
-        if (logradouroValido && cidadeValida && numeroValido && complementoValido && cepValido) {
+        if (logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido) {
             console.log("VALIDO");
             divMensagem.innerHTML = `Cadastro realizado com sucesso! Bem-vindo ${empresa}`
         }
@@ -238,5 +236,18 @@ function validarCEP() {
         spanErroCEP.innerHTML = ""
     } if (CEP.length == 5) {
         inputCEP.value = CEP + "-";
+    }
+}
+
+function validarEstado() {
+    var estado = selectEstado.value;
+    if (estado != '#') {
+        estadoValido = true;
+        spanEstado.innerHTML = "";
+        spanEstado.style.border = "none";
+    } else {
+        estadoValido = false;
+        spanEstado.innerHTML = "Por favor, selecione seu estado";
+        spanEstado.style.border = "solid 1px red";
     }
 }

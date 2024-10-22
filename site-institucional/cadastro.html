@@ -112,7 +112,8 @@
                     </div>
                     <div class="linha-input">
                         <input type="text" id="inputCidade" oninput="validarCidade()" placeholder="Cidade">
-                        <select id="selectEstado">
+                        <select id="selectEstado" onchange="validarEstado()">
+                            <option value="#">Selecione seu estado</option>
                             <option>AC</option>
                             <option>AL</option>
                             <option>AP</option>

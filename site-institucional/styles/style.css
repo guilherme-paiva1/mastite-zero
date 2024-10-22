@@ -83,6 +83,13 @@ body {
     justify-content: space-between;
 }
 
+.div-links .link-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 50px;
+}
+
 /* -------------- HOME ------------------- */
 
 .container-conteudo {
