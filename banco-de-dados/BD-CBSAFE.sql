@@ -206,13 +206,6 @@ CREATE TABLE Dados_sensor(
 		FOREIGN KEY (fk_sensor)
 			REFERENCES Sensor(id_sensor)
 );
-
--- INSERIR DADOS NA TABELA
-INSERT INTO Dados_sensor (umidade, data_hora, fk_sensor) VALUES
-	(70.9, '2024-08-01 16:44:00', 1),
-	(35.6, '2024-08-09 16:50:09', 2),
-	(44.8, '2024-08-09 18:00:01', 3),
-    (25.6, '2024-08-09 18:00:01', 4);
         
 -- MOSTRAR UMA MENSAGEM QUE UNE O HORÁRIO E O REGISTRO
 SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%') AS "Registro do dado"
@@ -232,3 +225,9 @@ SELECT
 			ON id_cb = fk_cb
 		JOIN Empresa 
 			ON id_empresa = fk_empresa;
+
+select Sensor.grupo as 'Grupo do sensor', 
+	dados.umidade as 'Umidade registrada', 
+    dados.data_hora as 'Data e hora'
+    from Sensor join Dados_sensor as dados
+    on id_sensor = fk_sensor;

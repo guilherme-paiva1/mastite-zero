@@ -51,7 +51,7 @@ const serial = async (
         console.log(data);
         const valores = data.split(';');
         const sensorAnalogico = parseFloat(valores[0]);
-        const fkCompostBarn = parseInt(valores[1]);
+        const fkSensor = parseInt(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
@@ -72,8 +72,8 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
-                [sensorAnalogico, dataFinal, fkCompostBarn]
+                'INSERT INTO Dados_sensor (umidade, data_hora, fk_sensor) VALUES (?, ?, ?)',
+                [sensorAnalogico, dataFinal, fkSensor]
             );
             console.log("valores inseridos no banco: ", sensorAnalogico);
 
