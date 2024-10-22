@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .div-grafico {
+            display: flex;
+            align-items: center;
+            border-radius: 20px;
+            background-color: #D3EAB3;
+            padding: 20px;
+            width: 60%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="div-grafico">
+        <canvas height="200px" id="sensorAnalogico"></canvas>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+            datasets: [{
+                label: 'Umidade',
+                borderColor: '#1F6A07',
+                data: []
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Variação de umidade por hora',
+                    color: '#1F6A07',
+                    font: {
+                        size: 24,
+                        weight: 'bold',
+                        family: 'Poppins'
+                    },
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    },
+                    align: 'center'
+                }
+            },
+
+            scales: {
+                x: {
+                    beginAtZero: false,
+                    ticks: {
+                        color: "#fffff"
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(%)',
+                    },
+                    beginAtZero: false
+                },
+            },
+        }
+    });
+
+    var paginacao = {};
+    var tempo = {};
+
+    function obterDados(grafico, endpoint) {
+        fetch('http://localhost:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                }
+                if (tempo[endpoint] == null) {
+                    tempo[endpoint] = 0;
+                }
+
+                var ultimaPaginacao = paginacao[endpoint];
+                paginacao[endpoint] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+
+                valores.forEach((valor) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+
+                    grafico.data.labels.push(tempo[endpoint]++);
+                    grafico.data.datasets[0].data.push(parseFloat(valor));
+                    grafico.update();
+                });
+            })
+            .catch(error => console.error('Erro ao obter dados:', error));
+    }
+
+    setInterval(() => {
+        obterDados(sensorAnalogico, 'analogico');
+    }, 2000);
+</script>
