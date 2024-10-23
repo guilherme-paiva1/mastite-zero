@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -12,6 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: #1C5E20;
         }
 
         .div-grafico {
@@ -116,5 +117,5 @@
 
     setInterval(() => {
         obterDados(sensorAnalogico, 'analogico');
-    }, 2000);
+    }, 5000);
 </script>
