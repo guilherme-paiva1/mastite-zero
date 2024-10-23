@@ -226,17 +226,28 @@ function validarCEP() {
 
     console.log(CEP)
 
-    if (CEP.length < 9 || CEP.length > 9) {
+    if (CEP.length == 8) {
+        cepValido = true;
+        inputCEP.style.border = "none";
+        spanErroCEP.innerHTML = "";
+    } else {
         inputCEP.style.border = "solid 1px red";
         spanErroCEP.innerHTML = "CEP inválido! O CEP precisa ter 8 dígitos"
         cepValido = false;
-    } else {
-        cepValido = true;
-        inputCEP.style.border = "none";
-        spanErroCEP.innerHTML = ""
-    } if (CEP.length == 5) {
-        inputCEP.value = CEP + "-";
     }
+
+    // if (CEP.length < 9 || CEP.length > 9) {
+    //     inputCEP.style.border = "solid 1px red";
+    //     spanErroCEP.innerHTML = "CEP inválido! O CEP precisa ter 8 dígitos"
+    //     cepValido = false;
+    // } else {
+    //     cepValido = true;
+    //     inputCEP.style.border = "none";
+    //     spanErroCEP.innerHTML = ""
+    // } if (CEP.length == 5) {
+    //     inputCEP.value = CEP + "-";
+    // }
+    
 }
 
 function validarEstado() {
