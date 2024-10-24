@@ -56,16 +56,19 @@ const serial = async (
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
 
-        const dataAtual = new Date();
+        
+        var dataAtual = new Date();
+        var diaAtual = dataAtual.getDate();
+        var mesAtual = (dataAtual.getMonth() + 1);
+        var anoAtual = dataAtual.getFullYear();
+        
+        var horaAtual = dataAtual.getHours();
+        var minutoAtual = dataAtual.getMinutes();
+        var segundoAtual = dataAtual.getSeconds();
 
-        var dataFinal = "";
 
-        dataFinal += dataAtual.getFullYear().toString() + "-";
-        dataFinal += dataAtual.getMonth().toString() + "-";
-        dataFinal += dataAtual.getDate().toString() + " ";
-        dataFinal += dataAtual.getHours().toString() + ":";
-        dataFinal += dataAtual.getMinutes().toString() + ":";
-        dataFinal += dataAtual.getSeconds().toString();
+        var dataFinal = `${diaAtual}-${mesAtual}-${anoAtual} ${horaAtual}:${minutoAtual}:${segundoAtual}`;
+        
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
