@@ -212,10 +212,11 @@ body {
     text-decoration: none;
     color: #EEF7E6;
 }
-.conteudo-usuario a:hover {
+.link-sair:hover{
     cursor: pointer;
-}   
-
+    color: brown;
+    transition: 400ms;
+}
 
 .div-conteudo.dashboard {
     display: flex;
@@ -602,4 +603,23 @@ body {
 
 .footer span {
     font-weight: normal;
+}
+
+/* --------------- FUNCIONARIOS -------------- */
+.botao-novo-funcionario {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    background-color: #D3EAB3;
+    color: #1F6A07;
+    border: none;
+    width: 50%;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+.botao-novo-funcionario:hover{
+    cursor: pointer;
 }
