@@ -225,12 +225,38 @@
                     label: 'Umidade média do CB',
                     borderColor: '#1F6A07',
                     backgroundColor: '#1F6A07',
-                    data: [32 + 15, 35 + 15, 39 + 15, 32 + 15, 35 + 15, 41 + 15, 36 + 15]
-                }, {
-                    label: "Umidade ideal",
+                    data: [53, 57, 49, 43, 51, 59, 65]
+                }, 
+                {
+                    label: "Umidade mínima (sinal verde)",
                     borderColor: '#7AA95B',
                     backgroundColor: '#7AA95B',
-                    data: [35 + 15, 35 + 15, 35 + 15, 35 + 15, 35 + 15, 35 + 15, 35 + 15, 35 + 15, 35 + 15]
+                    data: [45, 45, 45, 45, 45, 45, 45, 45, 45]
+                }, {
+                    label: "Umidade máxima (sinal verde)",
+                    borderColor: '#7AA95B',
+                    backgroundColor: '#7AA95B',
+                    data: [55, 55, 55, 55, 55, 55, 55, 55, 55]
+                }, {
+                    label: "Umidade mínima (sinal amarelo)",
+                    borderColor: '#acb325',
+                    backgroundColor: '#acb325',
+                    data: [40, 40, 40, 40, 40, 40, 40, 40, 40]
+                }, {
+                    label: "Umidade máxima (sinal amarelo)",
+                    borderColor: '#acb325',
+                    backgroundColor: '#acb325',
+                    data: [40, 40, 40, 40, 40, 40, 40, 40, 40]
+                }, {
+                    label: "Umidade limite mínima (sinal vermelho)",
+                    borderColor: '#b41b1b',
+                    backgroundColor: '#b41b1b',
+                    data: [40, 40, 40, 40, 40, 40, 40, 40, 40]
+                }, {
+                    label: "Umidade limite máxima (sinal vermelho)",
+                    borderColor: '#b41b1b',
+                    backgroundColor: '#b41b1b',
+                    data: [60, 60, 60, 60, 60, 60, 60, 60, 60]
                 }]
             },
             options: {
@@ -254,7 +280,7 @@
 
                 scales: {
                     x: {
-                        beginAtZero: false,
+                        beginAtZero: true,
                         ticks: {
                             color: "#fffff"
                         }
@@ -264,7 +290,7 @@
                             display: true,
                             text: '(%)',
                         },
-                        beginAtZero: false
+                        beginAtZero: true
                     },
                 },
             }
