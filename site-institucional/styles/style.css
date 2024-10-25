@@ -658,3 +658,34 @@ body {
 .botao-fechar-funcionario:hover{
     cursor: pointer;
 }
+
+.div-tabela .tabela-funcionarios{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.tabela-funcionarios {
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.tabela-funcionarios th{
+    background-color: #0c4610;
+    border: 5px solid #0c4610;
+    padding: 8px 10px;
+}
+
+.tabela-funcionarios td{
+    background-color: #7AA95B;
+    border: 5px solid #0c4610;
+    padding: 8px 10px;
+}
+
+.tabela-funcionarios td{
+    background-color: #7AA95B;
+    border: 5px solid #0c4610;
+    padding: 8px 10px;
+}
