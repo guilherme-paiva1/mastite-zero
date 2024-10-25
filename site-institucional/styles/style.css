@@ -668,8 +668,9 @@ body {
 .tabela-funcionarios {
     border-collapse: collapse;
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     padding: 10px;
+    width: 30vw;
 }
 
 .tabela-funcionarios th{
@@ -688,4 +689,88 @@ body {
     background-color: #7AA95B;
     border: 5px solid #0c4610;
     padding: 8px 10px;
+}
+
+#inputEmailFuncionario {
+    background-color: #7AA95B;
+    padding: 8px 10px;
+    border: none;
+    color:#EEF7E6;
+    width: 90%;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+#inputEmailFuncionario:focus{
+    border: none;
+}
+
+.tabela-funcionarios button {
+    background: transparent;
+    border: none;
+    color: white;
+}
+.tabela-funcionarios button:hover{
+    cursor: pointer;
+}
+
+
+.modal-excluir-usuario {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.conteudo-excluir-usuario{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 20%;
+    align-items: center;
+    justify-content: start;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    color: black;
+}
+.conteudo-excluir-usuario h1 {
+    margin-right: 20px;
+    margin-top: 20px;
+    text-align: start;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.container-botao-confirmacao{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: flex-end;
+    gap: 20px;
+    height: 60%;
+    margin-bottom: 20px;
+    margin-right: 60px;
+}
+.container-botao-confirmacao button {
+    display: flex;
+    background-color: black;
+    color: white;
+    width: 20%;
+    height: 30%;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.container-botao-confirmacao button:hover {
+    cursor: pointer;
 }
