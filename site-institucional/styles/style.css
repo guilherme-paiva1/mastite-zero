@@ -191,20 +191,30 @@ body {
     display: none;
     position: absolute;
     z-index: 1;
-    right: 7%;
+    right: 20px;
     justify-content: center;
     border-radius: 10px;
     width: 10%;
+    background-color:#81A263;
     transform: translateX(-50%);
-    background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 10px;
     text-decoration: none;
+    color: #EEF7E6;
 }
 
 .conteudo-usuario {
     padding: 20px;
+    background-color:#81A263;
 }
+
+.link-sair{
+    text-decoration: none;
+    color: #EEF7E6;
+}
+.conteudo-usuario a:hover {
+    cursor: pointer;
+}   
 
 
 .div-conteudo.dashboard {

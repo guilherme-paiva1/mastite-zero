@@ -29,11 +29,11 @@
                         <a href="./dashboard.html" class="a-nav">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#" class="a-nav selected">Funcionários</a>
+                        <a href="./funcionarios.html" class="a-nav selected">Funcionários</a>
                     </li>
                     <li>
                         <button id="botaoAbrirModalUsuario" onclick="abrirModalUsuario()">
-                            <svg class="a-nav" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            <svg id="svgUsuario" class="a-nav" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                 <path fill-rule="evenodd"
@@ -42,7 +42,7 @@
                         </button>
                         <div id="modalUsuario" class="modal-usuario">
                             <div class="conteudo-usuario">
-                                <a href="index.html">Sair</a>
+                                <a id="linkSair" class="link-sair" href="index.html">Sair</a>
                             </div>
                         </div>
                     </li>
