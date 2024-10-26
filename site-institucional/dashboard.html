@@ -54,6 +54,9 @@
 
     <div class="container-conteudo" id="dashFazenda">
         <div class="div-conteudo dashboard">
+            <div class="dash-cabecalho">
+                <span class="titulo-dash">Fazenda X</span>
+            </div>
             <div class="div-linha">
                 <div class="div-texto">
                     <h1 id="titulo_dashboard_fazenda"></h1>
@@ -127,14 +130,17 @@
 
     <div class="container-conteudo" id="dashCompost">
         <div class="div-conteudo dashboard">
-            <div class="div-voltar">
-                <button onclick="mostrarFazenda(1)" class="btn-voltar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-arrow-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-                    </svg> Voltar para a Fazenda
-                </button>
+            <div class="dash-cabecalho">
+                <div class="div-voltar">
+                    <button onclick="mostrarFazenda(1)" class="btn-voltar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg> Voltar para a Fazenda
+                    </button>
+                </div>
+                <span class="titulo-dash">Compost Barn X</span>
             </div>
             <div class="div-linha">
                 <div class="div-texto">
@@ -207,6 +213,74 @@
         </div>
     </div>
 
+    <div class="container-conteudo" id="dashGrupo">
+        <div class="div-conteudo dashboard">
+            <div class="dash-cabecalho">
+                <div class="div-voltar">
+                    <button onclick="mostrarCompost(1)" class="btn-voltar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg> Voltar para o Compost Barn
+                    </button>
+
+                </div>
+                <span class="titulo-dash">Grupo X</span>
+            </div>
+            <div class="div-linha">
+                <div class="div-texto">
+                    <h1 id="titulo_dashboard_grupo"></h1>
+                    <p id="legenda_dashboard_grupo"></p>
+                </div>
+                <div class="div-kpi">
+                    <h2>Situação atual</h2>
+                    <p>OK</p>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                </div>
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-sublinha">
+                    <div class="div-grafico">
+                        <canvas height="200px" id=""></canvas>
+                    </div>
+                </div>
+
+                <div class="div-sublinha">
+                    <div class="div-grafico">
+                        <canvas height="100px" id=""></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-grafico">
+                    <canvas height="100px" id=""></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- 
@@ -237,3 +311,4 @@
 
 <script src="./models/dash-fazenda.js"></script>
 <script src="./models/dash-compost.js"></script>
+<script src="./models/dash-grupo.js"></script>

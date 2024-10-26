@@ -9,4 +9,5 @@ var dataAtual = new Date()
         function mostrarCompost(idCompost) {
             dashCompost.style.display = 'flex';
             dashFazenda.style.display = 'none';
+            dashGrupo.style.display = 'none';
         }

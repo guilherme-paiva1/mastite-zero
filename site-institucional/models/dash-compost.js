@@ -11,6 +11,11 @@ var dataAtual = new Date()
             dashCompost.style.display = 'none';
         }
 
+        function mostrarGrupo (idGrupo) {
+            dashGrupo.style.display = 'flex';
+            dashCompost.style.display = 'none';
+        }
+
         var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
             type: 'line',
             data: {
