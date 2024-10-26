@@ -662,7 +662,6 @@ body {
 .div-tabela .tabela-funcionarios{
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 .tabela-funcionarios {
