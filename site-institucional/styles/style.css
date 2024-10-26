@@ -310,6 +310,30 @@ body {
     /* height: 100%; */
 }
 
+.btn-dash {
+    display: flex;
+    cursor: pointer;
+    border: none;
+    background-color: #1C5E20;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    width: 100%;
+    height: 50%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 10px 0 10px 0;
+    margin: 30px;
+}
+
+.btn-dash:hover {
+    background-color: white;
+    color: #1C5E20;
+    transition: 0.4s;
+}
+
 #opcaoDadoBarn {
     display: flex;
     border: none;
@@ -321,6 +345,12 @@ body {
     color: #1F6A07;
     align-self: flex-start;
 }
+
+#dashCompost {
+    display: none;
+}
+
+
 
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 #selectEstado {
@@ -458,13 +488,13 @@ body {
 
 .btn-cadastro:hover {
     background-color: white;
-    color: #8dd192;
+    color: #1C5E20;
     transition: 0.4s;
 }
 
 .btn-anterior:hover {
     background-color: white;
-    color: #8dd192;
+    color: #1C5E20;
     transition: 0.4s;
 }
 

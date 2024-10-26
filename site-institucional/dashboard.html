@@ -52,12 +52,85 @@
         </div>
     </div>
 
-    <div class="container-conteudo">
+    <div class="container-conteudo" id="dashFazenda">
         <div class="div-conteudo dashboard">
             <div class="div-linha">
                 <div class="div-texto">
-                    <h1 id="titulo_dashboard"></h1>
-                    <p id="legenda_dashboard"></p>
+                    <h1 id="titulo_dashboard_fazenda"></h1>
+                    <p id="legenda_dashboard_fazenda"></p>
+                </div>
+                <div class="div-kpi">
+                    <h2>Situação atual</h2>
+                    <p>OK</p>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                </div>
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                    <div class="div-kpi">
+                        <h2>TemplateKPI</h2>
+                        <p>TemplateKPI</p>
+                    </div>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <button onclick="mostrarCompost(1)" class="btn-dash">Compost Barn 1</button>
+                    </div>
+                    <div class="div-kpi">
+                        <button onclick="mostrarCompost(2)" class="btn-dash">Compost Barn 2</button>
+                    </div>
+                </div>
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <button onclick="mostrarCompost(3)" class="btn-dash">Compost Barn 3</button>
+                    </div>
+                    <div class="div-kpi">
+                        <button onclick="mostrarCompost(4)" class="btn-dash">Compost Barn 4</button>
+                    </div>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-sublinha">
+                    <div class="div-grafico">
+                        <canvas height="200px" id=""></canvas>
+                    </div>
+                </div>
+
+                <div class="div-sublinha">
+                    <div class="div-grafico">
+                        <canvas height="100px" id=""></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-grafico">
+                    <canvas height="100px" id=""></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-conteudo" id="dashCompost">
+        <div class="div-conteudo dashboard">
+            <div class="div-linha">
+                <div class="div-texto">
+                    <h1 id="titulo_dashboard_compost"></h1>
+                    <p id="legenda_dashboard_compost"></p>
                 </div>
                 <div class="div-kpi">
                     <h2>Situação atual</h2>
@@ -83,6 +156,24 @@
                     <div class="div-kpi">
                         <h2>Qtd. de alertas no total</h2>
                         <p>3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="div-linha">
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <button onclick="mostrarGrupo(1)" class="btn-dash">Grupo Sul</button>
+                    </div>
+                    <div class="div-kpi">
+                        <button onclick="mostrarGrupo(2)" class="btn-dash">Grupo Leste</button>
+                    </div>
+                </div>
+                <div class="div-sublinha">
+                    <div class="div-kpi">
+                        <button onclick="mostrarGrupo(3)" class="btn-dash">Grupo Oeste</button>
+                    </div>
+                    <div class="div-kpi">
+                        <button onclick="mostrarGrupo(4)" class="btn-dash">Grupo Norte</button>
                     </div>
                 </div>
             </div>
@@ -132,6 +223,8 @@
     </div>
 
 </body>
+
 </html>
 
+<script src="./models/dash-fazenda.js"></script>
 <script src="./models/dash-compost.js"></script>

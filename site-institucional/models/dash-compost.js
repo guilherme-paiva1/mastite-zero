@@ -3,8 +3,8 @@ var dataAtual = new Date()
         var mesAtual = (dataAtual.getMonth() + 1)
         var anoAtual = dataAtual.getFullYear()
 
-        titulo_dashboard.innerHTML = `Dados - ${diaAtual}/${mesAtual}/${anoAtual}`
-        legenda_dashboard.innerHTML = `Nessa página você terá acesso aos dados do seu negócio referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
+        titulo_dashboard_compost.innerHTML = `Dados - ${diaAtual}/${mesAtual}/${anoAtual}`
+        legenda_dashboard_compost.innerHTML = `Nessa página você terá acesso aos dados do seu negócio referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
 
         var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
             type: 'line',
