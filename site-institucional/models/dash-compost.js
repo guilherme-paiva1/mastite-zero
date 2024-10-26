@@ -4,7 +4,12 @@ var dataAtual = new Date()
         var anoAtual = dataAtual.getFullYear()
 
         titulo_dashboard_compost.innerHTML = `Dados - ${diaAtual}/${mesAtual}/${anoAtual}`
-        legenda_dashboard_compost.innerHTML = `Nessa página você terá acesso aos dados do seu negócio referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
+        legenda_dashboard_compost.innerHTML = `Dados do Compost Barn referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
+
+        function mostrarFazenda(idFazenda) {
+            dashFazenda.style.display = 'flex';
+            dashCompost.style.display = 'none';
+        }
 
         var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
             type: 'line',
