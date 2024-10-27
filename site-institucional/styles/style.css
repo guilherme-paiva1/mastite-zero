@@ -82,20 +82,22 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
 .link-navbar button {
     background-color: transparent;
     border: none;
     box-shadow: none;
 }
-.link-navbar svg:hover{
+
+.link-navbar svg:hover {
     cursor: pointer;
 }
 
-.conteudo-usuario{
-    background-color:#1C5E20;
+.conteudo-usuario {
+    background-color: #1C5E20;
 }
 
-.conteudo-usuario a{
+.conteudo-usuario a {
     text-decoration: none;
 }
 
@@ -105,6 +107,39 @@ body {
     justify-content: flex-end;
     gap: 50px;
 }
+
+.modal-usuario {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    justify-content: center;
+    border-radius: 10px;
+    width: 10%;
+    background-color: #81A263;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    text-decoration: none;
+    color: #EEF7E6;
+}
+
+.conteudo-usuario {
+    padding: 20px;
+    background-color: #81A263;
+}
+
+.link-sair {
+    text-decoration: none;
+    color: #EEF7E6;
+}
+
+.link-sair:hover {
+    cursor: pointer;
+    color: brown;
+    transition: 400ms;
+}
+
 
 /* -------------- HOME ------------------- */
 
@@ -186,44 +221,12 @@ body {
 
 /* ----------------- DASHBOARD ---------------------  */
 
-
-.modal-usuario {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    right: 20px;
-    justify-content: center;
-    border-radius: 10px;
-    width: 10%;
-    background-color:#81A263;
-    transform: translateX(-50%);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-    text-decoration: none;
-    color: #EEF7E6;
-}
-
-.conteudo-usuario {
-    padding: 20px;
-    background-color:#81A263;
-}
-
-.link-sair{
-    text-decoration: none;
-    color: #EEF7E6;
-}
-.link-sair:hover{
-    cursor: pointer;
-    color: brown;
-    transition: 400ms;
-}
-
 .div-conteudo.dashboard {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
-
+    justify-content: center;
 }
 
 .dashboard {
@@ -310,6 +313,67 @@ body {
     /* height: 100%; */
 }
 
+.btn-dash {
+    display: flex;
+    cursor: pointer;
+    border: none;
+    background-color: #1C5E20;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    width: 100%;
+    height: 50%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 10px 0 10px 0;
+    margin: 30px;
+}
+
+.btn-voltar {
+    cursor: pointer;
+    display: flex;
+    border: none;
+    background-color: white;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;
+    color: #1C5E20;
+    width: fit-content;
+    height: 50px;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.btn-voltar:hover {
+    background-color: #1C5E20;
+    color: white;
+    transition: 0.4s;
+}
+
+.dash-cabecalho {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.dash-cabecalho .titulo-dash {
+    color: white;
+    font-size: 50px;
+}
+
+.dash-cabecalho .div-voltar {
+    align-self: flex-start;
+}
+
+.btn-dash:hover {
+    background-color: white;
+    color: #1C5E20;
+    transition: 0.4s;
+}
+
 #opcaoDadoBarn {
     display: flex;
     border: none;
@@ -321,6 +385,16 @@ body {
     color: #1F6A07;
     align-self: flex-start;
 }
+
+#dashCompost {
+    display: none;
+}
+
+#dashGrupo {
+    display: none;
+}
+
+
 
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 #selectEstado {
@@ -458,13 +532,13 @@ body {
 
 .btn-cadastro:hover {
     background-color: white;
-    color: #8dd192;
+    color: #1C5E20;
     transition: 0.4s;
 }
 
 .btn-anterior:hover {
     background-color: white;
-    color: #8dd192;
+    color: #1C5E20;
     transition: 0.4s;
 }
 
@@ -473,7 +547,7 @@ body {
     font-size: 16px;
 }
 
-.div-botoes{
+.div-botoes {
     display: flex;
     gap: 20px;
 }
@@ -620,7 +694,8 @@ body {
     border-radius: 10px;
     font-size: 16px;
 }
-.botao-novo-funcionario:hover{
+
+.botao-novo-funcionario:hover {
     cursor: pointer;
 }
 
@@ -638,7 +713,7 @@ body {
     margin-bottom: 10px;
 }
 
-.conteudo-novo-funcionario{
+.conteudo-novo-funcionario {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -649,20 +724,19 @@ body {
     border-radius: 10px;
 }
 
-.botao-fechar-funcionario{
+.botao-fechar-funcionario {
     display: flex;
-    justify-self:flex-start;
+    justify-self: flex-start;
     align-self: self-end;
 }
 
-.botao-fechar-funcionario:hover{
+.botao-fechar-funcionario:hover {
     cursor: pointer;
 }
 
-.div-tabela .tabela-funcionarios{
+.div-tabela .tabela-funcionarios {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 .tabela-funcionarios {
@@ -673,19 +747,19 @@ body {
     width: 50vw;
 }
 
-.tabela-funcionarios th{
+.tabela-funcionarios th {
     background-color: #0c4610;
     border: 5px solid #0c4610;
     padding: 8px 10px;
 }
 
-.tabela-funcionarios td{
+.tabela-funcionarios td {
     background-color: #7AA95B;
     border: 5px solid #0c4610;
     padding: 8px 10px;
 }
 
-.tabela-funcionarios td{
+.tabela-funcionarios td {
     background-color: #7AA95B;
     border: 5px solid #0c4610;
     padding: 8px 10px;
@@ -697,7 +771,7 @@ body {
     background-color: #7AA95B;
     padding: 8px 10px;
     border: none;
-    color:#EEF7E6;
+    color: #EEF7E6;
     width: 90%;
     font-weight: bold;
     font-size: 16px;
@@ -714,7 +788,7 @@ body {
     margin-right: 20px;
 }
 
-#inputEmailFuncionario:focus{
+#inputEmailFuncionario:focus {
     border: none;
 }
 
@@ -723,7 +797,8 @@ body {
     border: none;
     color: white;
 }
-.tabela-funcionarios button:hover{
+
+.tabela-funcionarios button:hover {
     cursor: pointer;
 }
 
@@ -742,7 +817,7 @@ body {
     margin-bottom: 10px;
 }
 
-.conteudo-excluir-usuario{
+.conteudo-excluir-usuario {
     display: flex;
     flex-direction: column;
     width: 30%;
@@ -754,6 +829,7 @@ body {
     font-size: 15px;
     color: black;
 }
+
 .conteudo-excluir-usuario h1 {
     margin-right: 20px;
     margin-top: 20px;
@@ -761,7 +837,8 @@ body {
     font-size: 15px;
     font-weight: bolder;
 }
-.container-botao-confirmacao{
+
+.container-botao-confirmacao {
     display: flex;
     width: 100%;
     justify-content: end;
@@ -771,6 +848,7 @@ body {
     margin-bottom: 20px;
     margin-right: 60px;
 }
+
 .container-botao-confirmacao button {
     display: flex;
     background-color: black;
