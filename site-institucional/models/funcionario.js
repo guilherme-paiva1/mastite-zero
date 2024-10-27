@@ -35,15 +35,22 @@ function negarExclusao() {
   modal.style.display = "none";
 }
 
-function editarUsuario() {
+function editarUsuario(botao) {
+
+  const emailInput = botao.closest('tr').querySelector('#inputEmailFuncionario');
+  const nomeInput = botao.closest('tr').querySelector("#inputNomeFuncionario");
 
 
   if (vezesClicadas == 1) {
-    inputEmailFuncionario.disabled = true;
+    emailInput.disabled = true;
+    nomeInput.disabled = true;
     vezesClicadas = 0;
   } else {
     vezesClicadas++;
-    inputEmailFuncionario.disabled = false;
-    inputEmailFuncionario.focus();
+    emailInput.disabled = false;
+    nomeInput.disabled = false;
+    emailInput.focus();
   }
+
+  
 }
