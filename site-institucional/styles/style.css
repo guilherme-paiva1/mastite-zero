@@ -598,7 +598,7 @@ body {
     width: 100%;
     align-items: center;
     color: white;
-    background-color: #0c4610;
+    background-color: #0c4610;    
 }
 
 .footer span {
@@ -670,7 +670,7 @@ body {
     font-family: sans-serif;
     font-size: 16px;
     padding: 10px;
-    width: 30vw;
+    width: 50vw;
 }
 
 .tabela-funcionarios th{
@@ -690,8 +690,20 @@ body {
     border: 5px solid #0c4610;
     padding: 8px 10px;
 }
-
+.coluna-nome {
+   
+}
 #inputEmailFuncionario {
+    background-color: #7AA95B;
+    padding: 8px 10px;
+    border: none;
+    color:#EEF7E6;
+    width: 90%;
+    font-weight: bold;
+    font-size: 16px;
+    margin-right: 20px;
+}
+#inputNomeFuncionario {
     background-color: #7AA95B;
     padding: 8px 10px;
     border: none;
