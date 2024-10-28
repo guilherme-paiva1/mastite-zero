@@ -1,6 +1,6 @@
 /*---------------------- ESTILIZAÇÃO BODY -------------------- */
 body {
-    background-color: #1C5E20;
+    background-color: #22603A;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ body {
     display: flex;
     gap: 20px;
     color: #EEF7E6;
-    background-color: #0c4610;
+    background-color: #154A29;
     margin-bottom: 20px;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .conteudo-usuario {
-    background-color: #1C5E20;
+    background-color: #22603A;
 }
 
 .conteudo-usuario a {
@@ -152,7 +152,7 @@ body {
 
 .div-conteudo {
     gap: 50px;
-    background-color: #7AA95B;
+    background-color: #D7EEC8;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -178,8 +178,8 @@ body {
     width: 250px;
     padding: 8px 5px 8px 5px;
     margin: 5px;
-    background-color: white;
-    color: black;
+    background-color: #22603A;
+    color: #ffffff;
     border-radius: 50px;
     cursor: pointer;
     display: flex;
@@ -189,7 +189,7 @@ body {
 
 .botao-simulacao:hover {
     background-color: white;
-    color: #1C5E20;
+    color: #22603A;
     transition: 0.4s;
 }
 
@@ -201,13 +201,17 @@ body {
     justify-content: space-between;
     gap: 15px;
     text-decoration: none;
-    color: black;
+    color: #ffffff;
+}
+
+.btn-simulacao:hover {
+    color: #22603A;
 }
 
 .seta {
     height: 30px;
     width: 30px;
-    background-color: #1F6A07;
+    background-color: #22603A;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -290,7 +294,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 50%;
-    background-color: #D3EAB3;
+    background-color: #F8FFFB;
     border-radius: 20px;
     padding: 0;
     height: 100%;
@@ -307,7 +311,7 @@ body {
     display: flex;
     align-items: center;
     border-radius: 20px;
-    background-color: #D3EAB3;
+    background-color: #F8FFFB;
     padding: 20px;
     width: 100%;
     /* height: 100%; */
@@ -317,10 +321,10 @@ body {
     display: flex;
     cursor: pointer;
     border: none;
-    background-color: #1C5E20;
+    background-color: #22603A;
     font-size: 20px;
     font-family: "Poppins", sans-serif;
-    color: white;
+    color: #ffffff;
     width: 100%;
     height: 50%;
     align-items: center;
@@ -338,7 +342,7 @@ body {
     background-color: white;
     font-size: 15px;
     font-family: "Poppins", sans-serif;
-    color: #1C5E20;
+    color: #22603A;
     width: fit-content;
     height: 50px;
     border-radius: 20px;
@@ -346,7 +350,7 @@ body {
 }
 
 .btn-voltar:hover {
-    background-color: #1C5E20;
+    background-color: #22603A;
     color: white;
     transition: 0.4s;
 }
@@ -360,7 +364,7 @@ body {
 }
 
 .dash-cabecalho .titulo-dash {
-    color: white;
+    color: #22603A;
     font-size: 50px;
 }
 
@@ -370,7 +374,7 @@ body {
 
 .btn-dash:hover {
     background-color: white;
-    color: #1C5E20;
+    color: #22603A;
     transition: 0.4s;
 }
 
@@ -399,12 +403,12 @@ body {
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 #selectEstado {
     border-radius: 10px;
-    background-color: #D3EAB3;
+    background-color: #F8FFFB;
     padding: 8px;
     border: none;
     font-family: "Poppins", sans-serif;
     font-size: 12px;
-    color: #1C5E20;
+    color: #22603A;
     width: 50%;
     margin-left: 3px;
 }
@@ -412,19 +416,19 @@ body {
 
 #selectTipo {
     border-radius: 10px;
-    background-color: #D3EAB3;
+    background-color: #F8FFFB;
     padding: 8px;
     border: none;
     font-family: "Poppins", sans-serif;
     font-size: 12px;
-    color: #1C5E20;
+    color: #22603A;
 }
 
 .campo-input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #ffffff;
+    color: #22603A;
     width: 550px;
 }
 
@@ -437,7 +441,7 @@ body {
     align-items: center;
     outline: none;
     border: none;
-    background-color: #D3EAB3;
+    background-color: #F8FFFB;
     margin: 2px;
     padding: 5px;
 }
@@ -479,11 +483,11 @@ body {
     width: 450px;
     display: flex;
     flex-direction: column;
-    color: white;
+    color: #22603A;
 }
 
 .div-texto h1 {
-    color: #fed859;
+    color: #1D4D2F;
     font-size: 56px;
     font-weight: bolder;
     margin: 20px 0px 0px 0px;
@@ -496,18 +500,18 @@ body {
 
 .div-texto .link {
     font-weight: 600;
-    color: white;
+    color: #22603A;
 }
 
 ::placeholder {
-    color: #1C5E20;
+    color: #22603A;
     font-family: "Poppins", sans-serif;
 }
 
 .btn-cadastro {
     cursor: pointer;
     border: none;
-    background-color: #1C5E20;
+    background-color: #22603A;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
     color: white;
@@ -523,7 +527,7 @@ body {
     background-color: #b6e399;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
-    color: #1C5E20;
+    color: #22603A;
     width: 160px;
     height: 40px;
     border-radius: 20px;
@@ -532,13 +536,13 @@ body {
 
 .btn-cadastro:hover {
     background-color: white;
-    color: #1C5E20;
+    color: #22603A;
     transition: 0.4s;
 }
 
 .btn-anterior:hover {
     background-color: white;
-    color: #1C5E20;
+    color: #22603A;
     transition: 0.4s;
 }
 
@@ -597,7 +601,7 @@ body {
 }
 
 .resultado-calculadora #legenda-calculadora {
-    color: #ffffff;
+    color: #22603A;
     font-weight: normal;
     text-align: center;
 }
@@ -608,8 +612,8 @@ body {
     align-items: center;
     text-align: center;
     justify-content: center;
-    background-color: #D3EAB3;
-    color: black;
+    background-color: #F8FFFB;
+    color: #1D4D2F;
     border-radius: 10px;
     min-height: 100%;
     padding: 30px;
@@ -672,7 +676,7 @@ body {
     width: 100%;
     align-items: center;
     color: white;
-    background-color: #0c4610;    
+    background-color: #154A29;    
 }
 
 .footer span {
@@ -686,7 +690,7 @@ body {
     justify-content: center;
     gap: 20px;
     align-items: center;
-    background-color: #D3EAB3;
+    background-color: #F8FFFB;
     color: #1F6A07;
     border: none;
     width: 50%;
@@ -755,13 +759,13 @@ body {
 }
 
 .tabela-funcionarios td {
-    background-color: #7AA95B;
+    background-color: #D7EEC8;
     border: 5px solid #0c4610;
     padding: 8px 10px;
 }
 
 .tabela-funcionarios td {
-    background-color: #7AA95B;
+    background-color: #D7EEC8;
     border: 5px solid #0c4610;
     padding: 8px 10px;
 }
@@ -769,7 +773,7 @@ body {
    
 }
 #inputEmailFuncionario {
-    background-color: #7AA95B;
+    background-color: #D7EEC8;
     padding: 8px 10px;
     border: none;
     color: #EEF7E6;
@@ -779,7 +783,7 @@ body {
     margin-right: 20px;
 }
 #inputNomeFuncionario {
-    background-color: #7AA95B;
+    background-color: #D7EEC8;
     padding: 8px 10px;
     border: none;
     color:#EEF7E6;
@@ -796,7 +800,7 @@ body {
 .tabela-funcionarios button {
     background: transparent;
     border: none;
-    color: white;
+    color: #22603A;
 }
 
 .tabela-funcionarios button:hover {
@@ -853,7 +857,7 @@ body {
 .container-botao-confirmacao button {
     display: flex;
     background-color: black;
-    color: white;
+    color: #22603A;
     width: 20%;
     height: 30%;
     padding: 20px;
