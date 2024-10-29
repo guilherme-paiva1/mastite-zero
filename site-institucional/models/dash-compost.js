@@ -19,11 +19,21 @@ var dataAtual = new Date()
         var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
             type: 'line',
             data: {
-                labels: ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+                labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
                 datasets: [{
                     label: 'Umidade',
                     borderColor: '#1F6A07',
-                    data: [47, 45, 50, 55, 61, 56, 48, 63, 61]
+                    data: [47, 45, 50, 55, 61, 56, 48, 63, 61, 58, 53, 50, 46, 40, 37, 33, 39, 45, 47, 45, 50, 55, 59]
+                }, {
+                    label: 'Umidade máxima (60%)',
+                    borderColor: '#b41b1b',
+                    backgroundColor: '#b41b1b',
+                    data: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+                }, {
+                    label: 'Umidade mínima (40%)',
+                    borderColor: '#b41b1b',
+                    backgroundColor: '#b41b1b',
+                    data: [40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40]
                 }]
             },
             options: {
@@ -105,7 +115,7 @@ var dataAtual = new Date()
                     data: [60, 60, 60, 60, 60, 60, 60]
                 }, {
                     type: 'line',
-                    label: 'Umidade máxima (40%)',
+                    label: 'Umidade mínima (40%)',
                     borderColor: '#b41b1b',
                     backgroundColor: '#b41b1b',
                     data: [40, 40, 40, 40, 40, 40, 40]
