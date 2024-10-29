@@ -234,8 +234,9 @@ body {
 }
 
 .dashboard {
-    color: #1F6A07;
+    color: #22603A;
 }
+
 
 .div-linha {
     display: flex;
@@ -298,7 +299,6 @@ body {
     border-radius: 20px;
     padding: 0;
     height: 100%;
-    /* margin: 10px 5px 10px 5px; */
 }
 
 .div-kpi h1 {
@@ -399,6 +399,25 @@ body {
 }
 
 
+.div-metrica {
+    display: flex;
+    padding: 5px;
+}
+
+.div-retangulo{
+    width: 100px;
+    height: 10px;
+}
+
+.metrica-verde{
+    background-color: #58a33f;
+}
+.metrica-amarela{
+    background-color: #ecbf28;
+}
+.metrica-vermelha{
+    background-color: #c43623;
+}
 
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 #selectEstado {
@@ -769,9 +788,8 @@ body {
     border: 5px solid #0c4610;
     padding: 8px 10px;
 }
-.coluna-nome {
-   
-}
+
+
 #inputEmailFuncionario {
     background-color: #D7EEC8;
     padding: 8px 10px;
