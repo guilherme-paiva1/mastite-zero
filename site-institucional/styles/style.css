@@ -761,7 +761,6 @@ body {
     display: flex;
     flex-direction: column;
     width: 60%;
-    height: 70%;
     align-items: center;
     justify-content: center;
     background-color: white;
