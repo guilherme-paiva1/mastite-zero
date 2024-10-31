@@ -25,14 +25,15 @@ function buscarPorId(req, res) {
 function cadastrar(req, res) {
   var cnpj = req.body.cnpj;
   var razaoSocial = req.body.razaoSocial;
+  var nomeFantasia = req.body.nomeFantasia;
 
   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
     if (resultado.length > 0) {
       res
         .status(401)
-        .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
+        .json({ mensagem: `A empresa com o cnpj ${cnpj} já existe!` });
     } else {
-      empresaModel.cadastrar(razaoSocial, cnpj).then((resultado) => {
+      empresaModel.cadastrar(razaoSocial, cnpj, nomeFantasia).then((resultado) => {
         res.status(201).json(resultado);
       });
     }
