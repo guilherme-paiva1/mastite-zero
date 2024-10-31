@@ -15,16 +15,16 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
-var indexRouter = require("./src/routes/index");
-var usuarioRouter = require("./src/routes/usuarios");
-var avisosRouter = require("./src/routes/avisos");
-var medidasRouter = require("./src/routes/medidas");
-var compostRouter = require("./src/routes/aquarios");
-var empresasRouter = require("./src/routes/empresas");
+var indexRouter = require("./routes/index");
+var usuarioRouter = require("./routes/usuarios");
+var avisosRouter = require("./routes/avisos");
+var medidasRouter = require("./routes/medidas");
+var compostRouter = require("./routes/composts");
+var empresasRouter = require("./routes/empresas");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 app.use(cors());
 
