@@ -1,8 +1,9 @@
-CREATE USER 'svc_cbsafe'@'localhost' IDENTIFIED BY 'urubu100';
-GRANT ALL ON cbsafe.*
 DROP DATABASE cbsafe;
 CREATE DATABASE cbsafe;
 USE cbsafe;
+CREATE USER 'svc_cbsafe'@'localhost' IDENTIFIED BY 'urubu100';
+GRANT ALL ON cbsafe.*
+
 
 -- CRIAÇÃO DA TABELA EMPRESA
 CREATE TABLE Empresa (
