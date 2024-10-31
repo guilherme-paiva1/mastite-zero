@@ -1,3 +1,5 @@
+CREATE USER 'svc_cbsafe'@'localhost' IDENTIFIED BY 'urubu100';
+GRANT ALL ON cbsafe.*
 DROP DATABASE cbsafe;
 CREATE DATABASE cbsafe;
 USE cbsafe;
@@ -253,3 +255,4 @@ select Sensor.grupo as 'Grupo do sensor',
     dados.data_hora as 'Data e hora'
     from Sensor join Dados_sensor as dados
     on id_sensor = fk_sensor; */
+    
