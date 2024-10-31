@@ -1,9 +1,9 @@
 var compostModel = require("../models/compostModel");
 
-function buscarAquariosPorEmpresa(req, res) {
-  var idUsuario = req.params.idUsuario;
+function buscarCompostsPorEmpresa(req, res) {
+  var fazendaId = req.params.fazendaId;
 
-  compostModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
+  compostModel.buscarCompostsPorEmpresa(fazendaId).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -18,17 +18,20 @@ function buscarAquariosPorEmpresa(req, res) {
 
 
 function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idUsuario = req.body.idUsuario;
+  var areaM2 = req.body.areaM2;
+  var dataUltimaManutencao = req.body.dataUltimaManutencao;
+  var fazendaId = req.body.fazendaId;
 
-  if (descricao == undefined) {
-    res.status(400).send("descricao está undefined!");
-  } else if (idUsuario == undefined) {
-    res.status(400).send("idUsuario está undefined!");
+  if (areaM2 == undefined) {
+    res.status(400).send("areaM2 está undefined!");
+  } else if (dataUltimaManutencao == undefined) {
+    res.status(400).send("dataUltimaManutencao está undefined!");
+  } else if (fazendaId == undefined) {
+    res.status(400).send("fazendaId está undefined!");
   } else {
 
 
-    compostModel.cadastrar(descricao, idUsuario)
+    compostModel.cadastrar(areaM2, dataUltimaManutencao, fazendaId)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -44,6 +47,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarAquariosPorEmpresa,
+  buscarCompostsPorEmpresa,
   cadastrar
 }
