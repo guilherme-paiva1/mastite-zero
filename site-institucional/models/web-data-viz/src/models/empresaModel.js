@@ -13,7 +13,7 @@ function listar() {
 }
 
 function buscarPorCnpj(cnpj) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
+  var instrucaoSql = `SELECT * FROM Empresa WHERE cnpj = '${cnpj}'`;
 
   return database.executar(instrucaoSql);
 }
