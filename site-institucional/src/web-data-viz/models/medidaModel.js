@@ -13,7 +13,7 @@ function buscarUltimasMedidas(idSensor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+function buscarMedidasEmTempoReal(idSensor) {
 
     var instrucaoSql = `
      SELECT id_dado, umidade, data_hora, fk_sensor

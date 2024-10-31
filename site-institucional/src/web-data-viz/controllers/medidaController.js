@@ -21,7 +21,6 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
-
 function buscarMedidasEmTempoReal(req, res) {
     var idSensor = req.params.idSensor;
 
