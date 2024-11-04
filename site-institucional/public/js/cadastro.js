@@ -1,11 +1,11 @@
 campos_endereco.style.display = 'none'
 
-var empresa = "";
+var nomeFantasia = "";
 var responsavel = "";
 var email = "";
 var senha = "";
 var confirmarSenha = "";
-var razao = "";
+var razaoSocial = "";
 
 var logradouroValido = false;
 var cidadeValida = false;
@@ -25,14 +25,17 @@ function avancar() {
     campos_empresa.style.display = 'none'
     campos_endereco.style.display = 'flex'
 }
-
 function cadastrar() {
-    empresa = inputEmpresa.value
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    nomeFantasia = inputEmpresa.value
     responsavel = inputResponsavel.value
     email = inputEmail.value
     senha = inputSenha.value
     confirmarSenha = inputConfirmaSenha.value
-    razao = inputRazao.value;
+    razaoSocial = inputRazao.value;
 
     spanErroSenha.innerHTML = "";
     spanErroConfirmarSenha.innerHTML = "";
@@ -53,47 +56,79 @@ function cadastrar() {
         spanErroConfirmarSenha.innerHTML = "As senhas não são identicas"
         inputSenha.style.border = "solid 1px red";
         inputConfirmaSenha.style.border = "solid 1px red";
+        finalizarAguardar();
+        return false;
 
-    } else if (senha == 0 || senha < 4) {
-        spanErroSenha.innerHTML = "Senha inválida, curta demais"
-        spanErroConfirmarSenha.innerHTML = "Senha inválida, curta demais"
+    } else if (senha.length < 4) {
+        spanErroSenha.innerHTML = "A senha precisa ter ao menos 4 caracteres"
+        spanErroConfirmarSenha.innerHTML = "A senha precisa ter ao menos 4 caracteres"
         inputSenha.style.border = "solid 1px red";
         inputConfirmaSenha.style.border = "solid 1px red";
+        finalizarAguardar();
+        return false;
 
-    } else if ((email == 0 || email < 7) || email.indexOf("@") < 0 || email.indexOf(".com") < 0) {
+    } else if ((email.length < 7) || email.indexOf("@") < 0 || email.indexOf(".com") < 0) {
         inputEmail.style.border = "solid 1px red";
         spanErroEmail.innerHTML = "Email inválido";
+        finalizarAguardar();
+        return false;
 
-    } else if (responsavel == 0 || responsavel < 4) {
+    } else if (responsavel.length < 4) {
         spanErroResponsavel.innerHTML = "Representante inválido, mínimo de 4 letras ";
-    } else if (empresa == 0 || empresa < 3) {
+        finalizarAguardar();
+        return false;
+
+    } else if (nomeFantasia.length < 3) {
         spanErroEmpresa.innerHTML = "Nome fantasia inválido, mínimo de 3 letras";
-    } else if (razao == 0 || razao < 3) {
+        finalizarAguardar();
+        return false;
+
+    } else if (razaoSocial.length < 3) {
         spanErroRazao.innerHTML = "Razão social inválida, mínimo de 3 letras";
-    } else {
-        if (logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido) {
-            console.log("VALIDO");
-            divMensagem.innerHTML = `Cadastro realizado com sucesso! Bem-vindo ${empresa}`
-        }
+        finalizarAguardar();
+        return false;
 
     }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeFantasiaServer: nomeFantasia,
+            razaoSocialServer: razaoSocial,
+            emailServer: email,
+            senhaServer: senha,
+            responsavelServer: responsavel
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                divMensagem.innerHTML =
+                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000");
+
+                finalizarAguardar();
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+    return false;
 }
-
-// function validar() {
-//     var cnpj = inputCnpj.value
-
-//     console.log(cnpj.length)
-
-//     if (cnpj.length < 14 || cnpj.length > 14) {
-//         inputCnpj.style.border = "solid 1px red";
-//         spanErroCnpj.innerHTML = "CNPJ inválido! O CNPJ precisa ter 14 dígitos"
-//     } else {
-//         inputCnpj.style.border = "none";
-//         spanErroCnpj.innerHTML = ""
-
-//     }
-
-// }
 
 function validarLogradouro() {
     var logradouro = inputLogradouro.value;
@@ -247,7 +282,7 @@ function validarCEP() {
     // } if (CEP.length == 5) {
     //     inputCEP.value = CEP + "-";
     // }
-    
+
 }
 
 function validarEstado() {
@@ -262,3 +297,24 @@ function validarEstado() {
         spanEstado.style.border = "solid 1px red";
     }
 }
+
+/* Listando empresas cadastradas 
+function listar() {
+    fetch("/empresas/listar", {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((empresas) => {
+                empresas.forEach((empresa) => {
+                    listaEmpresasCadastradas.push(empresa);
+
+                    console.log("listaEmpresasCadastradas")
+                    console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+                });
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+*/
