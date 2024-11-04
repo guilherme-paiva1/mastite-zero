@@ -7,13 +7,30 @@ var dataAtual = new Date()
         legenda_dashboard_compost.innerHTML = `Dados do Compost Barn referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
 
         function mostrarFazenda(idFazenda) {
-            dashFazenda.style.display = 'flex';
-            dashCompost.style.display = 'none';
+            if (idFazenda == "#") {
+                selectCompost.disabled = true;
+                spanNumeroFazenda.innerHTML  = "Nenhuma fazenda selecionada"
+                dashCompost.style.display = 'none';
+                divLinha.style.display = 'none';
+            } else {
+                selectCompost.disabled = false;
+                spanNumeroFazenda.innerHTML = `Fazenda ${idFazenda}`;
+                dashFazenda.style.display = 'flex';
+                dashCompost.style.display = 'none';
+                divLinha.style.display = 'flex';
+            }
         }
 
         function mostrarGrupo (idGrupo) {
-            dashGrupo.style.display = 'flex';
-            dashCompost.style.display = 'none';
+            if (idGrupo == "#") {
+                mostrarCompost(selectCompost.value);
+            } else {
+                selectGrupo.disabled = false;
+                spanNumeroGrupo.innerHTML = `Grupo ${idGrupo}`;
+                dashFazenda.style.display = 'none';
+                dashCompost.style.display = 'none';
+                dashGrupo.style.display = 'flex';
+            }
         }
 
         var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {

@@ -51,7 +51,8 @@ body {
     text-decoration: none;
     color: rgb(255, 255, 255);
     opacity: 0.5;
-
+    cursor: pointer;
+    
 }
 
 .a-logo {
@@ -433,11 +434,61 @@ body {
 .metrica-verde{
     background-color: #58a33f;
 }
+
 .metrica-amarela{
     background-color: #ecbf28;
 }
+
 .metrica-vermelha{
     background-color: #c43623;
+}
+
+.container-detalhes-dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudo-detalhes-dashboard{
+    margin-top: 10px;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    margin-top: 20px;
+    flex-direction: column;
+    background-color: #FCFFFA;
+    padding: 0 20px 0 0;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.divItens {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 70px 10px 10px;
+}
+
+.itemDetalhe {
+    width: 100%;
+}
+
+.itemDetalhe p {
+    color: #22603A;
+    width: 100%;
+}
+
+.itemDetalhe select {
+    color: #22603A;
+    background-color: #D7EEC8;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+select:disabled {
+    color: #949494;
+    background-color: #F0F0F0;
 }
 
 /* ----------------- LOGIN E CADASTRO ---------------------  */
