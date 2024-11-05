@@ -19,7 +19,7 @@ function buscarMedidasEmTempoReal(idSensor) {
      SELECT id_dado, umidade, data_hora, fk_sensor
             FROM Dados_sensor
                 WHERE fk_sensor = ${idSensor} 
-                    ORDER BY id DESC LIMIT 1
+                    ORDER BY id_dado DESC LIMIT 1
     `;
     
     //DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico,

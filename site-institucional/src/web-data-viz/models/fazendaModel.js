@@ -23,8 +23,8 @@ function cadastrarFazenda(nome, fkEmpresa, fkEndereco){
 function buscarFazendaPelaFkEmpresa(fkEmpresa) {
 
     var instrucaoSql = `
-        SELECT *
-            FROM Fazenda
+        SELECT f.id_fazenda as idFazenda, f.nome as nome, f.fk_endereco as fkEndereco, f.fk_empresa as fkEmpresa
+            FROM Fazenda as f
                 WHERE fk_empresa = ${fkEmpresa}
     `;
 

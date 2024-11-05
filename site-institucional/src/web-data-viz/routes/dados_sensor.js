@@ -1,14 +1,14 @@
 var express = require("express");
 var router = express.Router();
 
-var medidaController = require("../controllers/medidaController");
+var dadosSensoresController = require("../controllers/dados_sensorController");
 
 router.get("/ultimas/:idSensor", function (req, res) {
-    medidaController.buscarUltimasMedidas(req, res);
+    dadosSensoresController.buscarUltimasMedidas(req, res);
 });
 
 router.get("/tempo-real/:idSensor", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
+    dadosSensoresController.buscarMedidasEmTempoReal(req, res);
 })
 
 module.exports = router;
