@@ -19,7 +19,7 @@ function cadastrar(nome, email, senha, fkEmpresa, fkFazenda, fkSupervisor) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function buscarUsuarioPeloEmailESenha(email, senha){
+function buscarUsuarioPeloEmailESenha(email, senha) {
     var instrucaoSql = `SELECT * FROM Usuario WHERE email = '${email}' AND senha = '${senha}';`
 
     return database.executar(instrucaoSql);

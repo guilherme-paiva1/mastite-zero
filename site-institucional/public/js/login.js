@@ -1,61 +1,60 @@
-
 function logar() {
-    var opcao = selectTipo.value;
+    var email = inputEmail.value;
+    var senha = inputSenha.value;
 
-    var CNPJ_EMPRESA_CONTA = "12345678000112"; 
-    var SENHA_EMPRESA_CONTA = "Cb_safe#009";
+    if (email == '' || senha == '') {
+        spanErro.innerHTML = `Preencha todos os campos!`;
 
-    var EMAIL_USUARIO_CONTA = "lucas@gmail.com";
-    var SENHA_USUARIO_CONTA = "Lucas@2603";
+        return false;
+    } else {
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
 
-    if(opcao == "empresa"){
-        var cnpj = inputCnpj.value;
-        var senha = inputSenha.value;
-        
-        if(cnpj != CNPJ_EMPRESA_CONTA || SENHA_EMPRESA_CONTA != senha){
-           spanErro.innerHTML = `Senha ou CNPJ inválidos!`
-        }else{
-            spanErro.innerHTML = "";
-            spanErro.innerHTML = "";
-            spanSucesso.innerHTML = "Login correto";
-        }
-    }else{
-        var email = inputEmail.value;
-        var senha = inputSenha.value;
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
-        if(email != EMAIL_USUARIO_CONTA || SENHA_USUARIO_CONTA != senha){
-            spanErro.innerHTML = `Senha ou email inválidos!`
-         }else{
-             spanErro.innerHTML = "";
-             spanErro.innerHTML = "";
-             spanSucesso.innerHTML = "Login correto";
-         }
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id
+                    setTimeout(function () {
+                        window.location = "./dashboard/dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
 
-    
-}
 
-
-function validarCnpj(){
-    if(cnpj.length < 14 || cnpj.length > 14){
-        inputCnpj.style.border = "solid 1px red";
-        spanErroCnpj.innerHTML = "CNPJ inválido! O CNPJ precisa ter 14 dígitos"
-    }else{
-        inputCnpj.style.border = "none";
-        spanErroCnpj.innerHTML = ""
-    }
-}
-
-function mudarOpcao(){
-    var opcao = selectTipo.value;
-    if(opcao == "usuario"){
-        campoInput.innerHTML = `<input type="email" id="inputEmail" placeholder="Email"> 
-                        <input type="password" id="inputSenha" placeholder="Senha">
-                        <button class="btn-cadastro" onclick="logar()">Entrar</button>`
-    }else{
-       campoInput.innerHTML = ` <input type="text" id="inputCnpj" placeholder="CNPJ" oninput="validarCnpj()"> 
-                        <input type="password" id="inputSenha" placeholder="Senha">
-                        <button class="btn-cadastro" onclick="logar()">Entrar</button>`
-    }
-    
+    spanErro.innerHTML = "";
+    spanErro.innerHTML = "";
+    spanSucesso.innerHTML = "Login correto";
 }

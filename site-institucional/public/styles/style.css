@@ -391,6 +391,10 @@ body {
     align-self: flex-start;
 }
 
+#dashFazenda {
+    display: none;
+}
+
 #dashCompost {
     display: none;
 }

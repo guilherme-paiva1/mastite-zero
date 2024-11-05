@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar - CBSafe</title>
-    
+
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="styles/style.css">
@@ -15,6 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
     <div class="header">
         <div class="container">
@@ -53,25 +55,18 @@
                 <h1>Login</h1>
                 <p>Não tem uma conta? <a class="link" href="cadastro.html">Cadastre-se </a></p>
 
-                <div class="select">
-                    <select id="selectTipo" onchange="mudarOpcao()" >
-                        <option value="empresa" selected>Empresa</option>
-                        <option value="usuario">Usuario</option>
-                    </select>
-                </div>
-
                 <div class="campo-input" id="campoInput">
-                    <input type="text" id="inputCnpj" placeholder="CNPJ" oninput="validarCnpj()"> 
+                    <input type="email" id="inputEmail" placeholder="Email">
                     <input type="password" id="inputSenha" placeholder="Senha">
-                    <a href="./dashboard/dashboard.html"><button class="btn-cadastro" >Entrar</button></a>
+                    <button class="btn-cadastro" onclick="logar()">Entrar</button>
                 </div>
-                        <div id="spans">
-                            <span class="erro" id="spanErro"></span>
-                        </div>
+                <div>
+                    <span class="erro" id="spanErro"></span>
+                </div>
 
-                        <div id="sucesso">
-                            <span id="spanSucesso"></span>
-                        </div>
+                <div>
+                    <span id="spanSucesso"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -83,6 +78,4 @@
     </div>
 </body>
 </html>
-<script src="./models/login.js">
-
-</script>
+<script src="./models/login.js"></script>

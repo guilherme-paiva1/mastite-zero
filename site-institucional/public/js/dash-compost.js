@@ -9,15 +9,16 @@ var dataAtual = new Date()
         function mostrarFazenda(idFazenda) {
             if (idFazenda == "#") {
                 selectCompost.disabled = true;
-                spanNumeroFazenda.innerHTML  = "Nenhuma fazenda selecionada"
+                selectGrupo.disabled = true;
                 dashCompost.style.display = 'none';
-                divLinha.style.display = 'none';
+                telaInicial.style.display = 'flex';
+                dashFazenda.style.display = 'none';
             } else {
                 selectCompost.disabled = false;
                 spanNumeroFazenda.innerHTML = `Fazenda ${idFazenda}`;
                 dashFazenda.style.display = 'flex';
                 dashCompost.style.display = 'none';
-                divLinha.style.display = 'flex';
+                telaInicial.style.display = 'none';
             }
         }
 

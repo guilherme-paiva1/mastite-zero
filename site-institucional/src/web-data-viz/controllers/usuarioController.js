@@ -14,13 +14,13 @@ function autenticar(req, res) {
         usuarioModel.buscarUsuarioPeloEmailESenha(email, senha)
             .then(
                 function (resposta) {
-                    /* console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String */
+                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resposta.length > 0) {
                         console.log("Usuario enviou as informações corretas!");
 
-                       /*  compostModel.buscarCompostsPorEmpresa(resultadoAutenticar[0].empresaId)
+                       compostModel.buscarCompostsPorFazenda(resultadoAutenticar[0].fazendaId)
                             .then((resultadoComposts) => {
                                 if (resultadoComposts.length > 0) {
                                     res.json({
@@ -33,7 +33,7 @@ function autenticar(req, res) {
                                 } else {
                                     res.status(204).json({ aquarios: [] });
                                 }
-                            }) */
+                            })
                         
                         res.status(201).json({mensagem: "Usuario cadastrado com sucesso!"});
 
