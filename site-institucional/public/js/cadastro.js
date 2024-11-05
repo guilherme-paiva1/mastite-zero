@@ -36,7 +36,7 @@ function cadastrar() {
     senha = inputSenha.value
     confirmarSenha = inputConfirmaSenha.value
     razaoSocial = inputRazao.value;
-
+    var mensagem = "";
     spanErroSenha.innerHTML = "";
     spanErroConfirmarSenha.innerHTML = "";
     spanErroEmail.innerHTML = "";

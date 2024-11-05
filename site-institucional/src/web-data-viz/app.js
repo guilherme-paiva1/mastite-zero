@@ -21,6 +21,7 @@ var avisosRouter = require("./routes/avisos");
 var fazendaRouter = require("./routes/fazendas");
 var compostRouter = require("./routes/composts");
 var empresasRouter = require("./routes/empresas");
+var enderecoRouter = require("./routes/enderecos");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +35,7 @@ app.use("/avisos", avisosRouter);
 app.use("/fazendas", fazendaRouter);
 app.use("/compost", compostRouter);
 app.use("/empresas", empresasRouter);
+app.use("/enderecos", enderecoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
