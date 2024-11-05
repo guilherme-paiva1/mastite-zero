@@ -2,8 +2,8 @@ var usuarioModel = require("../models/usuarioModel");
 var compostModel = require("../models/compostModel");
 
 function autenticar(req, res) {
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+    var email = req.body.email;
+    var senha = req.body.senha;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -11,16 +11,16 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(email, senha)
+        usuarioModel.buscarUsuarioPeloEmailESenha(email, senha)
             .then(
-                function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                function (resposta) {
+                    /* console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String */
 
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
+                    if (resposta.length > 0) {
+                        console.log("Usuario enviou as informações corretas!");
 
-                        compostModel.buscarCompostsPorEmpresa(resultadoAutenticar[0].empresaId)
+                       /*  compostModel.buscarCompostsPorEmpresa(resultadoAutenticar[0].empresaId)
                             .then((resultadoComposts) => {
                                 if (resultadoComposts.length > 0) {
                                     res.json({
@@ -33,12 +33,15 @@ function autenticar(req, res) {
                                 } else {
                                     res.status(204).json({ aquarios: [] });
                                 }
-                            })
-                    } else if (resultadoCompost.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
-                    } else {
+                            }) */
+                        
+                        res.status(201).json({mensagem: "Usuario cadastrado com sucesso!"});
+
+                    } else{
+                        res.status(401).send("Email e/ou senha inválido(s)");
+                    } /* else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-                    }
+                    } */
                 }
             ).catch(
                 function (erro) {
@@ -54,12 +57,12 @@ function autenticar(req, res) {
 function cadastrar(req, res) {
     
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
-    var fkFazenda = req.body.fkFazenda;
-    var fkSupervisor = req.body.fkSupervisor;
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var senha = req.body.senha;
+    var fkEmpresa = req.body.idEmpresa;
+    var fkFazenda = req.body.idFazenda;
+    var fkSupervisor = req.body.idSupervisor;
 
     // Faça as validações dos valores
     if (nome == undefined) {
