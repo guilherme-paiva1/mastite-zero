@@ -3,7 +3,7 @@ var dataAtual = new Date()
         var mesAtual = (dataAtual.getMonth() + 1)
         var anoAtual = dataAtual.getFullYear()
 
-        titulo_dashboard_compost.innerHTML = `Dados - ${diaAtual}/${mesAtual}/${anoAtual}`
+        titulo_dashboard_compost.innerHTML = ` - ${diaAtual}/${mesAtual}/${anoAtual}`
         legenda_dashboard_compost.innerHTML = `Dados do Compost Barn referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
 
         function mostrarFazenda(idFazenda) {

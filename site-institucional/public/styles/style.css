@@ -414,6 +414,48 @@ body {
     display: none;
 }
 
+.dashboard .div-mapa {
+    height: 100%;
+    width: 50%;
+    background-color: #F8FFFB;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-mapa .leste {
+    height: 50%;
+    width: 10%;
+    border: black 1px solid;
+}
+
+.div-mapa .centro {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 51%;
+}
+
+.div-mapa .norte {
+    height: 50%;
+    width: 100%;
+    border: black 1px solid;
+}
+
+.div-mapa .sul {
+    height: 50%;
+    width: 100%;
+    border: black 1px solid;
+}
+
+.div-mapa .oeste {
+    height: 50%;
+    width: 10%;
+    border: black 1px solid;
+}
+
 
 .div-metrica {
     display: flex;
