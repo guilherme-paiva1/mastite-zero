@@ -189,6 +189,9 @@ body {
 }
 
 .botao-simulacao:hover {
+    .btn-simulacao{
+        color: #22603A;
+    }
     background-color: white;
     color: #22603A;
     transition: 0.4s;
@@ -203,10 +206,6 @@ body {
     gap: 15px;
     text-decoration: none;
     color: #ffffff;
-}
-
-.btn-simulacao:hover {
-    color: #22603A;
 }
 
 .seta {
