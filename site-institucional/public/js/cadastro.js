@@ -7,6 +7,7 @@ var email = "";
 var senha = "";
 var confirmarSenha = "";
 var razaoSocial = "";
+var representanteLegal = "";
 
 var logradouroValido = false;
 var cidadeValida = false;
@@ -15,6 +16,9 @@ var numeroValido = false;
 var complementoValido = false;
 var cepValido = false;
 
+function cadastrarTudo(){
+    cadastrarEmpresa();
+}
 
 
 function voltar() {
@@ -26,18 +30,20 @@ function avancar() {
     campos_empresa.style.display = 'none'
     campos_endereco.style.display = 'flex'
 }
-function cadastrar() {
+function cadastrarEmpresa() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    cnpj
+    cnpj = inputCnpj.value;
+    representanteLegal = inputResponsavel.value;
     nomeFantasia = inputEmpresa.value
     responsavel = inputResponsavel.value
     email = inputEmail.value
     senha = inputSenha.value
     confirmarSenha = inputConfirmaSenha.value
     razaoSocial = inputRazao.value;
+
     var mensagem = "";
     spanErroSenha.innerHTML = "";
     spanErroConfirmarSenha.innerHTML = "";
@@ -93,7 +99,7 @@ function cadastrar() {
     }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/empresas/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -101,11 +107,12 @@ function cadastrar() {
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
+            cnpj: cnpj,
+            razaoSocial: razaoSocial,
+            representanteLegal : representanteLegal,
             nomeFantasia: nomeFantasia,
             razaoSocial: razaoSocial,
-            email: email,
-            senha: senha,
-            responsavel: responsavel
+            email: email
         }),
     })
         .then(function (resposta) {
