@@ -160,7 +160,7 @@ body {
     align-items: center;
     padding: 50px;
     width: 80%;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 }
 
 .div-img {
@@ -317,6 +317,11 @@ body {
     /* height: 100%; */
 }
 
+.div-linha .div-linha {
+    display: flex;
+    flex-direction: column;
+}
+
 .btn-dash {
     display: flex;
     cursor: pointer;
@@ -376,7 +381,7 @@ body {
 
 .dash-cabecalho .titulo-dash {
     color: #22603A;
-    font-size: 50px;
+    font-size: 45px;
 }
 
 .dash-cabecalho .div-voltar {
@@ -462,7 +467,7 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 80%;
     background-color: #F8FFFB;
     border-radius: 20px;
     padding: 10px;
@@ -477,7 +482,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: row;
-    height: 100px;
+    height: 100%;
 }
 
 .div-legenda {
@@ -823,6 +828,7 @@ select:disabled {
     flex-direction: row;
     justify-content: center;
     margin: 0 auto;
+    margin-top: 50px;
     width: 100%;
     align-items: center;
     color: white;
