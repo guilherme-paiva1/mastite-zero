@@ -364,6 +364,17 @@ body {
     width: 100%;
 }
 
+#tela-inicial-dash {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+}
+
+#tela-inicial-dash .dash-cabecalho{
+    width: 60%;
+    padding: 20px 0px 20px 0px;
+}
+
 .dash-cabecalho .titulo-dash {
     color: #22603A;
     font-size: 50px;
@@ -495,6 +506,9 @@ select:disabled {
     background-color: #F0F0F0;
 }
 
+#telaInicial {
+    height: 400px;
+}
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 #selectEstado {
     border-radius: 10px;
