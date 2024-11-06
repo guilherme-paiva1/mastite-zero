@@ -52,7 +52,7 @@ body {
     color: rgb(255, 255, 255);
     opacity: 0.5;
     cursor: pointer;
-    
+
 }
 
 .a-logo {
@@ -189,12 +189,13 @@ body {
 }
 
 .botao-simulacao:hover {
-    .btn-simulacao{
-        color: #22603A;
-    }
     background-color: white;
     color: #22603A;
     transition: 0.4s;
+
+    .btn-simulacao {
+        color: #22603A;
+    }
 }
 
 
@@ -374,7 +375,7 @@ body {
     width: 80%;
 }
 
-#tela-inicial-dash .dash-cabecalho{
+#tela-inicial-dash .dash-cabecalho {
     width: 60%;
     padding: 20px 0px 20px 0px;
 }
@@ -492,15 +493,15 @@ body {
     gap: 30px
 }
 
-.metrica-verde{
+.metrica-verde {
     background-color: #58a33f;
 }
 
-.metrica-amarela{
+.metrica-amarela {
     background-color: #ecbf28;
 }
 
-.metrica-vermelha{
+.metrica-vermelha {
     background-color: #c43623;
 }
 
@@ -509,7 +510,7 @@ body {
     flex-direction: column;
 }
 
-.conteudo-detalhes-dashboard{
+.conteudo-detalhes-dashboard {
     margin-top: 10px;
     display: none;
     position: fixed;
@@ -555,6 +556,7 @@ select:disabled {
 #telaInicial {
     height: 400px;
 }
+
 /* ----------------- LOGIN E CADASTRO ---------------------  */
 #selectEstado {
     border-radius: 10px;
@@ -832,7 +834,7 @@ select:disabled {
     width: 100%;
     align-items: center;
     color: white;
-    background-color: #154A29;    
+    background-color: #154A29;
 }
 
 .footer span {
@@ -849,13 +851,16 @@ select:disabled {
     background-color: #F8FFFB;
     color: #1F6A07;
     border: none;
-    width: 50%;
+    width: 200px;
     padding: 15px;
     border-radius: 10px;
     font-size: 16px;
 }
 
 .botao-novo-funcionario:hover {
+    background-color: #1F6A07;
+    color: #F8FFFB;
+    transition: 0.4s;
     cursor: pointer;
 }
 
@@ -877,11 +882,64 @@ select:disabled {
     display: flex;
     flex-direction: column;
     width: 60%;
-    align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: #b6e399;
     border-radius: 10px;
     padding: 10px;
+    color: #0c4610;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    border-bottom: 2px solid #0c4610;
+    margin-bottom: 10px;
+}
+
+.modal-header h1 {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-header span {
+    display: flex;
+    cursor: pointer;
+}
+
+.campos-novo-funcionario {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.div-linha-novo-funcionario {
+    display: flex;
+    width: 80%;
+    background-color: #D7EEC8;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.div-linha-novo-funcionario label {
+    width: 50%;
+    text-align: center;
+}
+
+.div-linha-novo-funcionario select, .div-linha-novo-funcionario input {
+    width: 50%;
+    text-align: center;
+    border: 1px solid #0c4610;
+    background-color: #b6e399;
+    color: #0c4610;
+    border-radius: 10px;
 }
 
 .botao-fechar-funcionario {
@@ -924,37 +982,12 @@ select:disabled {
     width: 300px;
 }
 
-.div-texto.tabela{
+.div-texto.tabela {
     width: 600px;
 }
 
 .tabela-funcionarios input:disabled {
     color: black;
-}
-
-
-#inputEmailFuncionario {
-    background-color: #D7EEC8;
-    padding: 8px 10px;
-    border: none;
-    width: 90%;
-    font-weight: bold;
-    font-size: 16px;
-    margin-right: 20px;
-}
-
-#inputNomeFuncionario {
-    background-color: #D7EEC8;
-    padding: 8px 10px;
-    border: none;
-    width: 90%;
-    font-weight: bold;
-    font-size: 16px;
-    margin-right: 20px;
-}
-
-#inputEmailFuncionario:focus {
-    border: none;
 }
 
 .tabela-funcionarios button {
@@ -966,7 +999,6 @@ select:disabled {
 .tabela-funcionarios button:hover {
     cursor: pointer;
 }
-
 
 .modal-excluir-usuario {
     display: none;
@@ -1028,27 +1060,4 @@ select:disabled {
 
 .container-botao-confirmacao button:hover {
     cursor: pointer;
-}
-
-.campos-novo-funcionario{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 50px;
-}
-.campos-novo-funcionario input {
-    width: 22%;
-    height: 6%;
-}
-.campos-novo-funcionario button {
-    width: 18%;
-    height: 10%;
-}
-.campos-novo-funcionario select {
-    width: 20%;
-    height: 8%;
 }

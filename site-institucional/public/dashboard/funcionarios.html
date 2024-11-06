@@ -41,63 +41,67 @@
                   d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
               </svg>
             </button>
-            <div id="modalExcluirUsuario" class="modal-excluir-usuario">
-              <div id="conteudoExcluirUsuario" class="conteudo-excluir-usuario">
-                  <h1>Você tem certeza que deseja exluir esse funcionario?</h1>
-                  <div class="container-botao-confirmacao">
-                    <button>Sim</button>
-                    <button onclick="negarExclusao()">Não</button>
-                  </div>
-              </div>
-            </div>
+
             <div id="modalUsuario" class="modal-usuario">
               <div class="conteudo-usuario">
-                <a id="linkSair" class="link-sair" href="index.html">Sair</a>
+                <a id="linkSair" class="link-sair" href="../index.html">Sair</a>
               </div>
             </div>
+
+
           </li>
         </ul>
       </div>
     </div>
   </div>
+
   <div id="modalNovoFuncionario" class="modal-novo-funcionario">
     <div class="conteudo-novo-funcionario">
-      <span class="botao-fechar-funcionario" onclick="fecharModal()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-left"
-          viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-            d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
-          <path fill-rule="evenodd"
-            d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
-        </svg>
-      </span>
 
-      <h1>Insira as informações de cadastro</h1>
-          <div class="campos-novo-funcionario">
+      <div class="modal-header">
+        <h1>Insira as informações do seu funcionário</h1>
+        <span onclick="fecharModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg"
+            viewBox="0 0 16 16">
+            <path
+              d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+          </svg>
+        </span>
+      </div>
 
-            <label for="selectNovoTipo">Tipo da conta</label>
-            <select id="selectNovoTipo">
-              <option value="#">Selecione o tipo da conta</option>
-              <option value="supervisor">Supervisor</option>
-              <option value="comum">Comum</option>
-            </select>
+      <div class="campos-novo-funcionario">
+        <div class="div-linha-novo-funcionario">
+          <label for="selectNovoTipo">Tipo da conta</label>
+          <select id="selectNovoTipo">
+            <option value="#">Selecione o tipo da conta</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="comum">Comum</option>
+          </select>
+        </div>
 
-            <label for="inputNovoNome">Nome</label>
-            <input type="text" id="inputNovoNome">
+        <div class="div-linha-novo-funcionario">
+          <label for="inputNovoNome">Nome</label>
+          <input type="text" id="inputNovoNome" placeholder="Insira o nome do funcionário">
+        </div>
 
-            <label for="inputNovoEmail">Email</label>
-            <input type="text" id="inputNovoEmail">
+        <div class="div-linha-novo-funcionario">
+          <label for="inputNovoEmail">Email</label>
+          <input type="text" id="inputNovoEmail" placeholder="Insira o email do funcionário">
+        </div>
+        <div class="div-linha-novo-funcionario">
+          <label for="inputNovoSenha">Senha</label>
+          <input type="password" id="inputNovoSenha" placeholder="Insira a senha do funcionário">
+        </div>
 
-            <label for="inputNovoSenha">Senha</label>
-            <input type="password" id="inputNovoSenha">
-            
-            <label for="inputNovoConfirmarSenha">Confirme a senha</label>
-            <input type="password" id="inputNovoConfirmarSenha">
+        <div class="div-linha-novo-funcionario">
+          <label for="inputNovoConfirmarSenha">Confirme a senha</label>
+          <input type="password" id="inputNovoConfirmarSenha" placeholder="Confirme a senha do seu funcionário">
+        </div>
 
-            <div id="divMensagem"></div>
-          
-            <button onclick="cadastrarFuncionario()">Cadastrar</button>
-          </div>
+        <div id="divMensagem"></div>
+
+        <button class="botao-novo-funcionario" onclick="cadastrarFuncionario()">Cadastrar</button>
+      </div>
     </div>
   </div>
 
@@ -107,7 +111,7 @@
         <h1>Funcionários</h1>
         <p>Gerencie e cadastre seus funcionários por aqui!</p>
         <button onclick="novoFuncionario()" class="botao-novo-funcionario">
-          Novo funcionario
+          Novo funcionário
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-square"
             viewBox="0 0 16 16">
             <path
@@ -136,23 +140,40 @@
               </td>
               <td>
                 <button onclick="editarUsuario(this)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                    </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path
+                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                  </svg>
                 </button>
               </td>
               <td>
                 <button onclick="excluirUsuario()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                    <path
+                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                   </svg>
                 </button>
               </td>
             </tr>
           </table>
         </div>
+
+        <div id="modalExcluirUsuario" class="modal-excluir-usuario">
+          <div id="conteudoExcluirUsuario" class="conteudo-excluir-usuario">
+            <h1>Você tem certeza que deseja excluir esse funcionario?</h1>
+            <div class="container-botao-confirmacao">
+              <button>Sim</button>
+              <button onclick="negarExclusao()">Não</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

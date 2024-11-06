@@ -20,7 +20,7 @@ function autenticar(req, res) {
                     if (resposta.length > 0) {
                         console.log("Usuario enviou as informações corretas!");
 
-                       compostModel.buscarCompostsPorFazenda(resultadoAutenticar[0].fazendaId)
+                       compostModel.buscarCompostsPorFazenda(resultadoAutenticar[0].fk_fazenda)
                             .then((resultadoComposts) => {
                                 if (resultadoComposts.length > 0) {
                                     res.json({
