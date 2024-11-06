@@ -22,7 +22,7 @@ function buscarPorCnpj(cnpj) {
 
 function cadastrar(nomeFantasia, razaoSocial, representanteLegal, cnpj) {
   var instrucaoSql = `INSERT INTO Empresa (nome_fantasia, razao_social, representante_legal, cnpj) 
-    VALUES ('${razaoSocial}', '${nomeFantasia}', ${representanteLegal},'${cnpj}')
+    VALUES ('${razaoSocial}', '${nomeFantasia}', '${representanteLegal}','${cnpj}')
   `;
 
   return database.executar(instrucaoSql);

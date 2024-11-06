@@ -1,5 +1,6 @@
 campos_endereco.style.display = 'none'
 
+var cnpj = "";
 var nomeFantasia = "";
 var responsavel = "";
 var email = "";
@@ -30,6 +31,7 @@ function cadastrar() {
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
+    cnpj
     nomeFantasia = inputEmpresa.value
     responsavel = inputResponsavel.value
     email = inputEmail.value
@@ -99,11 +101,11 @@ function cadastrar() {
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
-            nomeFantasiaServer: nomeFantasia,
-            razaoSocialServer: razaoSocial,
-            emailServer: email,
-            senhaServer: senha,
-            responsavelServer: responsavel
+            nomeFantasia: nomeFantasia,
+            razaoSocial: razaoSocial,
+            email: email,
+            senha: senha,
+            responsavel: responsavel
         }),
     })
         .then(function (resposta) {

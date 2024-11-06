@@ -37,7 +37,7 @@ app.use("/compost", compostRouter);
 app.use("/empresas", empresasRouter);
 app.use("/enderecos", enderecoRouter);
 
-app.listen(PORTA_APP, function () {
+app.listen(PORTA_APP,"0.0.0.0", function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
     ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##  
