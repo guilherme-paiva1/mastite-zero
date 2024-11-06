@@ -8,6 +8,7 @@ GRANT ALL ON cbsafe.*
 -- CRIAÇÃO DA TABELA EMPRESA
 CREATE TABLE Empresa (
 	id_empresa INT PRIMARY KEY AUTO_INCREMENT,
+	email VARCHAR(45),
 	nome_fantasia VARCHAR(50),
   razao_social VARCHAR (50),
 	representante_legal VARCHAR(45),
