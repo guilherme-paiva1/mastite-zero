@@ -1038,6 +1038,7 @@ select:disabled {
     gap: 10px;
     align-items: center;
     justify-content: center;
+    padding-bottom: 50px;
 }
 .campos-novo-funcionario input {
     width: 22%;
