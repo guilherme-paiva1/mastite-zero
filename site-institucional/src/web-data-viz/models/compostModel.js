@@ -18,6 +18,6 @@ function cadastrar(areaM2, dataUltimaManutencao, fazendaId) {
 
 
 module.exports = {
-  buscarCompostsPorFazenda: buscarCompostsPorFazenda,
+  buscarCompostsPorFazenda,
   cadastrar
 }

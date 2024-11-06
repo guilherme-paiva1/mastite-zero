@@ -1,5 +1,111 @@
 var vezesClicadas = 0;
 
+function listarFuncionarios() {
+  var idUsuario = sessionStorage.ID_USUARIO;
+
+  // Enviando o valor para função no Model
+  fetch("/usuarios/listarUsuarioPeloSupervisor", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      // atributo do JSON recebe a id do usuário logado atualmente, ou seja, o supervisor
+      fkSupervisor: idUsuario
+    }),
+  })
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        console.log('tá funcionando');
+      } else {
+        throw "Houve um erro ao listar os usuários!";
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+
+  return false;
+}
+
+function cadastrarFuncionario() {
+  var tipoConta = selectNovoTipo.value;
+  var nome = inputNovoNome.value;
+  var email = inputNovoEmail.value;
+  var senha = inputNovoSenha.value;
+  var confirSenha = inputNovoConfirmarSenha.value;
+  var fkFazenda = sessionStorage.FK_FAZENDA;
+  var fkSupervisor = sessionStorage.ID_USUARIO;
+  var fkEmpresa = sessionStorage.FK_EMPRESA;
+  var mensagem = "";
+  var entradasValidas = false;
+
+  var terminaCom = email.endsWith('.com') || email.endsWith('br');
+  if (tipoConta == "#") {
+    mensagem = "Por favor, selecione o tipo da conta";
+
+  } else if (nome.length <= 1) {
+    mensagem = "Por favor, insira um nome valido";
+
+  } else if (email.includes("@") == false) {
+    mensagem = "Por favor, insira um email válido (precisa conter @)";
+
+  } else if (email.length <= 5) {
+    mensagem = "Por favor, insira um email válido";
+
+  } else if (terminaCom == false) {
+    mensagem = "Por favor, insira um email válido (precisa conter .com ou .br no final)";
+
+  } else if (senha.length <= 6) {
+    mensagem = "A senha deve conter ao menos 6 caracteres";
+
+  } else if (senha != confirSenha) {
+    mensagem = "Suas senhas não coincidem";
+
+  } else {
+    entradasValidas = true;
+  }
+
+  if (entradasValidas) {
+    // Enviando o valor para função no Model
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // atributo do JSON recebe a id do usuário logado atualmente, ou seja, o supervisor
+        nome: nome,
+        email:email,
+        senha: senha,
+        fkEmpresa: fkEmpresa,
+        fkFazenda: fkFazenda,
+        fkSupervisor: fkSupervisor
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log('tá funcionando');
+        } else {
+          throw "Houve um erro ao cadastrar o usuário";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  divMensagem.innerHTML = mensagem;
+}
+
 function novoFuncionario() {
   var modal = modalNovoFuncionario;
 
@@ -11,6 +117,7 @@ function novoFuncionario() {
 
   modal.style.display = "flex"
 }
+
 function fecharModal() {
   var modal = modalNovoFuncionario;
 
@@ -52,61 +159,5 @@ function editarUsuario(botao) {
     emailInput.focus();
   }
 
-  
-}
-function cadastrarFuncionario(){
-  var tipoConta = selectNovoTipo.value;
-  var nome = inputNovoNome.value;
-  var email = inputNovoEmail.value;
-  var senha = inputNovoSenha.value;
-  var confirSenha = inputNovoConfirmarSenha.value;
-  var mensagem = "";
-  var estilo = "";
-  var entradasValidas = false;
-  var tag = "";
 
-  selectNovoTipo.style.border = "";
-  inputNovoNome.style.border = "";
-  inputNovoEmail.style.border = "";
-  inputNovoSenha.style.border = "";
-  inputNovoConfirmarSenha.style.border = "";
-  selectNovoTipo.style.innerHTML = "";
-  inputNovoNome.style.innerHTML = "";
-  inputNovoEmail.style.innerHTML = "";
-  inputNovoSenha.style.innerHTML = "";
-  inputNovoConfirmarSenha.style.innerHTML = "";
-  
-
-  if(tipoConta == "#"){
-    
-    tipoConta.innerHTML = "Por favor selecione o tipo da conta";
-  }else if(nome.length == 1){
-    
-    inputNovoNome.innerHTML = "Por favor insira um nome valido";
-  }else if(email.includes("@") == false){
-    
-    inputNovoEmail.innerHTML = "Por favor insira um email válido (precisa conter @)";
-  }else if(email.length < 1){
-    
-    inputNovoEmail.innerHTML = "Por favor insira um email válido";
-  }else if(email.endsWith(".com") == false || email.endsWith(".br") == false){
-    
-    inputNovoEmail.innerHTML  = "Por favor insira um email válido (precisa conter .com ou .br no final)";
-  }else if(senha.length < 0){
-
-    inputNovoEmail.innerHTML  = "Por favor insira uma senha válida";
-  }else if(senha != confirSenha){
-    // Coringuei
-    werwrewrewrew = "Suas senhas não conhecidem"
-  }else{
-    entradasValidas = true;
-  }
-
-  if(entradasValidas){
-    estilo = "";
-  }else{
-    estilo = "solid 1px red";
-  }
-
-    divMensagem.innerHTML = mensagem;
 }

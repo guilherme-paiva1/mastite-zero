@@ -28,9 +28,12 @@ function logar() {
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
+                    sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id
+                    sessionStorage.FK_SUPERVISOR = json.fkSupervisor;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                    sessionStorage.FK_FAZENDA = json.fkFazenda;
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading

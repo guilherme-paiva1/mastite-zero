@@ -24,10 +24,13 @@ function autenticar(req, res) {
                             .then((resultadoComposts) => {
                                 if (resultadoComposts.length > 0) {
                                     res.json({
-                                        id: resultadoComposts[0].id,
-                                        email: resultadoComposts[0].email,
-                                        nome: resultadoComposts[0].nome,
-                                        senha: resultadoComposts[0].senha,
+                                        id: resultadoAutenticar[0].id,
+                                        email: resultadoAutenticar[0].email,
+                                        nome: resultadoAutenticar[0].nome,
+                                        senha: resultadoAutenticar[0].senha,
+                                        fkEmpresa: resultadoAutenticar[0].fk_empresa,
+                                        fkFazenda: resultadoAutenticar[0].fk_fazenda,
+                                        fkSupervisor: resultadoAutenticar[0].fk_supervisor,
                                         composts: resultadoComposts
                                     });
                                 } else {
@@ -94,7 +97,28 @@ function cadastrar(req, res) {
     }
 }
 
+function listarPeloSupervisor(req, res) {
+    var fkSupervisor = req.body.idSupervisor;
+
+    usuarioModel.buscarUsuarioPeloSupervisor(fkSupervisor)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao listar os funcionários! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listarPeloSupervisor
 }
