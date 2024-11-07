@@ -20,25 +20,9 @@ function autenticar(req, res) {
                     if (resposta.length > 0) {
                         console.log("Usuario enviou as informações corretas!");
 
-                       compostModel.buscarCompostsPorFazenda(resultadoAutenticar[0].fk_fazenda)
-                            .then((resultadoComposts) => {
-                                if (resultadoComposts.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        fkEmpresa: resultadoAutenticar[0].fk_empresa,
-                                        fkFazenda: resultadoAutenticar[0].fk_fazenda,
-                                        fkSupervisor: resultadoAutenticar[0].fk_supervisor,
-                                        composts: resultadoComposts
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
+                       
                         
-                        res.status(201).json({mensagem: "Usuario cadastrado com sucesso!"});
+                        res.status(201).json({mensagem: "Usuario logado com sucesso!"});
 
                     } else{
                         res.status(401).send("Email e/ou senha inválido(s)");
