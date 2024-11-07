@@ -13,12 +13,14 @@ var dataAtual = new Date()
                 dashCompost.style.display = 'none';
                 telaInicial.style.display = 'flex';
                 dashFazenda.style.display = 'none';
+                dashGrupo.style.display = 'none';
             } else {
                 selectCompost.disabled = false;
                 spanNumeroFazenda.innerHTML = `Fazenda ${idFazenda}`;
                 dashFazenda.style.display = 'flex';
                 dashCompost.style.display = 'none';
                 telaInicial.style.display = 'none';
+                dashGrupo.style.display = 'none'
             }
         }
 
