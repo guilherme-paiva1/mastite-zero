@@ -13,13 +13,13 @@ function autenticar(req, res) {
 
         usuarioModel.buscarUsuarioPeloEmailESenha(email, senha)
             .then(
-                function (resposta) {
+                function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
 
 
-                    if (resultadoComposts.length > 0) {
+                    if (resultadoAutenticar.length > 0) {
                         res.json({
                             id: resultadoAutenticar[0].id,
                             email: resultadoAutenticar[0].email,
