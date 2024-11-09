@@ -24,9 +24,10 @@ function buscarUsuarioPeloEmailESenha(email, senha) {
 }
 
 function buscarUsuarioPeloSupervisor(fkSupervisor) {
+    var fkSupervisorINT = Number(fkSupervisor)
     var instrucaoSql = `
         SELECT * FROM Usuario 
-        WHERE fk_supervisor = '${fkSupervisor}'
+        WHERE fk_supervisor = ${fkSupervisor}
     ;`
 
     return database.executar(instrucaoSql);

@@ -964,14 +964,14 @@ select:disabled {
     padding: 10px;
 }
 
-.tabela-funcionarios th {
+.tabela-funcionarios tbody .tabela-header th {
     background-color: #0c4610;
     border: 5px solid #0c4610;
     padding: 8px 10px;
     color: white;
 }
 
-.tabela-funcionarios td {
+.tabela-funcionarios tbody td {
     background-color: #D7EEC8;
     border: 5px solid #0c4610;
     padding: 8px 10px;

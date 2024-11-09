@@ -10,33 +10,25 @@ function autenticar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-
         usuarioModel.buscarUsuarioPeloEmailESenha(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-
-
                     if (resultadoAutenticar.length > 0) {
                         res.json({
-                            id: resultadoAutenticar[0].id,
+                            id_usuario: resultadoAutenticar[0].id_usuario,
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,
                             senha: resultadoAutenticar[0].senha,
-                            fkEmpresa: resultadoAutenticar[0].fk_empresa,
-                            fkFazenda: resultadoAutenticar[0].fk_fazenda,
-                            fkSupervisor: resultadoAutenticar[0].fk_supervisor,
-
+                            fk_empresa: resultadoAutenticar[0].fk_empresa,
+                            fk_fazenda: resultadoAutenticar[0].fk_fazenda,
+                            fk_supervisor: resultadoAutenticar[0].fk_supervisor,
                         });
-
-
                     } else {
                         res.status(401).send("Email e/ou senha inválido(s)");
-                    } /* else {
-                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-                    } */
+                    }
                 }
             ).catch(
                 function (erro) {
@@ -90,12 +82,28 @@ function cadastrar(req, res) {
 }
 
 function listarPeloSupervisor(req, res) {
-    var fkSupervisor = req.body.idSupervisor;
+    var fkSupervisor = req.body.fkSupervisor;
 
     usuarioModel.buscarUsuarioPeloSupervisor(fkSupervisor)
         .then(
-            function (resultado) {
-                res.json(resultado);
+            function (resultadoLista) {
+                console.log(`\nResultados encontrados: ${resultadoLista.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultadoLista)}`); // transforma JSON em String
+
+                if (resultadoLista.length > 0) {
+                    var lista_funcionarios = [];
+                    var tamanho_lista = resultadoLista.length;
+                    for (var i = 0; i < tamanho_lista; i++) {
+                        lista_funcionarios.push({
+                            id_usuario: resultadoLista[i].id_usuario,
+                            email: resultadoLista[i].email,
+                            nome: resultadoLista[i].nome,
+                        })
+                    }
+                    res.json(lista_funcionarios);
+                } else {
+                    res.status(404).send("Não tem nenhum funcionário!")
+                }
             }
         ).catch(
             function (erro) {
