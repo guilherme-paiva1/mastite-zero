@@ -31,9 +31,9 @@ function logar() {
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.FK_SUPERVISOR = json.fkSupervisor;
-                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
-                    sessionStorage.FK_FAZENDA = json.fkFazenda;
+                    sessionStorage.FK_SUPERVISOR = json.fk_supervisor;
+                    sessionStorage.FK_EMPRESA = json.fk_empresa;
+                    sessionStorage.FK_FAZENDA = json.fk_fazenda;
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
@@ -45,7 +45,7 @@ function logar() {
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    //finalizarAguardar(texto);
                 });
             }
 

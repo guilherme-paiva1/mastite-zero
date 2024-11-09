@@ -15,7 +15,7 @@ function limparSessao() {
     window.location = "../login.html";
 }
 
-// carregamento (loading)
+/* carregamento (loading)
 function aguardar() {
     var divMensagem = document.getElementById("divMensagem");
     divMensagem.style.display = "flex";
@@ -31,4 +31,5 @@ function finalizarAguardar(texto) {
         divErrosLogin.innerHTML = texto;
     }
 }
+    */
 
