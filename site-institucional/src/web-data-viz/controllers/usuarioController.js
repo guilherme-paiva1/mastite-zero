@@ -6,7 +6,7 @@ function autenticar(req, res) {
     var senha = req.body.senhaServer;
 
     if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu email está indefinido!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
@@ -17,30 +17,22 @@ function autenticar(req, res) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-                    if (resposta.length > 0) {
-                        console.log("Usuario enviou as informações corretas!");
 
-                       compostModel.buscarCompostsPorFazenda(resultadoAutenticar[0].fk_fazenda)
-                            .then((resultadoComposts) => {
-                                if (resultadoComposts.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        fkEmpresa: resultadoAutenticar[0].fk_empresa,
-                                        fkFazenda: resultadoAutenticar[0].fk_fazenda,
-                                        fkSupervisor: resultadoAutenticar[0].fk_supervisor,
-                                        composts: resultadoComposts
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
-                        
-                        res.status(201).json({mensagem: "Usuario cadastrado com sucesso!"});
 
-                    } else{
+                    if (resultadoComposts.length > 0) {
+                        res.json({
+                            id: resultadoAutenticar[0].id,
+                            email: resultadoAutenticar[0].email,
+                            nome: resultadoAutenticar[0].nome,
+                            senha: resultadoAutenticar[0].senha,
+                            fkEmpresa: resultadoAutenticar[0].fk_empresa,
+                            fkFazenda: resultadoAutenticar[0].fk_fazenda,
+                            fkSupervisor: resultadoAutenticar[0].fk_supervisor,
+
+                        });
+
+
+                    } else {
                         res.status(401).send("Email e/ou senha inválido(s)");
                     } /* else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
@@ -58,7 +50,7 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    
+
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nome;
     var email = req.body.email;
@@ -101,20 +93,20 @@ function listarPeloSupervisor(req, res) {
     var fkSupervisor = req.body.idSupervisor;
 
     usuarioModel.buscarUsuarioPeloSupervisor(fkSupervisor)
-    .then(
-        function (resultado) {
-            res.json(resultado);
-        }
-    ).catch(
-        function (erro) {
-            console.log(erro);
-            console.log(
-                "\nHouve um erro ao listar os funcionários! Erro: ",
-                erro.sqlMessage
-            );
-            res.status(500).json(erro.sqlMessage);
-        }
-    );
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao listar os funcionários! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 }
 
 module.exports = {

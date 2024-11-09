@@ -8,7 +8,7 @@ function cadastrar(nome, email, senha, fkEmpresa, fkFazenda, fkSupervisor) {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         INSERT INTO Usuario (nome, email, senha, fk_empresa, fk_fazenda, fk_supervisor) VALUES 
-        ('${nome}', '${email}', '${senha}', ${fkEmpresa}, ${fkFazenda}, ${fkSupervisor});
+        ('${nome}', '${email}', '${senha}', '${fkEmpresa}', '${fkFazenda}', '${fkSupervisor}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
