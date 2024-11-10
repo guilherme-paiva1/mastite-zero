@@ -18,5 +18,6 @@ function mostrarCompost(idCompost) {
         dashCompost.style.display = 'flex';
         dashFazenda.style.display = 'none';
         dashGrupo.style.display = 'none';
+        selectGrupo.value = '#';
     }
 }

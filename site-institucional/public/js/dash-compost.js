@@ -14,19 +14,24 @@ var dataAtual = new Date()
                 telaInicial.style.display = 'flex';
                 dashFazenda.style.display = 'none';
                 dashGrupo.style.display = 'none';
+                selectCompost.value = '#';
+                selectGrupo.value = '#';
             } else {
                 selectCompost.disabled = false;
                 spanNumeroFazenda.innerHTML = `Fazenda ${idFazenda}`;
                 dashFazenda.style.display = 'flex';
                 dashCompost.style.display = 'none';
                 telaInicial.style.display = 'none';
-                dashGrupo.style.display = 'none'
+                dashGrupo.style.display = 'none';
+                selectCompost.value = '#';
+                selectGrupo.value = '#';
             }
         }
 
         function mostrarGrupo (idGrupo) {
             if (idGrupo == "#") {
                 mostrarCompost(selectCompost.value);
+                selectGrupo.value = '#';
             } else {
                 selectGrupo.disabled = false;
                 spanNumeroGrupo.innerHTML = `Grupo ${idGrupo}`;
