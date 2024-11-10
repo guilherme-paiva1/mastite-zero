@@ -21,7 +21,7 @@ function listarFuncionarios() {
         resposta.json().then(json => {
           console.log(json);
           console.log(JSON.stringify(json));
-          
+
           var tamanho_lista = json.length;
           var tabela = '';
           console.log(tamanho_lista);
@@ -62,15 +62,14 @@ function listarFuncionarios() {
             </tr>
             `
           }
-          console.log(tabela);
-          tbody_tabela.innerHTML = 
-          `<tr class="tabela-header">
+          tbody_tabela.innerHTML =
+            `<tr class="tabela-header">
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Editar</th>
                 <th>Excluir</th>
               </tr>` +
-          tabela;
+            tabela;
         });
       } else {
         div_tabela.innerHTML = "Cadastre um funcionário, e ele aparecerá aqui!";
@@ -91,7 +90,6 @@ function cadastrarFuncionario() {
   var senha = inputNovoSenha.value;
   var confirSenha = inputNovoConfirmarSenha.value;
   var fkFazenda = sessionStorage.FK_FAZENDA;
-  var fkSupervisor = sessionStorage.ID_USUARIO;
   var fkEmpresa = sessionStorage.FK_EMPRESA;
   var mensagem = "";
   var entradasValidas = false;
@@ -123,6 +121,12 @@ function cadastrarFuncionario() {
   }
 
   if (entradasValidas) {
+    if (tipoConta == 'supervisor') {
+      var fkSupervisor = 'null';
+    } else {
+      var fkSupervisor = sessionStorage.ID_USUARIO;
+    }
+
     // Enviando o valor para função no Model
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -134,18 +138,24 @@ function cadastrarFuncionario() {
         nome: nome,
         email: email,
         senha: senha,
-        fkEmpresa: fkEmpresa,
-        fkFazenda: fkFazenda,
-        fkSupervisor: fkSupervisor
+        idEmpresa: fkEmpresa,
+        idFazenda: fkFazenda,
+        idSupervisor: fkSupervisor
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          console.log('tá funcionando');
+          divMensagem.innerHTML = `
+          Funcionário cadastrado com sucesso! Essas são as credenciais de acesso dele: <br>
+          Email: ${email} <br>
+          Senha: ${senha} <br>
+          Anote-as e repasse para o funcionário.
+          `;
+          listarFuncionarios();
         } else {
-          throw "Houve um erro ao cadastrar o usuário";
+          divMensagem.innerHTML = 'Houve um erro ao cadastrar o usuário... T'
         }
       })
       .catch(function (resposta) {
