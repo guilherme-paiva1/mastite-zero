@@ -38,8 +38,18 @@ function buscarUsuarioPeloSupervisor(fkSupervisor) {
     return database.executar(instrucaoSql);
 }
 
+function excluirUsuario(idUsuario) {
+    var instrucaoSql = `
+    DELETE FROM Usuario
+    WHERE id_usuario = ${idUsuario}
+    ;`
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
     buscarUsuarioPeloEmailESenha,
-    buscarUsuarioPeloSupervisor
+    buscarUsuarioPeloSupervisor,
+    excluirUsuario
 };

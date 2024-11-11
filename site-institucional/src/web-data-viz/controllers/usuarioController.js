@@ -117,8 +117,30 @@ function listarPeloSupervisor(req, res) {
         );
 }
 
+function excluirFuncionario(req, res) {
+    var id_usuario = req.body.id_usuario;
+
+    usuarioModel.excluirUsuario(id_usuario)
+    .then(
+        function (resultadoExclusao) {
+            res.json(resultadoExclusao);    
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao excluir o funcionário! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
+    excluirFuncionario,
     listarPeloSupervisor
 }
