@@ -24,6 +24,7 @@ function listarFuncionarios() {
 
           var tamanho_lista = json.length;
           var tabela = '';
+          var modalsExclusao = '';
           console.log(tamanho_lista);
           for (var i = 0; i < tamanho_lista; i++) {
             var idFuncionario = json[i].id_usuario;
@@ -49,7 +50,7 @@ function listarFuncionarios() {
             </button>
             </td>
             <td>
-            <button onclick="excluirUsuario(${idFuncionario})">
+            <button onclick="abrirModalExcluirUsuario(${idFuncionario})">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
             viewBox="0 0 16 16">
             <path
@@ -60,7 +61,17 @@ function listarFuncionarios() {
             </button>
             </td>
             </tr>
-            `
+            `;
+            modalsExclusao += `
+            <div id="modalExcluirUsuario${idFuncionario}" class="modal-excluir-usuario">
+              <div class="conteudo-excluir-usuario">
+                <h1>Você tem certeza que deseja excluir esse funcionario?</h1>
+                <div class="container-botao-confirmacao">
+                  <button onclick="excluirUsuario()">Sim</button>
+                  <button onclick="negarExclusao()">Não</button>
+                </div>
+             </div>
+            </div>`
           }
           tbody_tabela.innerHTML =
             `<tr class="tabela-header">
@@ -187,7 +198,7 @@ function fecharModal() {
   modal.style.display = "none";
 }
 
-function excluirUsuario() {
+function abrirModalExcluirUsuario(idFuncionario) {
   var modal = modalExcluirUsuario;
 
   window.onclick = function (event) {
