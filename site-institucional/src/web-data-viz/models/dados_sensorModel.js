@@ -1,12 +1,17 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idSensor, limite_linhas) {
+function buscarUltimasMedidas(grupo, limite_linhas) {
 
     var instrucaoSql = `
-        SELECT id_dado, umidade, data_hora, fk_sensor
-            FROM Dados_sensor
-                WHERE fk_sensor = ${idSensor}
-                    ORDER BY id DESC LIMIT ${limite_linhas}
+                        SELECT 
+                            umidade, 
+                            data_hora
+                        FROM 
+                            Sensor
+                        JOIN 
+                            Dados_sensor ON id_sensor = fk_sensor
+                        WHERE 
+                            grupo = '${grupo}';
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

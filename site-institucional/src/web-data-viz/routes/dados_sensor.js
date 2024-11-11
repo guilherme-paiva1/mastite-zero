@@ -3,7 +3,7 @@ var router = express.Router();
 
 var dadosSensoresController = require("../controllers/dados_sensorController");
 
-router.get("/ultimas/:idSensor", function (req, res) {
+router.get("/ultimas/:grupoSensor", function (req, res) {
     dadosSensoresController.buscarUltimasMedidas(req, res);
 });
 
