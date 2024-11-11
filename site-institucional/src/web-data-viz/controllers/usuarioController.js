@@ -51,6 +51,8 @@ function cadastrar(req, res) {
     var fkFazenda = req.body.idFazenda;
     var fkSupervisor = req.body.idSupervisor;
 
+    console.log(fkSupervisor);
+
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");

@@ -3,7 +3,7 @@ var database = require("../database/config")
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(nome, email, senha, fkEmpresa, fkFazenda, fkSupervisor) {
 
-    if (fkSupervisor == 'null') {
+    if (fkSupervisor == null) {
         var instrucaoSql = `
             INSERT INTO Usuario (nome, email, senha, fk_empresa, fk_fazenda, fk_supervisor) VALUES 
             ('${nome}', '${email}', '${senha}', '${fkEmpresa}', '${fkFazenda}', NULL);
