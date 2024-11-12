@@ -5,11 +5,13 @@ function logar() {
     if (email == '' || senha == '') {
         spanErro.innerHTML = `Preencha todos os campos!`;
 
+        //parar execução da função
         return false;
     } else {
         console.log("FORM LOGIN: ", email);
         console.log("FORM SENHA: ", senha);
 
+        // fetch vai buscar a rota USUARIOS/AUTENTICAR
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {

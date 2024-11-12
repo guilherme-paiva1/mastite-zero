@@ -18,6 +18,7 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length > 0) {
                         res.json({
+                            // .id_usuario = nome do campo do banco de dados
                             id_usuario: resultadoAutenticar[0].id_usuario,
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,

@@ -30,6 +30,7 @@ function avancar() {
     campos_empresa.style.display = 'none'
     campos_endereco.style.display = 'flex'
 }
+
 function cadastrarEmpresa() {
     // aguardar();
 
@@ -138,6 +139,62 @@ function cadastrarEmpresa() {
 
     return false;
 }
+
+function cadastrarEndereco() {
+    var logradouro = inputLogradouro.value;
+    var CEP = inputCEP.value;
+    var cidade = inputCidade.value;
+    var estado = selectEstado.value;
+    var numero = inputNumero.value;
+    var complemento = inputComplemento.value;
+    
+
+
+    if(logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido ) {
+        // fetch vai buscar a rota USUARIOS/AUTENTICAR
+        fetch("/empresas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                logradouroServer: logradouro,
+                cepServer: CEP,
+                cidadeServer: cidade,
+                estadoServer: estado,
+                numeroServer: numero,
+                complementoServer: complemento
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+
+                divMensagem.innerHTML = `Cadastro realizado com sucesso! Redirecionando para o login`
+                console.log(resposta);
+                
+                    setTimeout(function () {
+                        window.location = "./login.html";
+                    }, 1000); // apenas para exibir o loading
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    //finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+    }
+
 
 function validarLogradouro() {
     var logradouro = inputLogradouro.value;
