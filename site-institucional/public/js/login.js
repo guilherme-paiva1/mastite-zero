@@ -2,6 +2,10 @@ function logar() {
     var email = inputEmail.value;
     var senha = inputSenha.value;
 
+    spanSucesso.innerHTML = "";
+    spanErro.innerHTML = "";
+
+
     if (email == '' || senha == '') {
         spanErro.innerHTML = `Preencha todos os campos!`;
 
@@ -27,6 +31,8 @@ function logar() {
             if (resposta.ok) {
                 console.log(resposta);
 
+                spanSucesso.innerHTML = "Login realizado com sucesso!";
+
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -47,7 +53,7 @@ function logar() {
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    //finalizarAguardar(texto);
+                    spanErro.innerHTML = texto;
                 });
             }
 
