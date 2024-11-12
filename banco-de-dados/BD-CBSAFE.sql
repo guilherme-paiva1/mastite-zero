@@ -171,7 +171,7 @@ SELECT l.data_ultimo_acesso as "Ultimo acesso", u.nome as "Usuario", u.email as 
 CREATE TABLE Compost_barn (
 	id_cb INT PRIMARY KEY AUTO_INCREMENT,
 	area_m2 VARCHAR (30),
-    data_ultima_manutencao DATE,
+  data_ultima_manutencao DATE,
 	fk_fazenda INT,
     
     CONSTRAINT fk_fazenda_cb
@@ -205,7 +205,7 @@ SELECT
 -- CRIAR TABELA SENSOR
 CREATE TABLE Sensor(
 	id_sensor INT PRIMARY KEY AUTO_INCREMENT,
-    grupo VARCHAR (45),
+  grupo VARCHAR (45),
     fk_cb INT,
     
     CONSTRAINT fk_sensor_cb 
