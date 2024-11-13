@@ -367,6 +367,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    text-align: center;
 }
 
 #tela-inicial-dash {
@@ -453,8 +454,10 @@ body {
 
 .div-mapa .leste {
     height: 60%;
-    width: 10%;
+    width: 15%;
+    background-color: #58a33f;
     border: black 1px solid;
+    text-align: center;
 }
 
 .div-mapa .centro {
@@ -467,19 +470,25 @@ body {
 .div-mapa .norte {
     height: 60%;
     width: 100%;
+    background-color: #58a33f;
     border: black 1px solid;
+    text-align: center;
 }
 
 .div-mapa .sul {
     height: 60%;
     width: 100%;
+    background-color: #58a33f;
     border: black 1px solid;
+    text-align: center;
 }
 
 .div-mapa .oeste {
     height: 60%;
-    width: 10%;
+    width: 15%;
+    background-color: #58a33f;
     border: black 1px solid;
+    text-align: center;
 }
 
 .div-metrica {
