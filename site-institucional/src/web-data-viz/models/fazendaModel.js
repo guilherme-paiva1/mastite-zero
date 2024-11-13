@@ -19,8 +19,11 @@ function cadastrarFazenda(nome, fkEmpresa, fkEndereco){
 
     return database.executar(instrucaoSql);
 }
+// (SELECT count(id_sensor) FROM Sensor 
+// JOIN Dados_sensor ON fk_sensor = id_sensor 
+// WHERE fk_cb = id_cb AND umidade > 30) as qtdAlerta
 
-function buscarFazendaPelaFkEmpresa(fkEmpresa, nome) {
+function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
 
     var instrucaoSql = `
         SELECT f.id_fazenda as idFazenda, 
@@ -30,18 +33,16 @@ function buscarFazendaPelaFkEmpresa(fkEmpresa, nome) {
         
         (SELECT count(id_sensor) FROM Sensor 
 			JOIN Dados_sensor ON fk_sensor = id_sensor 
-		WHERE fk_cb = id_cb AND umidade > 30 AND data_hora = now()) as "Qtd. de compost barn fora do ideal",
+		WHERE fk_cb = id_cb AND umidade > 30 AND data_hora = now()) as qtdCompost,
         
         (SELECT avg(umidade) FROM Sensor 
 			JOIN Dados_sensor ON fk_sensor = id_sensor 
-		WHERE fk_cb = id_cb) as UmidadeMedia,
+		WHERE fk_cb = id_cb) as umidadeMedia
         
-        (SELECT count(id_sensor) FROM Sensor 
-			JOIN Dados_sensor ON fk_sensor = id_sensor 
-		WHERE fk_cb = id_cb AND umidade > 30) as "Quantidade de alertas da fazenda"
+
         FROM Fazenda as f
 		JOIN Compost_barn ON fk_fazenda = f.id_fazenda
-                WHERE fk_empresa = ${fkEmpresa} AND nome = '${nome}';
+                WHERE fk_empresa = ${fkEmpresa} AND id_fazenda = ${idFazenda};
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

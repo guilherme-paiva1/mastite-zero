@@ -38,11 +38,11 @@ async function cadastrarFazenda(req, res) {
 
 function buscarFazendaPeloFkEmpresa(req, res) {
     const fkEmpresa = req.params.fkEmpresa;
-    const nomeFazenda = req.params.nome;
+    const idFazenda = req.params.idFazenda;
 
     console.log("Buscando fazenda pela fkEmpresa...");
 
-    fazendaModel.buscarFazendaPelaFkEmpresa(fkEmpresa, nomeFazenda).then(function (resultado) {
+    fazendaModel.buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

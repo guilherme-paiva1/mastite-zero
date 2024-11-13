@@ -25,6 +25,47 @@ var dataAtual = new Date()
                 dashGrupo.style.display = 'none';
                 selectCompost.value = '#';
                 selectGrupo.value = '#';
+                var fkEmpresa = sessionStorage.getItem("FK_EMPRESA");
+
+                if(fkEmpresa == null || fkEmpresa == undefined){
+                    // location.replace("/cadastrar.html");
+                }else{
+                    var opcoes = document.getElementsByClassName("select-filtro");
+
+                    for(var index = 0; index < opcoes.length; index ++){
+                    var elementoAtual = opcoes[index];
+
+                    if(elementoAtual.id == "selectFazenda"){
+                        console.log(elementoAtual.value);
+                        fetch(`/fazendas/buscar/${fkEmpresa}/${elementoAtual.value}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                        }).then((resposta) => {
+                        if(resposta.ok){
+                            resposta.json().then((dados)=> {
+                                for (var index = 0; index < dados.length; index++) {
+                                    var dado = dados[index];
+                                    console.log(dado);  
+                                    qtdCompost.innerHTML = dado.qtdCompost;
+                                    if(dado.umidadeMedia == null){
+                                        umidadeMedia.innerHTML = "0%"
+                                    }else{
+                                        umidadeMedia.innerHTML = `${dado.umidadeMedia}$`
+                                    }
+                                }
+                            })
+                        }else{
+                            console.log("Deu tudo errado")
+                        }
+                        }).catch((erro) => {
+                        console.log(erro);
+                        })
+                    }
+                    }
+                
+                }
             }
         }
 

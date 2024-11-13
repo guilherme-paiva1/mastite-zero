@@ -7,7 +7,7 @@ router.post("/cadastrar", function (req, res) {
     fazendaController.cadastrarFazenda(req, res);
 });
 
-router.get("/buscar/:fkEmpresa/:nome", function (req, res) {
+router.get("/buscar/:fkEmpresa/:idFazenda", function (req, res) {
     fazendaController.buscarFazendaPeloFkEmpresa(req, res);
 })
 

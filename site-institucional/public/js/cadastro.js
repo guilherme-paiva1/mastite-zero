@@ -161,10 +161,11 @@ function cadastrarEmpresa() {
                     
             
                     }).then(function (resposta) {
-                        console.log("ESTOU NO THEN DO entrar()!")
+                        console.log("ESTOU NO THEN DO cadastrar empresa!")
             
                         if (resposta.ok) {
             
+                            //adicionar fetch AQUI, referenciando /usuarios/cadastrar
                             divMensagem.innerHTML = `Cadastro realizado com sucesso! Redirecionando para o login`;
                             console.log(resposta);
                         } else {
