@@ -16,7 +16,7 @@ router.post("/listarUsuarioPeloSupervisor", function (req, res) {
     usuarioController.listarPeloSupervisor(req, res);
 });
 
-router.post("/excluirFuncionario", function (req, res) {
+router.delete("/excluirFuncionario", function (req, res) {
     usuarioController.excluirFuncionario(req, res);
 });
 

@@ -121,7 +121,7 @@ function listarPeloSupervisor(req, res) {
 }
 
 function excluirFuncionario(req, res) {
-    var id_usuario = req.body.id_usuario;
+    var id_usuario = req.body.idFuncionario;
 
     usuarioModel.excluirUsuario(id_usuario)
     .then(

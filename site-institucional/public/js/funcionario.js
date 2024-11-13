@@ -67,7 +67,7 @@ function listarFuncionarios() {
               <div class="conteudo-excluir-usuario">
                 <h1>Você tem certeza que deseja excluir esse funcionario?</h1>
                 <div class="container-botao-confirmacao">
-                  <button onclick="excluirUsuario()">Sim</button>
+                  <button onclick="excluirUsuario(${idFuncionario})">Sim</button>
                   <button onclick="negarExclusao()">Não</button>
                 </div>
              </div>
@@ -81,6 +81,7 @@ function listarFuncionarios() {
                 <th>Excluir</th>
               </tr>` +
             tabela;
+            div_modals.innerHTML = modalsExclusao;
         });
       } else {
         div_tabela.innerHTML = "Cadastre um funcionário, e ele aparecerá aqui!";
@@ -199,7 +200,11 @@ function fecharModal() {
 }
 
 function abrirModalExcluirUsuario(idFuncionario) {
-  var modal = modalExcluirUsuario;
+  var textoModal = 'modalExcluirUsuario' + idFuncionario;
+  console.log(textoModal);
+
+  var modal = document.getElementById(textoModal);
+  console.log(modal);
 
   window.onclick = function (event) {
     if (event.target == modal) {
@@ -208,6 +213,36 @@ function abrirModalExcluirUsuario(idFuncionario) {
   }
 
   modal.style.display = "flex";
+  
+}
+
+function excluirUsuario(idFuncionario) {
+  fetch("/usuarios/excluirFuncionario", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      // atributo do JSON recebe a id do usuário logado atualmente, ou seja, o supervisor
+      idFuncionario: idFuncionario,
+    }),
+  })  
+  .then(function (resposta) {
+    console.log("resposta: ", resposta);
+
+    if (resposta.ok) {
+      alert(`Funcionário excluído com sucesso!`);
+      listarFuncionarios();
+    } else {
+      alert(`Houve um erro ao excluir o funcionário`);
+    }
+  })
+  .catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+    finalizarAguardar();
+  });
+
+return false;
 }
 
 function negarExclusao() {
