@@ -19,4 +19,8 @@ router.post("/listarUsuarioPeloSupervisor", function (req, res) {
 router.post("/excluirFuncionario", function (req, res) {
     usuarioController.excluirFuncionario(req, res);
 });
+
+router.post("/atualizarUsuario", function (req, res) {
+    usuarioController.atualizarUsuario(req, res);
+});
 module.exports = router;

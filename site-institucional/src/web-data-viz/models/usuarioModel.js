@@ -47,9 +47,19 @@ function excluirUsuario(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarUsuario(nome, email, idUsuario) {
+    var instrucaoSql = `
+    UPDATE Usuario SET nome = '${nome}', email = '${email}' 
+    WHERE idUsuario = ${idUsuario}
+    ;`
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
     buscarUsuarioPeloEmailESenha,
     buscarUsuarioPeloSupervisor,
-    excluirUsuario
+    excluirUsuario,
+    atualizarUsuario
 };

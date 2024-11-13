@@ -141,6 +141,28 @@ function excluirFuncionario(req, res) {
 
 }
 
+function atualizarUsuario(req, res) {
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var id_usuario = req.body.id_usuario;
+
+    usuarioModel.atualizarUsuario(nome, email, id_usuario)
+    .then(
+        function (resultadoUpdate) {
+            res.json(resultadoUpdate);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao editar o funcionário! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 module.exports = {
     autenticar,
     cadastrar,
