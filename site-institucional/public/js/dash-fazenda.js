@@ -21,3 +21,35 @@ function mostrarCompost(idCompost) {
         selectGrupo.value = '#';
     }
 }
+
+var graficoBarraFazenda = new Chart(document.getElementById('grafico_fazenda').getContext('2d'), {
+    data: {
+        labels: ["Compost Barn 1", "Compost Barn 2", "Compost Barn 3", "Compost Barn 4"],
+        datasets: [{
+            type: 'bar',
+            label: 'Umidade média Fazenda',
+            borderColor: "#22603A",
+            backgroundColor: "#22603A",
+            data: [53, 57, 49, 43, 51, 59, 65]
+        }],
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Umidade média dos Compost Barns (%)',
+                color: "#22603A",
+                font: {
+                    size: 24,
+                    weight: 'bold',
+                    family: 'Poppins'
+                },
+                padding: {
+                    top: 10,
+                    bottom: 30
+                },
+                align: 'center',
+            }
+        },
+    }
+})

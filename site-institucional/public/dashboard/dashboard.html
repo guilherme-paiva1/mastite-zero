@@ -63,7 +63,7 @@
                                             <option selected value="#">Selecione o grupo</option>
                                             <option value="norte">Grupo Norte</option>
                                             <option value="leste">Grupo Leste</option>
-                                            <option value="central">Grupo Central</option>
+                                            <!-- <option value="central">Grupo Central</option> -->
                                             <option value="oeste">Grupo Oeste</option>
                                             <option value="sul">Grupo Sul</option>
                                         </select>
@@ -98,7 +98,7 @@
     <div class="container-conteudo" id="telaInicial">
         <div class="div-conteudo dashboard"  id="tela-inicial-dash">
             <div class="dash-cabecalho">
-                <h1><span class="titulo-dash">Bem vindo de volta<span id="b_usuario"></span>!</span></h1>
+                <h1><span class="titulo-dash">Bem vindo de volta, <span id="b_usuario">usuário</span>!</span></h1>
                 <div class="div-texto">Selecione uma fazenda na barra de navegação acima para visualizar a dashboard correspondente.</div>
             </div>
             <div class="div-img">
@@ -133,35 +133,35 @@
                         <p>56%</p>
                     </div>
                     <div class="div-kpi">
-                        <h2>Quantidade de alertas da fazenda</h2>
-                        <p>0</p>
+                        <h2>Quantidade de alertas acima de 60%</h2>
+                        <p>5</p>
                     </div>    
+                    <div class="div-kpi">
+                        <h2>Quantidade de alertas abaixo de 45%</h2>
+                        <p>1</p>
+                    </div>
                 </div>
                 <!-- <div class="div-sublinha">
-                    <div class="div-kpi">
-                        <h2>TemplateKPI</h2>
-                        <p>TemplateKPI</p>
-                    </div>
-                    <div class="div-kpi">
+                     <div class="div-kpi">
                         <h2>TemplateKPI</h2>
                         <p>TemplateKPI</p>
                     </div>
                 </div> -->
             </div>
-            <!-- <div class="div-linha">
+             <div class="div-linha">
                 <div class="div-sublinha">
                     <div class="div-grafico">
-                        <canvas height="200px" id=""></canvas>
+                        <canvas height="200px" id="grafico_fazenda"></canvas>
                     </div>
                 </div>
 
-                <div class="div-sublinha">
+                <!-- <div class="div-sublinha">
                     <div class="div-grafico">
                         <canvas height="100px" id=""></canvas>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="div-linha">
+            <!-- <div class="div-linha">
                 <div class="div-grafico">
                     <canvas height="100px" id=""></canvas>
                 </div>
@@ -367,4 +367,10 @@
 <script src="../js/dash-compost.js"></script>
 <script src="../js/dash-grupo.js"></script>
 <script src="../js/modal.js"></script>
+<<<<<<< HEAD
 <script src="../js/dash-geral.js"></script>
+=======
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
+>>>>>>> fad4bd9f4c987210cbd4b44fad068df8f368751e
