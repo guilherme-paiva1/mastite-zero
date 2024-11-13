@@ -167,5 +167,6 @@ module.exports = {
     autenticar,
     cadastrar,
     excluirFuncionario,
-    listarPeloSupervisor
+    listarPeloSupervisor,
+    atualizarUsuario
 }

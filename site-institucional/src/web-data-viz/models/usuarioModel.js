@@ -50,7 +50,7 @@ function excluirUsuario(idUsuario) {
 function atualizarUsuario(nome, email, idUsuario) {
     var instrucaoSql = `
     UPDATE Usuario SET nome = '${nome}', email = '${email}' 
-    WHERE idUsuario = ${idUsuario}
+    WHERE id_usuario = ${idUsuario}
     ;`
 
     return database.executar(instrucaoSql);

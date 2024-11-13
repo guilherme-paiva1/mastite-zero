@@ -39,7 +39,10 @@ function listarFuncionarios() {
             <input type="text" value="${emailFuncionario}" disabled id="inputEmailFuncionario${idFuncionario}">
             </td>
             <td>
-            <button onclick="editarUsuario(${idFuncionario})">
+            <button class="btn-confirmar-edicao" id="botaoConfirmar${idFuncionario}" onclick="editarUsuario(${idFuncionario})">
+              Salvar alterações
+            </button>
+            <button id="botaoHabilitar${idFuncionario}" onclick="habilitarEditarUsuario(${idFuncionario})">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-pencil-square" viewBox="0 0 16 16">
             <path
@@ -81,7 +84,7 @@ function listarFuncionarios() {
                 <th>Excluir</th>
               </tr>` +
             tabela;
-            div_modals.innerHTML = modalsExclusao;
+          div_modals.innerHTML = modalsExclusao;
         });
       } else {
         div_tabela.innerHTML = "Cadastre um funcionário, e ele aparecerá aqui!";
@@ -213,7 +216,7 @@ function abrirModalExcluirUsuario(idFuncionario) {
   }
 
   modal.style.display = "flex";
-  
+
 }
 
 function excluirUsuario(idFuncionario) {
@@ -226,23 +229,23 @@ function excluirUsuario(idFuncionario) {
       // atributo do JSON recebe a id do usuário logado atualmente, ou seja, o supervisor
       idFuncionario: idFuncionario,
     }),
-  })  
-  .then(function (resposta) {
-    console.log("resposta: ", resposta);
-
-    if (resposta.ok) {
-      alert(`Funcionário excluído com sucesso!`);
-      listarFuncionarios();
-    } else {
-      alert(`Houve um erro ao excluir o funcionário`);
-    }
   })
-  .catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-    finalizarAguardar();
-  });
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
 
-return false;
+      if (resposta.ok) {
+        alert(`Funcionário excluído com sucesso!`);
+        listarFuncionarios();
+      } else {
+        alert(`Houve um erro ao excluir o funcionário`);
+      }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+      finalizarAguardar();
+    });
+
+  return false;
 }
 
 function negarExclusao() {
@@ -251,22 +254,78 @@ function negarExclusao() {
   modal.style.display = "none";
 }
 
-function editarUsuario(botao) {
+function habilitarEditarUsuario(idFuncionario) {
+  var textoNome = `inputNomeFuncionario${idFuncionario}`;
+  var textoEmail = `inputEmailFuncionario${idFuncionario}`
+  var textoBotaoHabilitar = `botaoHabilitar${idFuncionario}`;
+  var textoBotaoConfirmar = `botaoConfirmar${idFuncionario}`;
 
-  const emailInput = botao.closest('tr').querySelector('#inputEmailFuncionario');
-  const nomeInput = botao.closest('tr').querySelector("#inputNomeFuncionario");
-
+  var inputNome = document.getElementById(textoNome);
+  var inputEmail = document.getElementById(textoEmail);
+  var botaoConfirmar = document.getElementById(textoBotaoConfirmar);
+  var botaoHabilitar = document.getElementById(textoBotaoHabilitar);
 
   if (vezesClicadas == 1) {
-    emailInput.disabled = true;
-    nomeInput.disabled = true;
+    inputEmail.disabled = true;
+    inputNome.disabled = true;
+    botaoConfirmar.style.display = 'none';
+    botaoHabilitar.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+      </svg>
+    `;
     vezesClicadas = 0;
   } else {
     vezesClicadas++;
-    emailInput.disabled = false;
-    nomeInput.disabled = false;
-    emailInput.focus();
+    inputEmail.disabled = false;
+    inputNome.disabled = false;
+    botaoConfirmar.style.display = 'block';
+    botaoHabilitar.innerHTML = `<br>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+    </svg>Cancelar
+`;
+    inputEmail.focus();
   }
+}
 
+function editarUsuario(idUsuario) {
+  var textoNomeFuncionario = `inputNomeFuncionario${idUsuario}`;
+  var textoEmailFuncionario = `inputEmailFuncionario${idUsuario}`;
 
+  var emailNovo = document.getElementById(textoEmailFuncionario).value;
+  var nomeNovo = document.getElementById(textoNomeFuncionario).value;
+
+  fetch("/usuarios/atualizarUsuario", {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        nome: nomeNovo,
+        email: emailNovo,
+        id_usuario: idUsuario
+    })
+}).then(function (resposta) {
+    if (resposta.ok) {
+
+        console.log(resposta);
+        alert('Funcionário atualizado com sucesso!')
+        listarFuncionarios();
+    } else {
+
+        console.log("Houve um erro ao atualizar o funcionário!");
+
+        resposta.text().then(texto => {
+            console.error(texto);
+        });
+    }
+
+}).catch(function (erro) {
+    console.log(erro);
+})
+
+return false;
 }

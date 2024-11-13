@@ -1029,6 +1029,10 @@ select:disabled {
     cursor: pointer;
 }
 
+.btn-confirmar-edicao {
+    display: none;
+}
+
 .modal-excluir-usuario {
     display: none;
     position: fixed;

@@ -20,7 +20,7 @@ router.delete("/excluirFuncionario", function (req, res) {
     usuarioController.excluirFuncionario(req, res);
 });
 
-router.post("/atualizarUsuario", function (req, res) {
+router.put("/atualizarUsuario", function (req, res) {
     usuarioController.atualizarUsuario(req, res);
 });
 module.exports = router;
