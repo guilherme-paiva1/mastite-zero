@@ -14,7 +14,7 @@
     <script src="../js/modal.js"></script>
 </head>
 
-<body>
+<body onload="carregarDadosEmpresa()">
     <div class="header">
         <div class="container">
             <div class="logo">
@@ -40,7 +40,7 @@
                                 <div class="divItens">
                                     <div class="itemDetalhe">
                                         <p>Fazenda:</p>
-                                        <select onchange="mostrarFazenda(selectFazenda.value)" id="selectFazenda">
+                                        <select class="select-filtro" onchange="mostrarFazenda(selectFazenda.value)" id="selectFazenda">
                                             <option selected value="#">Selecione uma fazenda</option>
                                             <option value="1">Fazenda 1</option>
                                             <option value="2">Fazenda 2</option>
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="itemDetalhe">
                                         <p>Compost Barn:</p>
-                                        <select disabled onchange="mostrarCompost(selectCompost.value)" id="selectCompost">
+                                        <select class="select-filtro" disabled onchange="mostrarCompost(selectCompost.value)" id="selectCompost">
                                             <option selected value="#">Selecione um compost barn</option>
                                             <option value="1">Compost Barn 1</option>
                                             <option value="2">Compost Barn 2</option>
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="itemDetalhe">
                                         <p>Grupo:</p>
-                                        <select disabled onchange="mostrarGrupo(selectGrupo.value)" id="selectGrupo">
+                                        <select class="select-filtro" disabled onchange="mostrarGrupo(selectGrupo.value)" id="selectGrupo">
                                             <option selected value="#">Selecione o grupo</option>
                                             <option value="norte">Grupo Norte</option>
                                             <option value="leste">Grupo Leste</option>
@@ -367,3 +367,4 @@
 <script src="../js/dash-compost.js"></script>
 <script src="../js/dash-grupo.js"></script>
 <script src="../js/modal.js"></script>
+<script src="../js/dash-geral.js"></script>

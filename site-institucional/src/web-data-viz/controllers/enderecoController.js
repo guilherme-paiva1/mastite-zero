@@ -1,12 +1,12 @@
 var enderecoModel = require("../models/enderecoModel");
 
 async function cadastrar(req, res){
-  var cep = req.body.cep;
-  var cidade = req.body.cidade; 
-	var estado = req.body.estado;
-	var logradouro = req.body.logradouro; 
-	var numero = req.body.numero;
-	var complemento = req.body.complemento
+  var cep = req.body.cepServer;
+  var cidade = req.body.cidadeServer; 
+	var estado = req.body.estadoServer;
+	var logradouro = req.body.logradouroServer; 
+	var numero = req.body.numeroServer;
+	var complemento = req.body.complementoServer;
 
   if(cep == undefined){
     res.status(401).json({mensagem: "Seu cep esta indefinido"});

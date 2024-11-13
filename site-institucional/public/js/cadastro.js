@@ -9,6 +9,7 @@ var confirmarSenha = "";
 var razaoSocial = "";
 var representanteLegal = "";
 
+
 var logradouroValido = false;
 var cidadeValida = false;
 var estadoValido = false;
@@ -16,9 +17,22 @@ var numeroValido = false;
 var complementoValido = false;
 var cepValido = false;
 
-function cadastrarTudo(){
-    cadastrarEmpresa();
-}
+// async function cadastrarTudo(){
+//     cadastrarEmpresa().then(()=> {
+//         if(requisicaoEmpresaValida){
+//             cadastrarEndereco().then(()=> {
+//                 if(requisicaoEnderecoValida){
+//                     setTimeout(() => {
+//                         window.location = "login.html";
+//                     }, "2000");
+//                 }
+//             });
+//        }
+//     });
+//     console.log(requisicaoEmpresaValida);
+   
+//     console.log(requisicaoEmpresaValida +  " " + requisicaoEnderecoValida);
+// }
 
 
 function voltar() {
@@ -65,38 +79,36 @@ function cadastrarEmpresa() {
         spanErroConfirmarSenha.innerHTML = "As senhas não são identicas"
         inputSenha.style.border = "solid 1px red";
         inputConfirmaSenha.style.border = "solid 1px red";
-        finalizarAguardar();
         return false;
-
-    } else if (senha.length < 4) {
+    } 
+    
+    if (senha.length < 4) {
         spanErroSenha.innerHTML = "A senha precisa ter ao menos 4 caracteres"
         spanErroConfirmarSenha.innerHTML = "A senha precisa ter ao menos 4 caracteres"
         inputSenha.style.border = "solid 1px red";
         inputConfirmaSenha.style.border = "solid 1px red";
-        finalizarAguardar();
         return false;
-
-    } else if ((email.length < 7) || email.indexOf("@") < 0 || email.indexOf(".com") < 0) {
+    } 
+    
+    if ((email.length < 7) || email.indexOf("@") < 0 || email.indexOf(".com") < 0) {
         inputEmail.style.border = "solid 1px red";
         spanErroEmail.innerHTML = "Email inválido";
-        finalizarAguardar();
         return false;
-
-    } else if (responsavel.length < 4) {
+    } 
+    
+    if (responsavel.length < 4) {
         spanErroResponsavel.innerHTML = "Representante inválido, mínimo de 4 letras ";
-        finalizarAguardar();
         return false;
-
-    } else if (nomeFantasia.length < 3) {
+    } 
+    
+    if (nomeFantasia.length < 3) {
         spanErroEmpresa.innerHTML = "Nome fantasia inválido, mínimo de 3 letras";
-        finalizarAguardar();
         return false;
-
-    } else if (razaoSocial.length < 3) {
+    } 
+    
+    if (razaoSocial.length < 3) {
         spanErroRazao.innerHTML = "Razão social inválida, mínimo de 3 letras";
-        finalizarAguardar();
         return false;
-
     }
 
     // Enviando o valor da nova input
@@ -120,80 +132,65 @@ function cadastrarEmpresa() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                divMensagem.innerHTML =
-                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                // console.log('caiu tá')
+                // requisicaoEmpresaValida =  true;
 
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000");
+                var logradouro = inputLogradouro.value;
+                var CEP = inputCEP.value;
+                var cidade = inputCidade.value;
+                var estado = selectEstado.value;
+                var numero = inputNumero.value;
+                var complemento = inputComplemento.value;
+                
+                
+                if(logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido ) {
+                    // fetch vai buscar a rota USUARIOS/AUTENTICAR
+                    fetch("/enderecos/cadastrar", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            logradouroServer: logradouro,
+                            cepServer: CEP,
+                            cidadeServer: cidade,
+                            estadoServer: estado,
+                            numeroServer: numero,
+                            complementoServer: complemento
+                        })
+                    
+            
+                    }).then(function (resposta) {
+                        console.log("ESTOU NO THEN DO entrar()!")
+            
+                        if (resposta.ok) {
+            
+                            divMensagem.innerHTML = `Cadastro realizado com sucesso! Redirecionando para o login`;
+                            console.log(resposta);
+                        } else {
+                            resposta.json().then(json => {
+                                console.error(json);
+                                divMensagem.innerHTML = JSON.parse(json);
+                            });
+            
+                        }
+                    }).catch(function (erro) {
+                        console.log(erro);
+                    })       
+                }else{
+                    console.log("Endereco invalido!")
+                }
 
-                finalizarAguardar();
             } else {
+                divMensagem.innerHTML =
+                "Houe um erro ao realizar o cadastro!";
                 throw "Houve um erro ao tentar realizar o cadastro!";
             }
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
         });
-
-    return false;
 }
-
-function cadastrarEndereco() {
-    var logradouro = inputLogradouro.value;
-    var CEP = inputCEP.value;
-    var cidade = inputCidade.value;
-    var estado = selectEstado.value;
-    var numero = inputNumero.value;
-    var complemento = inputComplemento.value;
-    
-
-
-    if(logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido ) {
-        // fetch vai buscar a rota USUARIOS/AUTENTICAR
-        fetch("/empresas/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                logradouroServer: logradouro,
-                cepServer: CEP,
-                cidadeServer: cidade,
-                estadoServer: estado,
-                numeroServer: numero,
-                complementoServer: complemento
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-
-                divMensagem.innerHTML = `Cadastro realizado com sucesso! Redirecionando para o login`
-                console.log(resposta);
-                
-                    setTimeout(function () {
-                        window.location = "./login.html";
-                    }, 1000); // apenas para exibir o loading
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    //finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-    }
 
 
 function validarLogradouro() {
