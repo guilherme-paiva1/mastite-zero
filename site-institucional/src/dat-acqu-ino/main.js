@@ -19,10 +19,10 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'aluno',
-            password: 'Sptech#2024',
+            user: 'svc_cbsafe',
+            password: 'Urubu100@',
             database: 'cbsafe',
-            port: 3307
+            port: 3306
         }
     ).promise();
 
@@ -67,7 +67,7 @@ const serial = async (
         var segundoAtual = dataAtual.getSeconds();
 
 
-        var dataFinal = `${diaAtual}-${mesAtual}-${anoAtual} ${horaAtual}:${minutoAtual}:${segundoAtual}`;
+        var dataFinal = `${anoAtual}-${mesAtual}-${diaAtual} ${horaAtual}:${minutoAtual}:${segundoAtual}`;
         
 
         // insere os dados no banco de dados (se habilitado)

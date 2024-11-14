@@ -37,33 +37,12 @@ var dataAtual = new Date()
 
                     if(elementoAtual.id == "selectFazenda"){
                         console.log(elementoAtual.value);
-                        fetch(`/fazendas/buscar/${fkEmpresa}/${elementoAtual.value}`, {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                        }).then((resposta) => {
-                        if(resposta.ok){
-                            resposta.json().then((dados)=> {
-                                for (var index = 0; index < dados.length; index++) {
-                                    var dado = dados[index];
-                                    console.log(dado);  
-                                    qtdCompost.innerHTML = dado.qtdCompost;
-                                    if(dado.umidadeMedia == null){
-                                        umidadeMedia.innerHTML = "0%"
-                                    }else{
-                                        umidadeMedia.innerHTML = `${dado.umidadeMedia}$`
-                                    }
-                                }
-                            })
-                        }else{
-                            console.log("Deu tudo errado")
-                        }
-                        }).catch((erro) => {
-                        console.log(erro);
-                        })
+                        sessionStorage.FK_FAZENDA = elementoAtual.value;
+                        setInterval(()=> {
+                            buscarDadosFazenda(fkEmpresa, sessionStorage.FK_FAZENDA);
+                        }, 2000)
                     }
-                    }
+                }
                 
                 }
             }
@@ -253,3 +232,34 @@ var dataAtual = new Date()
          setInterval(() => {
              obterDados(sensorAnalogico, 'analogico');
          }, 1500); */
+
+async function buscarDadosFazenda(fkEmpresa, idFazenda){
+    console.log(idFazenda);
+    fetch(`/fazendas/buscar/${fkEmpresa}/${idFazenda}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+        }).then((resposta) => {
+        if(resposta.ok){
+            resposta.json().then((dados)=> {
+                for (var index = 0; index < dados.length; index++) {
+                    var dado = dados[index];
+                    console.log(dado);  
+                    qtdCompost.innerHTML = dado.qtdCompost;
+                    alertasSessenta.innerHTML = dado.alertasSessenta;
+                    alertasQuarentaECinco.innerHTML = dado.alertasQuarentaECinco;
+                    if(dado.umidadeMedia == null){
+                        umidadeMedia.innerHTML = "0%"
+                    }else{
+                        umidadeMedia.innerHTML = `${Number(dado.umidadeMedia).toFixed(2)}%`
+                    }
+                }
+            })
+        }else{
+            console.log("Deu tudo errado")
+        }
+        }).catch((erro) => {
+        console.log(erro);
+        })
+}
