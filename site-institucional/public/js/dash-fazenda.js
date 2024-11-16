@@ -1,3 +1,5 @@
+var reqCompost = null;
+
 var dataAtual = new Date()
 var diaAtual = dataAtual.getDate()
 var mesAtual = (dataAtual.getMonth() + 1)
@@ -19,8 +21,28 @@ function mostrarCompost(idCompost) {
         dashFazenda.style.display = 'none';
         dashGrupo.style.display = 'none';
         selectGrupo.value = '#';
-    }
-}
+
+
+        var fkEmpresa = sessionStorage.getItem("FK_EMPRESA");
+        var fkFazenda = Number(document.getElementById("selectFazenda").value);
+
+
+                if(fkEmpresa == null || fkEmpresa == undefined){
+                    // location.replace("/cadastrar.html");
+                }else{
+                    var idCompost = Number(document.getElementById("selectCompost").value);
+                        console.log(idCompost);
+
+                        if(reqCompost != null){
+                            clearInterval(reqCompost);
+                        }
+
+                        reqCompost = setInterval(()=> {
+                            buscarDadosCompost(fkFazenda,idCompost);
+                        }, 2000);   
+                    }
+                }
+            }
 
 var graficoBarraFazenda = new Chart(document.getElementById('grafico_fazenda').getContext('2d'), {
     data: {
@@ -53,3 +75,54 @@ var graficoBarraFazenda = new Chart(document.getElementById('grafico_fazenda').g
         },
     }
 })
+
+async function buscarDadosCompost(idFazenda,idCompost){
+    console.log(idFazenda);
+    await fetch(`/compost/buscar/${idCompost}/${idFazenda}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+        }).then((resposta) => {
+        if(resposta.ok){
+            if(resposta.status == 204){
+                kpiMaiorNivelRegistrado.innerHTML = "Sem sensores na atual compost barn"; 
+                kpiMaiorNivelRegistrado.innerHTML = "Sem sensores na atual compost barn";
+                kpiNivelMedioRegistrado.innerHTML = "Sem sensores na atual compost barn";
+                kpiNivelMinimoRegistrado.innerHTML = "Sem sensores na atual compost barn";
+                
+                kpiSensoresAcima.innerHTML =  "Sem sensores na atual compost barn";
+                kpiTotalAlertas.innerHTML =  "Sem sensores na atual compost barn";
+            }else{
+                resposta.json().then((dados)=> {
+                    for (var index = 0; index < dados.length; index++) {
+                        var dado = dados[index];
+    
+                        console.log(dado);
+    
+                        kpiMaiorNivelRegistrado.innerHTML = `${Number(dado.maiorUmidade).toFixed(2)}% ás `;
+                        kpiMaiorNivelRegistrado.innerHTML += dado.dtRegistro.substring(11, 19);
+    
+                        kpiNivelMedioRegistrado.innerHTML = `${Number(dado.nivelMedio).toFixed(2)}%`;
+                        kpiNivelMinimoRegistrado.innerHTML = `${Number(dado.nivelMinimo).toFixed(2)}%`;
+                        
+                        kpiSensoresAcima.innerHTML = dado.sensoresAcima;
+    
+                        kpiTotalAlertas.innerHTML = dado.qtdAlertas;
+    
+                       /*  if(dado.umidadeMedia == null){
+                            umidadeMedia.innerHTML = "0%"
+                        }else{
+                            umidadeMedia.innerHTML = `${Number(dado.umidadeMedia).toFixed(2)}%`
+                        } */
+                    } 
+                   console.log(dados);
+                })
+            }
+        }else{
+            console.log("Deu tudo errado")
+        }
+        }).catch((erro) => {
+        console.log(erro);
+        })
+}

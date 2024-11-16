@@ -1,9 +1,12 @@
 var compostModel = require("../models/compostModel");
 
-function buscarCompostsPorEmpresa(req, res) {
-  var fazendaId = req.params.fazendaId;
+function buscarDadosPorFazenda(req, res) {
+  var fazendaId = req.params.idFazenda;
+  var compostId = req.params.idCompost;
 
-  compostModel.buscarCompostsPorEmpresa(fazendaId).then((resultado) => {
+
+
+  compostModel.buscarDadosPorFazenda(fazendaId, compostId).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -47,6 +50,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarCompostsPorEmpresa,
+  buscarDadosPorFazenda,
   cadastrar
 }

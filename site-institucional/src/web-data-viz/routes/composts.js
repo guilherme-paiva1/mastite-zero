@@ -3,8 +3,8 @@ var router = express.Router();
 
 var compostController = require("../controllers/compostController");
 
-router.get("/buscar/:empresaId", function (req, res) {
-  compostController.buscarCompostPorEmpresa(req, res);
+router.get("/buscar/:idCompost/:idFazenda", function (req, res) {
+  compostController.buscarDadosPorFazenda(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {

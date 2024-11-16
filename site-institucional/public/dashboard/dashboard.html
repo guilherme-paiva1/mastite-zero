@@ -51,10 +51,10 @@
                                         <p>Compost Barn:</p>
                                         <select class="select-filtro" disabled onchange="mostrarCompost(selectCompost.value)" id="selectCompost">
                                             <option selected value="#">Selecione um compost barn</option>
-                                            <option value="1">Compost Barn 1</option>
-                                            <option value="2">Compost Barn 2</option>
-                                            <option value="3">Compost Barn 3</option>
-                                            <option value="4">Compost Barn 4</option>
+                                            <option value="1000">Compost Barn 1</option>
+                                            <option value="1001">Compost Barn 2</option>
+                                            <option value="1002">Compost Barn 3</option>
+                                            <option value="1003">Compost Barn 4</option>
                                         </select>
                                     </div>
                                     <div class="itemDetalhe">
@@ -227,23 +227,23 @@
                 <div class="div-sublinha">
                     <div class="div-kpi">
                         <h2>Maior nível registrado</h2>
-                        <p>63% às 17:00</p>
+                        <p id="kpiMaiorNivelRegistrado"></p>
                     </div>
                     <div class="div-kpi">
                         <h2>Nível médio registrado</h2>
-                        <p>54%</p>
+                        <p id="kpiNivelMedioRegistrado"></p>
                     </div>
                     <div class="div-kpi">
                         <h2>Nível mínimo registrado</h2>
-                        <p>38%</p>
+                        <p id="kpiNivelMinimoRegistrado"></p>
                     </div>
                     <div class="div-kpi">
                         <h2>Sensores acima do ideal atualmente</h2>
-                        <p>0</p>
+                        <p id="kpiSensoresAcima"></p>
                     </div>
                     <div class="div-kpi">
                         <h2>Qtd. de alertas no total</h2>
-                        <p>3</p>
+                        <p id="kpiTotalAlertas"></p>
                     </div>
                 </div>
                 <!-- <div class="div-sublinha">

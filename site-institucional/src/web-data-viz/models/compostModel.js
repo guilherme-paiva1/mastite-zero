@@ -1,15 +1,30 @@
 var database = require("../database/config");
 
-function buscarCompostsPorFazenda(fazendaId) {
+function buscarDadosPorFazenda(fazendaId, compostId) {
 
   var instrucaoSql = `
-                      SELECT 
-                  data_hora AS "Data do Registro", 
-                  umidade AS "Maior Umidade Registrada",
-                (SELECT avg(umidade) FROM Dados_sensor WHERE fk_sensor = id_sensor) as "Nível médio registrado",
-                  (SELECT min(umidade) FROM Dados_sensor WHERE fk_sensor = id_sensor) as "Nível mínimo registrado",
-                  (SELECT count(id_dado) FROM Dados_sensor WHERE fk_sensor = id_sensor AND umidade < 30) as "Sensores acima do ideal atualmente",
-                  (SELECT count(id_dado) FROM Dados_sensor WHERE fk_sensor = id_sensor AND umidade > 30) as "Quantidade de alertas no total"
+                 SELECT 
+					MAX(data_hora) AS "dtRegistro", 
+					MAX(umidade ) AS "maiorUmidade",
+					
+          (SELECT avg(umidade) 
+						FROM Dados_sensor 
+                        WHERE fk_sensor = id_sensor 
+                        AND DATE(data_hora) = CURDATE()) as "nivelMedio",
+					(SELECT min(umidade) 
+						FROM Dados_sensor 
+                        WHERE fk_sensor = id_sensor
+                        AND DATE(data_hora) = CURDATE()) as "nivelMinimo",
+                    (SELECT count(id_dado) 
+						FROM Dados_sensor 
+                        WHERE fk_sensor = id_sensor 
+                        AND umidade < 30
+                        AND DATE(data_hora) = CURDATE()) as "sensoresAcima",
+                    (SELECT count(id_dado) 
+						FROM Dados_sensor 
+                        WHERE fk_sensor = id_sensor 
+                        AND umidade > 30
+                        AND DATE(data_hora) = CURDATE()) as "qtdAlertas"
               FROM 
                   Compost_barn
               JOIN 
@@ -17,9 +32,13 @@ function buscarCompostsPorFazenda(fazendaId) {
               JOIN 
                   Dados_sensor ON fk_sensor = id_sensor
               WHERE 
-                  fk_fazenda ='${fazendaId}'
+                  fk_fazenda = ${fazendaId}
+                  AND id_cb = ${compostId}
+                  AND DATE(data_hora) = CURDATE()
+              GROUP BY
+                  id_sensor
               ORDER BY 
-                  umidade DESC, data_hora DESC
+                  "maiorUmidade" DESC
               LIMIT 1;
                       `
 
@@ -37,6 +56,6 @@ function cadastrar(areaM2, dataUltimaManutencao, fazendaId) {
 
 
 module.exports = {
-  buscarCompostsPorFazenda,
+  buscarDadosPorFazenda,
   cadastrar
 }

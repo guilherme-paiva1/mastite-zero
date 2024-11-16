@@ -38,9 +38,9 @@ var dataAtual = new Date()
                     if(elementoAtual.id == "selectFazenda"){
                         console.log(elementoAtual.value);
                         sessionStorage.FK_FAZENDA = elementoAtual.value;
-                        setInterval(()=> {
+                        var reqFazenda = setInterval(()=> {
                             buscarDadosFazenda(fkEmpresa, sessionStorage.FK_FAZENDA);
-                        }, 2000)
+                        }, 2000);
                     }
                 }
                 
