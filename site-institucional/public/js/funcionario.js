@@ -224,7 +224,7 @@ function excluirUsuario(idFuncionario) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      // atributo do JSON recebe a id do usuário logado atualmente, ou seja, o supervisor
+      //recebe o funcionário a ser excluído
       idFuncionario: idFuncionario,
     }),
   })

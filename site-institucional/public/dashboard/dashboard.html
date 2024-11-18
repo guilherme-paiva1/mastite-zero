@@ -31,8 +31,10 @@
                             <button onclick="detalharDashboard()" class="a-nav selected">
                                 <span>Dashboard</span>
                                 <span id="spanIconeDetalhar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
                                     </svg>
                                 </span>
                             </button>
@@ -40,7 +42,8 @@
                                 <div class="divItens">
                                     <div class="itemDetalhe">
                                         <p>Fazenda:</p>
-                                        <select class="select-filtro" onchange="mostrarFazenda(selectFazenda.value)" id="selectFazenda">
+                                        <select class="select-filtro" onchange="mostrarFazenda(selectFazenda.value)"
+                                            id="selectFazenda">
                                             <option selected value="#">Selecione uma fazenda</option>
                                             <option value="1">Fazenda 1</option>
                                             <option value="2">Fazenda 2</option>
@@ -49,21 +52,18 @@
                                     </div>
                                     <div class="itemDetalhe">
                                         <p>Compost Barn:</p>
-                                        <select class="select-filtro" disabled onchange="mostrarCompost(selectCompost.value)" id="selectCompost">
+                                        <select class="select-filtro" disabled
+                                            onchange="mostrarCompost(selectCompost.value)" id="selectCompost">
                                             <option selected value="#">Selecione um compost barn</option>
-                                            <option value="1000">Compost Barn 1</option>
-                                            <option value="1001">Compost Barn 2</option>
-                                            <option value="1002">Compost Barn 3</option>
-                                            <option value="1003">Compost Barn 4</option>
                                         </select>
                                     </div>
                                     <div class="itemDetalhe">
                                         <p>Grupo:</p>
-                                        <select class="select-filtro" disabled onchange="mostrarGrupo(selectGrupo.value)" id="selectGrupo">
+                                        <select class="select-filtro" disabled
+                                            onchange="mostrarGrupo(selectGrupo.value)" id="selectGrupo">
                                             <option selected value="#">Selecione o grupo</option>
                                             <option value="norte">Grupo Norte</option>
                                             <option value="leste">Grupo Leste</option>
-                                            <!-- <option value="central">Grupo Central</option> -->
                                             <option value="oeste">Grupo Oeste</option>
                                             <option value="sul">Grupo Sul</option>
                                         </select>
@@ -96,10 +96,11 @@
     </div>
 
     <div class="container-conteudo" id="telaInicial">
-        <div class="div-conteudo dashboard"  id="tela-inicial-dash">
+        <div class="div-conteudo dashboard" id="tela-inicial-dash">
             <div class="dash-cabecalho">
                 <h1><span class="titulo-dash">Bem vindo de volta, <span id="b_usuario">usuário</span>!</span></h1>
-                <div class="div-texto">Selecione uma fazenda na barra de navegação acima para visualizar a dashboard correspondente.</div>
+                <div class="div-texto">Selecione uma fazenda na barra de navegação acima para visualizar a dashboard
+                    correspondente.</div>
             </div>
             <div class="div-img">
                 <img src="../assets/img_vacas_cb3.jpeg" alt="">
@@ -135,37 +136,20 @@
                     <div class="div-kpi">
                         <h2>Quantidade de alertas acima de 60%</h2>
                         <p id="alertasSessenta"></p>
-                    </div>    
+                    </div>
                     <div class="div-kpi">
                         <h2>Quantidade de alertas abaixo de 45%</h2>
                         <p id="alertasQuarentaECinco"></p>
                     </div>
                 </div>
-                <!-- <div class="div-sublinha">
-                     <div class="div-kpi">
-                        <h2>TemplateKPI</h2>
-                        <p>TemplateKPI</p>
-                    </div>
-                </div> -->
             </div>
-             <div class="div-linha">
+            <div class="div-linha">
                 <div class="div-sublinha">
                     <div class="div-grafico">
                         <canvas height="200px" id="grafico_fazenda"></canvas>
                     </div>
                 </div>
-
-                <!-- <div class="div-sublinha">
-                    <div class="div-grafico">
-                        <canvas height="100px" id=""></canvas>
-                    </div>
-                </div> -->
             </div>
-            <!-- <div class="div-linha">
-                <div class="div-grafico">
-                    <canvas height="100px" id=""></canvas>
-                </div>
-            </div> -->
         </div>
     </div>
 
@@ -182,7 +166,8 @@
                     </button>
                 </div>
                 <div>
-                    <span id="spanNumeroCompost" class="titulo-dash"></span><span id="titulo_dashboard_compost" class="titulo-dash"></span>
+                    <span id="spanNumeroCompost" class="titulo-dash"></span><span id="titulo_dashboard_compost"
+                        class="titulo-dash"></span>
                 </div>
             </div>
             <div class="div-linha">
@@ -295,12 +280,6 @@
                 </div>
             </div>
             <div class="div-linha">
-                <!-- <div class="div-sublinha">
-                    <div class="div-kpi">
-                        <h2>Taxa de mudança de umidade</h2>
-                        <p>Rápida/Lenta</p>
-                    </div>
-                </div> -->
                 <div class="div-sublinha">
                     <div class="div-kpi">
                         <h2>Sensores fora do padrão <br>(40-60%)</h2>
@@ -316,42 +295,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="div-linha">
-                <div class="div-sublinha">
-                    <div class="div-grafico">
-                        <canvas height="200px" id=""></canvas>
-                    </div>
-                </div>
-
-                <div class="div-sublinha">
-                    <div class="div-grafico">
-                        <canvas height="100px" id=""></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="div-linha">
-                <div class="div-grafico">
-                    <canvas height="100px" id=""></canvas>
-                </div>
-            </div> -->
         </div>
-    </div>
-
-    <!-- 
-            <div class="div-conteudo informacao">
-                <div class="opcao-barn">
-                    <select id="opcaoDadoBarn">
-                        <option value="Compost1">Compost 1</option>
-                        <option value="Compost2">Compost 2</option>
-                        <option value="Compost3">Compost 3</option>
-                        <option value="Compost4">Compost 4</option>
-                        <option value="VisaoGeral">Visão geral</option>
-                    </select>
-                </div>
-            </div>
-    -->
-
-    </div>
     </div>
 
     <div class="footer">
@@ -361,6 +305,7 @@
     </div>
 
 </body>
+
 </html>
 
 <script src="../js/dash-fazenda.js"></script>

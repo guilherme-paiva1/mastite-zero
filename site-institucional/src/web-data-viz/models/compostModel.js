@@ -45,9 +45,20 @@ function buscarDadosPorFazenda(fazendaId, compostId) {
   return database.executar(instrucaoSql);
 }
 
+function listarPorFazenda(fkFazenda) {
+  var instrucaoSql = `
+    SELECT id_cb, apelido FROM Compost_barn 
+      WHERE fk_fazenda = ${fkFazenda}`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+
+}
+
 function cadastrar(areaM2, dataUltimaManutencao, fazendaId) {
   
-  var instrucaoSql = `INSERT INTO (area_m2, data_ultima_manutencao, fk_fazenda) Compost_barn VALUES (${areaM2}, ${dataUltimaManutencao}, ${fazendaId})`;
+  var instrucaoSql = `INSERT INTO Compost_barn (area_m2, data_ultima_manutencao, fk_fazenda) VALUES 
+    ('${areaM2}', '${dataUltimaManutencao}', '${fazendaId}')`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -56,5 +67,6 @@ function cadastrar(areaM2, dataUltimaManutencao, fazendaId) {
 
 module.exports = {
   buscarDadosPorFazenda,
+  listarPorFazenda,
   cadastrar
 }

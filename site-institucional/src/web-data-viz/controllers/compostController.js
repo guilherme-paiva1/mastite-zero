@@ -4,8 +4,6 @@ function buscarDadosPorFazenda(req, res) {
   var fazendaId = req.params.idFazenda;
   var compostId = req.params.idCompost;
 
-
-
   compostModel.buscarDadosPorFazenda(fazendaId, compostId).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
@@ -19,6 +17,23 @@ function buscarDadosPorFazenda(req, res) {
   });
 }
 
+function listarPorFazenda(req, res) {
+  var fazendaId = req.body.idFazendaServer;
+  console.log('No controller:' + fazendaId)
+
+  compostModel.listarPorFazenda(fazendaId)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).json([]);
+      }
+    }).catch(function (erro) {
+      console.log(erro);
+      console.log("Houve um erro ao buscar os compost barns: ", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function cadastrar(req, res) {
   var areaM2 = req.body.areaM2;
@@ -51,5 +66,6 @@ function cadastrar(req, res) {
 
 module.exports = {
   buscarDadosPorFazenda,
+  listarPorFazenda,
   cadastrar
 }

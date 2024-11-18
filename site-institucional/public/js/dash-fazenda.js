@@ -1,3 +1,4 @@
+listarPorFazenda(sessionStorage.FK_FAZENDA);
 var reqCompost = null;
 
 var dataAtual = new Date()
@@ -23,26 +24,26 @@ function mostrarCompost(idCompost) {
         selectGrupo.value = '#';
 
 
-        var fkEmpresa = sessionStorage.getItem("FK_EMPRESA");
+        var fkEmpresa = sessionStorage.FK_EMPRESA;
         var fkFazenda = Number(document.getElementById("selectFazenda").value);
 
 
-                if(fkEmpresa == null || fkEmpresa == undefined){
-                    // location.replace("/cadastrar.html");
-                }else{
-                    var idCompost = Number(document.getElementById("selectCompost").value);
-                        console.log(idCompost);
+        if (fkEmpresa == null || fkEmpresa == undefined) {
+            // location.replace("/cadastrar.html");
+        } else {
+            var idCompost = Number(document.getElementById("selectCompost").value);
+            console.log(idCompost);
 
-                        if(reqCompost != null){
-                            clearInterval(reqCompost);
-                        }
-
-                        reqCompost = setInterval(()=> {
-                            buscarDadosCompost(fkFazenda,idCompost);
-                        }, 2000);   
-                    }
-                }
+            if (reqCompost != null) {
+                clearInterval(reqCompost);
             }
+
+            reqCompost = setInterval(() => {
+                buscarDadosCompost(fkFazenda, idCompost);
+            }, 2000);
+        }
+    }
+}
 
 var graficoBarraFazenda = new Chart(document.getElementById('grafico_fazenda').getContext('2d'), {
     data: {
@@ -76,52 +77,92 @@ var graficoBarraFazenda = new Chart(document.getElementById('grafico_fazenda').g
     }
 })
 
-async function buscarDadosCompost(idFazenda,idCompost){
+async function buscarDadosCompost(idFazenda, idCompost) {
     console.log(idFazenda);
     await fetch(`/compost/buscar/${idCompost}/${idFazenda}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
-        }).then((resposta) => {
-        if(resposta.ok){
-            if(resposta.status == 204){
-                kpiMaiorNivelRegistrado.innerHTML = "Sem sensores na atual compost barn"; 
+    }).then((resposta) => {
+        if (resposta.ok) {
+            if (resposta.status == 204) {
+                kpiMaiorNivelRegistrado.innerHTML = "Sem sensores na atual compost barn";
                 kpiMaiorNivelRegistrado.innerHTML = "Sem sensores na atual compost barn";
                 kpiNivelMedioRegistrado.innerHTML = "Sem sensores na atual compost barn";
                 kpiNivelMinimoRegistrado.innerHTML = "Sem sensores na atual compost barn";
-                
-                kpiSensoresAcima.innerHTML =  "Sem sensores na atual compost barn";
-                kpiTotalAlertas.innerHTML =  "Sem sensores na atual compost barn";
-            }else{
-                resposta.json().then((dados)=> {
+
+                kpiSensoresAcima.innerHTML = "Sem sensores na atual compost barn";
+                kpiTotalAlertas.innerHTML = "Sem sensores na atual compost barn";
+            } else {
+                resposta.json().then((dados) => {
                     for (var index = 0; index < dados.length; index++) {
                         var dado = dados[index];
-    
+
                         console.log(dado);
-    
+
                         kpiMaiorNivelRegistrado.innerHTML = `${Number(dado.umidadeMaxima).toFixed(2)}% ás `;
                         kpiMaiorNivelRegistrado.innerHTML += dado.dataUmidadeMaxima.substring(11, 19);
                         kpiNivelMedioRegistrado.innerHTML = `${Number(dado.nivelMedio).toFixed(2)}%`;
                         kpiNivelMinimoRegistrado.innerHTML = `${Number(dado.nivelMinimo).toFixed(2)}%`;
-                        
+
                         kpiSensoresAcima.innerHTML = dado.sensoresAcima;
-    
+
                         kpiTotalAlertas.innerHTML = dado.qtdAlertas;
-    
-                       /*  if(dado.umidadeMedia == null){
-                            umidadeMedia.innerHTML = "0%"
-                        }else{
-                            umidadeMedia.innerHTML = `${Number(dado.umidadeMedia).toFixed(2)}%`
-                        } */
-                    } 
-                   console.log(dados);
+
+                        /*  if(dado.umidadeMedia == null){
+                             umidadeMedia.innerHTML = "0%"
+                         }else{
+                             umidadeMedia.innerHTML = `${Number(dado.umidadeMedia).toFixed(2)}%`
+                         } */
+                    }
+                    console.log(dados);
                 })
             }
-        }else{
+        } else {
             console.log("Deu tudo errado")
         }
-        }).catch((erro) => {
+    }).catch((erro) => {
         console.log(erro);
+    })
+}
+
+function listarPorFazenda(idFazenda) {
+    console.log('No front:' + idFazenda);
+    fetch("/compost/listarPorFazenda", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idFazendaServer: idFazenda
         })
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    var tamanho_lista = json.length;
+                    var estrutura = '';
+
+                    for (var i = 0; i < tamanho_lista; i++) {
+                        var idCompost = json[i].id_cb;
+                        var apelidoCompost = json[i].apelido;
+
+                        estrutura += 
+                        `<option value="${idCompost}">${apelidoCompost}</option>`;
+                    }
+                    selectCompost.innerHTML += estrutura;
+                });
+
+            } else {
+                console.log('Não listou os composts');
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+    return false;
 }
