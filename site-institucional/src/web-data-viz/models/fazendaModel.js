@@ -35,35 +35,52 @@ function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
     var segundoAtual = dataAtual.getSeconds();
 
     var instrucaoSql = `
-        SELECT f.id_fazenda as idFazenda, 
-		f.nome as nome, 
-        f.fk_endereco as fkEndereco, 
-        f.fk_empresa as fkEmpresa,
-        
-        (SELECT count(id_cb) FROM Compost_barn
-			JOIN Sensor 
-				ON id_cb = fk_cb 
-		    JOIN Dados_sensor 
-				ON fk_sensor = id_sensor 
-            
-		WHERE umidade > 60 AND data_hora LIKE '${anoAtual}-${mesAtual}-${diaAtual} ${horaAtual}:${minutoAtual}:${segundoAtual}') as qtdCompost,
-        
-        (SELECT avg(umidade) FROM Sensor 
-			JOIN Dados_sensor ON fk_sensor = id_sensor 
-		WHERE fk_cb = id_cb) as umidadeMedia,
+                        SELECT 
+                    f.id_fazenda AS idFazenda, 
+                    f.nome AS nome, 
+                    f.fk_endereco AS fkEndereco, 
+                    f.fk_empresa AS fkEmpresa,
+                    
+                    
+                    (SELECT COUNT(DISTINCT cb.id_cb) 
+                    FROM Compost_barn cb
+                    JOIN Sensor s ON cb.id_cb = s.fk_cb
+                    JOIN Dados_sensor ds ON s.id_sensor = ds.fk_sensor
+                    WHERE cb.fk_fazenda = f.id_fazenda 
+                    AND ds.umidade > 60 
+                    AND ds.data_hora > NOW() - INTERVAL 7 SECOND) AS qtdCompost,
+					
 
-        (SELECT count(umidade) FROM Sensor 
-			JOIN Dados_sensor ON fk_sensor = id_sensor 
-		WHERE fk_cb = id_cb AND umidade > 60) as alertasSessenta,
+                    
+                    (SELECT AVG(ds.umidade) 
+                    FROM Sensor s
+                    JOIN Dados_sensor ds ON s.id_sensor = ds.fk_sensor
+                    WHERE s.fk_cb IN (SELECT id_cb FROM Compost_barn WHERE fk_fazenda = f.id_fazenda)
+                    AND DATE(ds.data_hora) = CURDATE()) AS umidadeMedia,
 
-        (SELECT count(umidade) FROM Sensor 
-			JOIN Dados_sensor ON fk_sensor = id_sensor 
-		WHERE fk_cb = id_cb AND umidade < 45) as alertasQuarentaECinco
-        
+                    
+                    (SELECT COUNT(ds.umidade) 
+                    FROM Sensor s
+                    JOIN Dados_sensor ds ON s.id_sensor = ds.fk_sensor
+                    WHERE s.fk_cb IN (SELECT id_cb FROM Compost_barn WHERE fk_fazenda = f.id_fazenda)
+                    AND ds.umidade > 60
+                    AND DATE(ds.data_hora) = CURDATE()) AS alertasSessenta,
 
-        FROM Fazenda as f
-		JOIN Compost_barn ON fk_fazenda = f.id_fazenda
-                WHERE fk_empresa = ${fkEmpresa} AND id_fazenda = ${idFazenda};
+                    
+                    (SELECT COUNT(ds.umidade) 
+                    FROM Sensor s
+                    JOIN Dados_sensor ds ON s.id_sensor = ds.fk_sensor
+                    WHERE s.fk_cb IN (SELECT id_cb FROM Compost_barn WHERE fk_fazenda = f.id_fazenda)
+                    AND ds.umidade < 45
+                    AND DATE(ds.data_hora) = CURDATE()) AS alertasQuarentaECinco
+
+                FROM 
+                    Fazenda f
+                JOIN 
+                    Compost_barn cb ON cb.fk_fazenda = f.id_fazenda
+                WHERE 
+                    f.id_fazenda = ${idFazenda};
+
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
