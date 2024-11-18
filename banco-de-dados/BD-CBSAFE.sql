@@ -133,39 +133,6 @@ SELECT e.nome_fantasia as 'Empresa', f.nome as 'Funcionário', s.nome as 'Superv
 		ON e.id_empresa = f.fk_empresa
 	JOIN Usuario as s
 		ON s.id_usuario = f.fk_supervisor;
-        
-/* CREATE TABLE Log_login(
-	id_log_login INT AUTO_INCREMENT,
-	data_ultimo_acesso DATETIME,
-	fk_usuario INT UNIQUE,
-	fk_empresa INT,
-		CONSTRAINT PRIMARY KEY(id_log_login, fk_usuario, fk_empresa),
-		
-		CONSTRAINT fk_log_usuario
-			FOREIGN KEY (fk_usuario)
-				REFERENCES Usuario(id_usuario),
-		
-		CONSTRAINT fk_log_empresa
-			FOREIGN KEY (fk_empresa)
-				REFERENCES Empresa(id_empresa)
-);
-
-INSERT INTO Log_login (data_ultimo_acesso, fk_usuario, fk_empresa) VALUES
-("2019-10-09 18:10:59", 1, 1),
-("2021-05-10 21:09:40", 2, 2),
-("2022-09-30 22:10:35", 3, 2),
-("2024-05-03 17:30:30", 4, 3);
-
-SELECT * FROM Log_login
-	WHERE data_ultimo_acesso LIKE "2024%";
-    
-SELECT l.data_ultimo_acesso as "Ultimo acesso", u.nome as "Usuario", u.email as "Email", e.nome_fantasia as "Empresa"
-	FROM Log_login AS l
-	JOIN Usuario AS u
-		ON l.fk_usuario = u.id_usuario
-	JOIN Empresa AS e
-		ON e.id_empresa = l.fk_empresa
-    WHERE e.razao_social = "Grupo Compost Barn S/A"; */
 
 -- CRIAR TABELA Compost_barn
 CREATE TABLE Compost_barn (
@@ -179,28 +146,24 @@ CREATE TABLE Compost_barn (
 			REFERENCES Fazenda (id_fazenda)
 ) AUTO_INCREMENT = 1000;
 
+SELECT id_cb, apelido FROM Compost_barn WHERE fk_fazenda = 2;
+
+ALTER TABLE Compost_barn ADD COLUMN apelido VARCHAR(45);
+
 -- INSERIR VALORES NA TABELA
 INSERT INTO Compost_barn (area_m2, data_ultima_manutencao, fk_fazenda) VALUES
 	('1100', '2024-03-15', 1),
     ('1500', '2024-05-20', 2),
 	('1000', '2024-09-02', 3),
 	('1200', '2024-02-17', 4);
-    
-/* 
--- EXIBIR TODOS OS DADOS DA TABELA
-SELECT * FROM Compost_barn;
 
--- EXIBIR TODOS OS DADOS DA TABELA EM QUE A DATA É 2 MESES DA DATA ATUAL
-SELECT * FROM Compost_barn 
-	WHERE data_ultima_manutencao < '2024-07-04';
-    
-SELECT 
-	Empresa.nome_fantasia, 
-	Compost_barn.area_m2,
-    Compost_barn.data_ultima_manutencao 
-		FROM Empresa
-		JOIN Compost_barn 
-			ON id_empresa = fk_empresa; */
+UPDATE Compost_barn SET apelido = 'CB Girolanda' WHERE id_cb = 1000;
+UPDATE Compost_barn SET apelido = 'CB Gir' WHERE id_cb = 1001;
+UPDATE Compost_barn SET apelido = 'CB Holandesa' WHERE id_cb = 1002;
+UPDATE Compost_barn SET apelido = 'CB Jersey' WHERE id_cb = 1003;
+
+INSERT INTO Compost_barn (area_m2, data_ultima_manutencao, apelido, fk_fazenda) VALUES
+	('800', '2024-07-18', 'CB Variado', 1)
 
 -- CRIAR TABELA SENSOR
 CREATE TABLE Sensor(
