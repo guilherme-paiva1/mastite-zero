@@ -71,7 +71,7 @@ function listarFuncionarios() {
                 <h1>Você tem certeza que deseja excluir esse funcionario?</h1>
                 <div class="container-botao-confirmacao">
                   <button onclick="excluirUsuario(${idFuncionario})">Sim</button>
-                  <button onclick="negarExclusao()">Não</button>
+                  <button onclick="negarExclusao(${idFuncionario})">Não</button>
                 </div>
              </div>
             </div>`
@@ -204,10 +204,8 @@ function fecharModal() {
 
 function abrirModalExcluirUsuario(idFuncionario) {
   var textoModal = 'modalExcluirUsuario' + idFuncionario;
-  console.log(textoModal);
 
   var modal = document.getElementById(textoModal);
-  console.log(modal);
 
   window.onclick = function (event) {
     if (event.target == modal) {
@@ -248,8 +246,10 @@ function excluirUsuario(idFuncionario) {
   return false;
 }
 
-function negarExclusao() {
-  var modal = modalExcluirUsuario;
+function negarExclusao(idFuncionario) {
+  var textoModal = 'modalExcluirUsuario' + idFuncionario;
+
+  var modal = document.getElementById(textoModal);
 
   modal.style.display = "none";
 }
