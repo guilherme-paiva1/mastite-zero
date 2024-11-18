@@ -52,7 +52,7 @@ const serial = async (
         const valores = data.split(';');
         const sensorAnalogico = parseFloat(valores[0]);
         const fkSensor = parseInt(valores[1]);
-
+        console.log(sensorAnalogico)
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
 

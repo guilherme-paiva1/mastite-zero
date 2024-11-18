@@ -100,9 +100,8 @@ async function buscarDadosCompost(idFazenda,idCompost){
     
                         console.log(dado);
     
-                        kpiMaiorNivelRegistrado.innerHTML = `${Number(dado.maiorUmidade).toFixed(2)}% ás `;
-                        kpiMaiorNivelRegistrado.innerHTML += dado.dtRegistro.substring(11, 19);
-    
+                        kpiMaiorNivelRegistrado.innerHTML = `${Number(dado.umidadeMaxima).toFixed(2)}% ás `;
+                        kpiMaiorNivelRegistrado.innerHTML += dado.dataUmidadeMaxima.substring(11, 19);
                         kpiNivelMedioRegistrado.innerHTML = `${Number(dado.nivelMedio).toFixed(2)}%`;
                         kpiNivelMinimoRegistrado.innerHTML = `${Number(dado.nivelMinimo).toFixed(2)}%`;
                         
