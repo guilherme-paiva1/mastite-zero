@@ -19,7 +19,6 @@ function buscarDadosPorFazenda(req, res) {
 
 function listarPorFazenda(req, res) {
   var fazendaId = req.body.idFazendaServer;
-  console.log('No controller:' + fazendaId)
 
   compostModel.listarPorFazenda(fazendaId)
     .then((resultado) => {

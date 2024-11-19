@@ -87,9 +87,20 @@ function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
     return database.executar(instrucaoSql);
 }
 
+function listarPelaEmpresa (fkEmpresa) {
+    var instrucaoSql = `
+        SELECT id_fazenda, nome FROM Fazenda
+            WHERE fk_empresa = ${fkEmpresa};    
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
 
 module.exports = {
     buscarFazendaPeloFkEndereco,
     cadastrarFazenda,
-    buscarFazendaPelaFkEmpresa
+    buscarFazendaPelaFkEmpresa,
+    listarPelaEmpresa
 }

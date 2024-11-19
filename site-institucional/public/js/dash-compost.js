@@ -19,6 +19,8 @@ var dataAtual = new Date()
                 selectCompost.value = '#';
                 selectGrupo.value = '#';
             } else {
+                sessionStorage.FK_FAZENDA = idFazenda;
+                listarPorFazenda(sessionStorage.FK_FAZENDA); 
                 selectCompost.disabled = false;
                 spanNumeroFazenda.innerHTML = `Fazenda ${idFazenda}`;
                 dashFazenda.style.display = 'flex';
@@ -27,7 +29,7 @@ var dataAtual = new Date()
                 dashGrupo.style.display = 'none';
                 selectCompost.value = '#';
                 selectGrupo.value = '#';
-                var fkEmpresa = sessionStorage.getItem("FK_EMPRESA");
+                var fkEmpresa = sessionStorage.FK_EMPRESA;
 
                 if(fkEmpresa == null || fkEmpresa == undefined){
                     // location.replace("/cadastrar.html");

@@ -1,4 +1,3 @@
-listarPorFazenda(sessionStorage.FK_FAZENDA);
 var reqCompost = null;
 
 var dataAtual = new Date()
@@ -10,7 +9,7 @@ titulo_dashboard_fazenda.innerHTML = `Dados - ${diaAtual}/${mesAtual}/${anoAtual
 legenda_dashboard_fazenda.innerHTML = `Dados da fazenda referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
 
 function mostrarCompost(idCompost) {
-
+    
     if (idCompost == "#") {
         selectCompost.disabled = true;
         selectGrupo.disabled = true;
@@ -143,8 +142,8 @@ function listarPorFazenda(idFazenda) {
             if (resposta.ok) {
                 resposta.json().then(json => {
                     var tamanho_lista = json.length;
-                    var estrutura = '';
-
+                    var estrutura = '<option selected value="#">Selecione um Compost Barn</option>';
+                    
                     for (var i = 0; i < tamanho_lista; i++) {
                         var idCompost = json[i].id_cb;
                         var apelidoCompost = json[i].apelido;
@@ -152,7 +151,7 @@ function listarPorFazenda(idFazenda) {
                         estrutura += 
                         `<option value="${idCompost}">${apelidoCompost}</option>`;
                     }
-                    selectCompost.innerHTML += estrutura;
+                    selectCompost.innerHTML = estrutura;
                 });
 
             } else {

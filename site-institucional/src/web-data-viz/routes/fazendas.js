@@ -9,6 +9,10 @@ router.post("/cadastrar", function (req, res) {
 
 router.get("/buscar/:fkEmpresa/:idFazenda", function (req, res) {
     fazendaController.buscarFazendaPeloFkEmpresa(req, res);
-})
+});
+
+router.post("/listarPorEmpresa", function (req, res) {
+    fazendaController.listarPelaEmpresa(req, res);
+});
 
 module.exports = router;
