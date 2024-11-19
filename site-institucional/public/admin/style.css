@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #63B1BC;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+h1 {
+    color: #1F2A44;
+}
+
+textarea[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 400px;
+}
+
+select,
+button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #ED145B;
+    color: #FFFFFF;
+    border: none;
+}
+
+button:hover {
+    background-color: #EFB661;
+}
+
+#resposta {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #D0D3D4;
+    border: 1px solid #63666A;
+    text-align: left;
+    display: none;
+}
+
+/* CBSAFE - NAVBAR */
+
+.header {
+    height: 85px;
+    display: flex;
+    gap: 20px;
+    color: #EEF7E6;
+    background-color: #1f2a44;
+    margin-bottom: 20px;
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.logo {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    align-items: center;
+}
+
+.logo img {
+    width: auto;
+    height: 60%;
+}
+
+.a-nav {
+    font-size: 15px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+
+}
+
+.a-logo {
+    width: 300px;
+    height: 100px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.a-nav:hover {
+    opacity: 1;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.a-nav.selected {
+    opacity: 1;
+    font-weight: bold;
+}
+
+.link-navbar {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}

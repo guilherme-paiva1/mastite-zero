@@ -1094,3 +1094,21 @@ select:disabled {
 .container-botao-confirmacao button:hover {
     cursor: pointer;
 }
+
+/* PAGINA ADMIN */
+
+.corpo-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.corpo-admin img{
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.admin {
+    height: 100%;
+}
