@@ -1,16 +1,18 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(grupo, limite_linhas) {
-
+function buscarUltimasMedidas(grupo, fkCompost) {
+    console.log(grupo);
 var instrucaoSql = `
                                                 
-                        SELECT 
+                       SELECT 
                             umidade,
                             data_hora,
+                            
                             (SELECT COUNT(id_sensor) FROM Sensor
                             WHERE grupo = '${grupo}'
                             AND (umidade > 60 OR umidade < 40)
                             ) as sensoresFora,
+                            
                             (SELECT AVG(umidade) FROM Dados_sensor
                             WHERE fk_sensor = id_sensor
                             AND (data_hora BETWEEN NOW() - INTERVAL 5 DAY AND NOW())) as mediaGrupo
@@ -19,8 +21,9 @@ var instrucaoSql = `
                             Sensor
                         JOIN 
                             Dados_sensor ON id_sensor = fk_sensor
-						WHERE grupo = '${grupo}'                        
-                        AND data_hora = CURDATE()
+						WHERE grupo = '${grupo}'
+                        AND fk_cb = ${fkCompost}
+                        ORDER BY data_hora DESC
                         LIMIT 1;
     `;
 

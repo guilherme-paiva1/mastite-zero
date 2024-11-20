@@ -65,7 +65,7 @@ var dataAtual = new Date()
                 } 
 
                 reqGrupo = setInterval(() => {
-                    buscarDadosGrupo(nome)
+                    buscarDadosGrupo(idGrupo)
                 }, 2000);
 
 
@@ -293,7 +293,8 @@ var dataAtual = new Date()
         });
     }
 async function buscarDadosGrupo(grupo){
-    fetch(`/dados_sensor/ultimas/${grupo}`, {
+    var fkCompost = Number(selectCompost.value);
+    fetch(`/dados_sensor/ultimas/${grupo}/${fkCompost}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -306,6 +307,8 @@ async function buscarDadosGrupo(grupo){
                 // alertasQuarentaECinco.innerHTML = "Nenhum sensor cadastrado na atual fazenda.";
                 // umidadeMedia.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
             }else{
+
+
                 resposta.json().then((dados)=> {
                     console.log(`Dados do grupo de sensor ${dados}`)
 
