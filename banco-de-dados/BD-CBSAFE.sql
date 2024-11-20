@@ -144,8 +144,6 @@ CREATE TABLE Compost_barn (
 			REFERENCES Fazenda (id_fazenda)
 ) AUTO_INCREMENT = 1000;
 
-SELECT id_cb, apelido FROM Compost_barn WHERE fk_fazenda = 2;
-
 ALTER TABLE Compost_barn ADD COLUMN apelido VARCHAR(45);
 
 -- INSERIR VALORES NA TABELA
@@ -159,6 +157,8 @@ UPDATE Compost_barn SET apelido = 'CB Girolanda' WHERE id_cb = 1000;
 UPDATE Compost_barn SET apelido = 'CB Gir' WHERE id_cb = 1001;
 UPDATE Compost_barn SET apelido = 'CB Holandesa' WHERE id_cb = 1002;
 UPDATE Compost_barn SET apelido = 'CB Jersey' WHERE id_cb = 1003;
+
+SELECT id_cb, apelido FROM Compost_barn WHERE fk_fazenda = 2;
 
 INSERT INTO Compost_barn (area_m2, data_ultima_manutencao, apelido, fk_fazenda) VALUES
 	('800', '2024-07-18', 'CB Variado', 1);
