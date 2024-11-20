@@ -17,11 +17,11 @@ function listarPorEmpresa(idEmpresa) {
                 resposta.json().then(json => {
                     var tamanho_lista = json.length;
                     var estrutura = '';
-
+                    
                     for (var i = 0; i < tamanho_lista; i++) {
                         var idFazenda = json[i].id_fazenda;
                         var nomeFazenda = json[i].nome;
-
+                        
                         estrutura += 
                         `<option value="${idFazenda}">${nomeFazenda}</option>`;
                     }
