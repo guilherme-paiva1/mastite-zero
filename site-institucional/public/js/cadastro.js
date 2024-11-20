@@ -1,4 +1,6 @@
 campos_endereco.style.display = 'none'
+var fkEmpresa = null;
+
 
 var cnpj = "";
 var nomeFantasia = "";
@@ -143,6 +145,12 @@ function cadastrarEmpresa() {
                 var complemento = inputComplemento.value;
 
 
+                resposta.json().then((json) => {
+                    console.log(json);
+                    fkEmpresa = json;
+                });
+                console.log(fkEmpresa);
+
                 if (logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido) {
                     // fetch vai buscar a rota USUARIOS/AUTENTICAR
                     fetch("/enderecos/cadastrar", {
@@ -164,7 +172,6 @@ function cadastrarEmpresa() {
                         console.log("ESTOU NO THEN DO cadastrar empresa!")
 
                         if (resposta.ok) {
-
                             //adicionar fetch AQUI, referenciando /usuarios/cadastrar
                             fetch("/usuarios/cadastrar", {
                                 method: "POST",
@@ -177,7 +184,7 @@ function cadastrarEmpresa() {
                                     email: email,
                                     senha: senha,
                                     idEmpresa: fkEmpresa,
-                                    idFazenda: fkFazenda,
+                                    idFazenda: null,
                                     idSupervisor: null // null ?
                                 }),
                             })
@@ -191,14 +198,13 @@ function cadastrarEmpresa() {
                                         Senha: ${senha} <br>
                                         Anote-as e repasse para o funcionário.
                                         `;
-                                        listarFuncionarios();
+                                        // listarFuncionarios();
                                     } else {
                                         divMensagem.innerHTML = 'Houve um erro ao cadastrar o usuário... T'
                                     }
                                 })
                                 .catch(function (resposta) {
                                     console.log(`#ERRO: ${resposta}`);
-                                    finalizarAguardar();
                                 });
 
                             return false;

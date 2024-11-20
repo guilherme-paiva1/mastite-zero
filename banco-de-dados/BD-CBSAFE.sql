@@ -1,8 +1,6 @@
 DROP DATABASE cbsafe;
 CREATE DATABASE cbsafe;
 USE cbsafe;
-CREATE USER 'svc_cbsafe'@'localhost' IDENTIFIED BY 'Urubu100@';
-GRANT ALL ON cbsafe.* TO 'svc_cbsafe'@'localhost';
 
 
 -- CRIAÇÃO DA TABELA EMPRESA
@@ -88,7 +86,7 @@ CREATE TABLE Usuario (
     fk_supervisor INT,
     fk_empresa INT,
 		fk_fazenda INT,
-    CONSTRAINT PRIMARY KEY (id_usuario, fk_empresa, fk_fazenda),
+    CONSTRAINT PRIMARY KEY (id_usuario, fk_empresa),
         
     CONSTRAINT fk_empresa_user
 		FOREIGN KEY (fk_empresa)
@@ -163,7 +161,7 @@ UPDATE Compost_barn SET apelido = 'CB Holandesa' WHERE id_cb = 1002;
 UPDATE Compost_barn SET apelido = 'CB Jersey' WHERE id_cb = 1003;
 
 INSERT INTO Compost_barn (area_m2, data_ultima_manutencao, apelido, fk_fazenda) VALUES
-	('800', '2024-07-18', 'CB Variado', 1)
+	('800', '2024-07-18', 'CB Variado', 1);
 
 -- CRIAR TABELA SENSOR
 CREATE TABLE Sensor(
