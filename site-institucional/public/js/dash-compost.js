@@ -36,7 +36,6 @@ var dataAtual = new Date()
                     // location.replace("/cadastrar.html");
                 }else{
                     var idFazenda = document.getElementById("selectFazenda").value;
-<<<<<<< HEAD
 
                         if(reqFazenda != null){
                             clearInterval(reqFazenda);
@@ -46,30 +45,17 @@ var dataAtual = new Date()
                         }
                         reqFazenda = setInterval(()=> {
                             buscarDadosFazenda(fkEmpresa, idFazenda);
-=======
-                    
-                    if(reqFazenda != null){
-                        clearInterval(reqFazenda);
-                    }
-                    reqFazenda = setInterval(()=> {
-                        buscarDadosFazenda(fkEmpresa, idFazenda);
->>>>>>> b5fc441ef3b0ea8489ef026152776f621ce79aad
                         }, 2000);
                     }
                 }
             }
-<<<<<<< HEAD
-        function mostrarGrupo (nome) {
-            if (nome == "#") {
-=======
-            function mostrarGrupo (idGrupo) {
+        function mostrarGrupo (idGrupo) {
             if (idGrupo == "#") {
->>>>>>> b5fc441ef3b0ea8489ef026152776f621ce79aad
                 mostrarCompost(selectCompost.value);
                 selectGrupo.value = '#';
             } else {
                 selectGrupo.disabled = false;
-                spanNumeroGrupo.innerHTML = `Grupo ${nome}`;
+                spanNumeroGrupo.innerHTML = `Grupo ${idGrupo}`;
                 dashFazenda.style.display = 'none';
                 dashCompost.style.display = 'none';
                 dashGrupo.style.display = 'flex';
