@@ -30,7 +30,7 @@ var cepValido = false;
 //        }
 //     });
 //     console.log(requisicaoEmpresaValida);
-   
+
 //     console.log(requisicaoEmpresaValida +  " " + requisicaoEnderecoValida);
 // }
 
@@ -80,32 +80,32 @@ function cadastrarEmpresa() {
         inputSenha.style.border = "solid 1px red";
         inputConfirmaSenha.style.border = "solid 1px red";
         return false;
-    } 
-    
+    }
+
     if (senha.length < 4) {
         spanErroSenha.innerHTML = "A senha precisa ter ao menos 4 caracteres"
         spanErroConfirmarSenha.innerHTML = "A senha precisa ter ao menos 4 caracteres"
         inputSenha.style.border = "solid 1px red";
         inputConfirmaSenha.style.border = "solid 1px red";
         return false;
-    } 
-    
+    }
+
     if ((email.length < 7) || email.indexOf("@") < 0 || email.indexOf(".com") < 0) {
         inputEmail.style.border = "solid 1px red";
         spanErroEmail.innerHTML = "Email inválido";
         return false;
-    } 
-    
+    }
+
     if (responsavel.length < 4) {
         spanErroResponsavel.innerHTML = "Representante inválido, mínimo de 4 letras ";
         return false;
-    } 
-    
+    }
+
     if (nomeFantasia.length < 3) {
         spanErroEmpresa.innerHTML = "Nome fantasia inválido, mínimo de 3 letras";
         return false;
-    } 
-    
+    }
+
     if (razaoSocial.length < 3) {
         spanErroRazao.innerHTML = "Razão social inválida, mínimo de 3 letras";
         return false;
@@ -122,7 +122,7 @@ function cadastrarEmpresa() {
             // Agora vá para o arquivo routes/usuario.js
             cnpj: cnpj,
             razaoSocial: razaoSocial,
-            representanteLegal : representanteLegal,
+            representanteLegal: representanteLegal,
             nomeFantasia: nomeFantasia,
             razaoSocial: razaoSocial,
             email: email
@@ -141,9 +141,9 @@ function cadastrarEmpresa() {
                 var estado = selectEstado.value;
                 var numero = inputNumero.value;
                 var complemento = inputComplemento.value;
-                
-                
-                if(logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido ) {
+
+
+                if (logradouroValido && cidadeValida && estadoValido && numeroValido && complementoValido && cepValido) {
                     // fetch vai buscar a rota USUARIOS/AUTENTICAR
                     fetch("/enderecos/cadastrar", {
                         method: "POST",
@@ -158,39 +158,75 @@ function cadastrarEmpresa() {
                             numeroServer: numero,
                             complementoServer: complemento
                         })
-                    
-            
+
+
                     }).then(function (resposta) {
                         console.log("ESTOU NO THEN DO cadastrar empresa!")
-            
+
                         if (resposta.ok) {
-            
+
                             //adicionar fetch AQUI, referenciando /usuarios/cadastrar
-                            divMensagem.innerHTML = `Cadastro realizado com sucesso! Redirecionando para o login`;
-                            console.log(resposta);
-                        } else {
-                            resposta.json().then(json => {
-                                console.error(json);
-                                divMensagem.innerHTML = JSON.parse(json);
-                            });
-            
-                        }
+                            fetch("/usuarios/cadastrar", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    // atributo do JSON recebe a id do usuário logado atualmente, ou seja, o supervisor
+                                    nome: representanteLegal,
+                                    email: email,
+                                    senha: senha,
+                                    idEmpresa: fkEmpresa,
+                                    idFazenda: fkFazenda,
+                                    idSupervisor: null // null ?
+                                }),
+                            })
+                                .then(function (resposta) {
+                                    console.log("resposta: ", resposta);
+
+                                    if (resposta.ok) {
+                                        divMensagem.innerHTML = `
+                                        Funcionário cadastrado com sucesso! Essas são as credenciais de acesso dele: <br>
+                                        Email: ${email} <br>
+                                        Senha: ${senha} <br>
+                                        Anote-as e repasse para o funcionário.
+                                        `;
+                                        listarFuncionarios();
+                                    } else {
+                                        divMensagem.innerHTML = 'Houve um erro ao cadastrar o usuário... T'
+                                    }
+                                })
+                                .catch(function (resposta) {
+                                    console.log(`#ERRO: ${resposta}`);
+                                    finalizarAguardar();
+                                });
+
+                            return false;
+                        divMensagem.innerHTML = `Cadastro realizado com sucesso! Redirecionando para o login`;
+                        console.log(resposta);
+                    } else {
+                        resposta.json().then(json => {
+                            console.error(json);
+                            divMensagem.innerHTML = JSON.parse(json);
+                        });
+
+                    }
                     }).catch(function (erro) {
                         console.log(erro);
-                    })       
-                }else{
-                    console.log("Endereco invalido!")
-                }
+                    })
+}else {
+    console.log("Endereco invalido!")
+}
 
             } else {
-                divMensagem.innerHTML =
-                "Houe um erro ao realizar o cadastro!";
-                throw "Houve um erro ao tentar realizar o cadastro!";
-            }
+    divMensagem.innerHTML =
+        "Houe um erro ao realizar o cadastro!";
+    throw "Houve um erro ao tentar realizar o cadastro!";
+}
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+        .catch (function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+});
 }
 
 
