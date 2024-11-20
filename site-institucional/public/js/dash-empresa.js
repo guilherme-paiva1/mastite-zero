@@ -16,16 +16,16 @@ function listarPorEmpresa(idEmpresa) {
             if (resposta.ok) {
                 resposta.json().then(json => {
                     var tamanho_lista = json.length;
-                    var estrutura = '';
-
+                    var estrutura = `<option value="#">Selecione uma fazenda:</option>`;
+                    
                     for (var i = 0; i < tamanho_lista; i++) {
                         var idFazenda = json[i].id_fazenda;
                         var nomeFazenda = json[i].nome;
-
+                        
                         estrutura += 
                         `<option value="${idFazenda}">${nomeFazenda}</option>`;
                     }
-                    selectFazenda.innerHTML += estrutura;
+                    selectFazenda.innerHTML = estrutura;
                 });
 
             } else {

@@ -24,7 +24,6 @@ var dataAtual = new Date()
                 sessionStorage.FK_FAZENDA = idFazenda;
                 listarPorFazenda(sessionStorage.FK_FAZENDA); 
                 selectCompost.disabled = false;
-                spanNumeroFazenda.innerHTML = `Fazenda ${idFazenda}`;
                 dashFazenda.style.display = 'flex';
                 dashCompost.style.display = 'none';
                 telaInicial.style.display = 'none';
@@ -32,11 +31,12 @@ var dataAtual = new Date()
                 selectCompost.value = '#';
                 selectGrupo.value = '#';
                 var fkEmpresa = sessionStorage.FK_EMPRESA;
-
+                
                 if(fkEmpresa == null || fkEmpresa == undefined){
                     // location.replace("/cadastrar.html");
                 }else{
                     var idFazenda = document.getElementById("selectFazenda").value;
+<<<<<<< HEAD
 
                         if(reqFazenda != null){
                             clearInterval(reqFazenda);
@@ -46,12 +46,25 @@ var dataAtual = new Date()
                         }
                         reqFazenda = setInterval(()=> {
                             buscarDadosFazenda(fkEmpresa, idFazenda);
+=======
+                    
+                    if(reqFazenda != null){
+                        clearInterval(reqFazenda);
+                    }
+                    reqFazenda = setInterval(()=> {
+                        buscarDadosFazenda(fkEmpresa, idFazenda);
+>>>>>>> b5fc441ef3b0ea8489ef026152776f621ce79aad
                         }, 2000);
                     }
                 }
             }
+<<<<<<< HEAD
         function mostrarGrupo (nome) {
             if (nome == "#") {
+=======
+            function mostrarGrupo (idGrupo) {
+            if (idGrupo == "#") {
+>>>>>>> b5fc441ef3b0ea8489ef026152776f621ce79aad
                 mostrarCompost(selectCompost.value);
                 selectGrupo.value = '#';
             } else {
@@ -111,7 +124,7 @@ var dataAtual = new Date()
                         align: 'center'
                     }
                 },
-
+                
                 scales: {
                     x: {
                         beginAtZero: false,
@@ -159,7 +172,7 @@ var dataAtual = new Date()
                 },
             }
         });
-
+        
         
         var umiMediaSemana = new Chart(document.getElementById('umiMediaSemana').getContext('2d'), {
             data: {
@@ -208,44 +221,44 @@ var dataAtual = new Date()
         // Chart.defaults.elements.line.borderDash = [15, 5];
         // Tira os pontos das linhas do gráfico
         Chart.defaults.elements.point.pointStyle = false;
-
+        
         var paginacao = {};
         var tempo = {};
-
+        
         /*  function obterDados(grafico, endpoint) {
-             fetch('http://localhost:3300/sensores/' + endpoint)
-                 .then(response => response.json())
-                 .then(valores => {
-                     if (paginacao[endpoint] == null) {
-                         paginacao[endpoint] = 0;
-                     }
-                     if (tempo[endpoint] == null) {
-                         tempo[endpoint] = 0;
-                     }
- 
-                     var ultimaPaginacao = paginacao[endpoint];
-                     paginacao[endpoint] = valores.length;
-                     valores = valores.slice(ultimaPaginacao);
- 
-                     valores.forEach((valor) => {
-                         if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                             grafico.data.labels.shift();
-                             grafico.data.datasets[0].data.shift();
+            fetch('http://localhost:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                    }
+                    if (tempo[endpoint] == null) {
+                        tempo[endpoint] = 0;
+                        }
+                        
+                        var ultimaPaginacao = paginacao[endpoint];
+                        paginacao[endpoint] = valores.length;
+                        valores = valores.slice(ultimaPaginacao);
+                        
+                        valores.forEach((valor) => {
+                            if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                                grafico.data.labels.shift();
+                                grafico.data.datasets[0].data.shift();
                          }
  
                          grafico.data.labels.push(tempo[endpoint]++);
                          grafico.data.datasets[0].data.push(parseFloat(valor));
                          grafico.update();
-                     });
-                 })
-                 .catch(error => console.error('Erro ao obter dados:', error));
-         }
- 
-         setInterval(() => {
-             obterDados(sensorAnalogico, 'analogico');
-         }, 1500); */
-
-async function buscarDadosFazenda(fkEmpresa, idFazenda){
+                         });
+                         })
+                         .catch(error => console.error('Erro ao obter dados:', error));
+                         }
+                         
+                         setInterval(() => {
+                            obterDados(sensorAnalogico, 'analogico');
+                            }, 1500); */
+                            
+                            async function buscarDadosFazenda(fkEmpresa, idFazenda){
     console.log(idFazenda);
     fetch(`/fazendas/buscar/${fkEmpresa}/${idFazenda}`, {
         method: "GET",
@@ -253,12 +266,12 @@ async function buscarDadosFazenda(fkEmpresa, idFazenda){
             "Content-Type": "application/json"
         }
         }).then((resposta) => {
-        if(resposta.ok){
-            if(resposta.status == 204){
-                qtdCompost.innerHTML = "Nenhum sensor cadastrado na atual fazenda.";
-                alertasSessenta.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
-                alertasQuarentaECinco.innerHTML = "Nenhum sensor cadastrado na atual fazenda.";
-                umidadeMedia.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
+            if(resposta.ok){
+                if(resposta.status == 204){
+                    qtdCompost.innerHTML = "Nenhum sensor cadastrado na atual fazenda.";
+                    alertasSessenta.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
+                    alertasQuarentaECinco.innerHTML = "Nenhum sensor cadastrado na atual fazenda.";
+                    umidadeMedia.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
             }else{
                 resposta.json().then((dados)=> {
                     for (var index = 0; index < dados.length; index++) {
@@ -289,7 +302,7 @@ async function buscarDadosFazenda(fkEmpresa, idFazenda){
         }else{
             console.log("Deu tudo errado")
         }
-        }).catch((erro) => {
+    }).catch((erro) => {
         console.log(erro);
         });
     }
