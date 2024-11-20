@@ -35,7 +35,8 @@ function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
     var segundoAtual = dataAtual.getSeconds();
 
     var instrucaoSql = `
-                        SELECT 
+                    SELECT
+                    ds.umidade as umidadeAtual,
                     f.id_fazenda AS idFazenda, 
                     f.nome AS nome, 
                     f.fk_endereco AS fkEndereco, 
@@ -78,8 +79,18 @@ function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
                     Fazenda f
                 JOIN 
                     Compost_barn cb ON cb.fk_fazenda = f.id_fazenda
+                
+                JOIN 
+                    Sensor s ON s.fk_cb = cb.id_cb
+                JOIN 
+                    Dados_sensor ds ON ds.fk_sensor = s.id_sensor
                 WHERE 
-                    f.id_fazenda = ${idFazenda};
+                    f.id_fazenda = ${idFazenda}
+                     AND DATE(ds.data_hora) = CURDATE()
+                ORDER BY
+                    ds.data_hora DESC
+                LIMIT 1;
+                ;
 
     `;
 

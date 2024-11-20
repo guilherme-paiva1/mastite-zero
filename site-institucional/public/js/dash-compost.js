@@ -1,4 +1,6 @@
 var reqFazenda = null;
+var reqGrupo = null;
+
 
 var dataAtual = new Date()
         var diaAtual = dataAtual.getDate()
@@ -39,22 +41,35 @@ var dataAtual = new Date()
                         if(reqFazenda != null){
                             clearInterval(reqFazenda);
                         }
+                        if(reqGrupo != null){
+                            clearInterval(reqGrupo);
+                        }
                         reqFazenda = setInterval(()=> {
                             buscarDadosFazenda(fkEmpresa, idFazenda);
                         }, 2000);
                     }
                 }
             }
-        function mostrarGrupo (idGrupo) {
-            if (idGrupo == "#") {
+        function mostrarGrupo (nome) {
+            if (nome == "#") {
                 mostrarCompost(selectCompost.value);
                 selectGrupo.value = '#';
             } else {
                 selectGrupo.disabled = false;
-                spanNumeroGrupo.innerHTML = `Grupo ${idGrupo}`;
+                spanNumeroGrupo.innerHTML = `Grupo ${nome}`;
                 dashFazenda.style.display = 'none';
                 dashCompost.style.display = 'none';
                 dashGrupo.style.display = 'flex';
+
+                if(reqFazenda != null){
+                    clearInterval(reqFazenda);
+                } 
+
+                reqGrupo = setInterval(() => {
+                    buscarDadosGrupo(nome)
+                }, 2000);
+
+
             }
         }
 
@@ -248,10 +263,20 @@ async function buscarDadosFazenda(fkEmpresa, idFazenda){
                 resposta.json().then((dados)=> {
                     for (var index = 0; index < dados.length; index++) {
                         var dado = dados[index];
+                        var umidade = Number(dado.umidadeAtual);
                         console.log(dado);  
                         qtdCompost.innerHTML = dado.qtdCompost;
                         alertasSessenta.innerHTML = dado.alertasSessenta;
                         alertasQuarentaECinco.innerHTML = dado.alertasQuarentaECinco;
+
+                        if(umidade > 60 || umidade < 40){
+                            situacaoFazenda.innerHTML = "Alerta";
+                            situacaoFazenda.style.color = "red";
+                        }else{
+                            situacaoFazenda.innerHTML = "OK";
+                            situacaoFazenda.style.color = "green";
+                        }
+
                         if(dado.umidadeMedia == null){
                             umidadeMedia.innerHTML = "0%"
                         }else{
@@ -266,5 +291,37 @@ async function buscarDadosFazenda(fkEmpresa, idFazenda){
         }
         }).catch((erro) => {
         console.log(erro);
-        })
+        });
+    }
+async function buscarDadosGrupo(grupo){
+    fetch(`/dados_sensor/ultimas/${grupo}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((resposta) => {
+        if(resposta.ok){
+            if(resposta.status == 204){
+                // qtdCompost.innerHTML = "Nenhum sensor cadastrado na atual fazenda.";
+                // alertasSessenta.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
+                // alertasQuarentaECinco.innerHTML = "Nenhum sensor cadastrado na atual fazenda.";
+                // umidadeMedia.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
+            }else{
+                resposta.json().then((dados)=> {
+                    console.log(`Dados do grupo de sensor ${dados}`)
+
+                    for (var index = 0; index < dados.length; index++) {
+                        var dado = dados[index];                     
+                        kpiSensoresFora.innerHTML = dado.sensoresFora;
+                        kpiMediaGrupo.innerHTML = dado.mediaGrupo;
+                    }                    
+                })
+            }
+
+        }else{
+            console.log("Deu tudo errado")
+        }
+        }).catch((erro) => {
+        console.log(erro);
+        });
 }

@@ -2,16 +2,26 @@ var database = require("../database/config");
 
 function buscarUltimasMedidas(grupo, limite_linhas) {
 
-    var instrucaoSql = `
+var instrucaoSql = `
+                                                
                         SELECT 
-                            umidade, 
-                            data_hora
+                            umidade,
+                            data_hora,
+                            (SELECT COUNT(id_sensor) FROM Sensor
+                            WHERE grupo = '${grupo}'
+                            AND (umidade > 60 OR umidade < 40)
+                            ) as sensoresFora,
+                            (SELECT AVG(umidade) FROM Dados_sensor
+                            WHERE fk_sensor = id_sensor
+                            AND (data_hora BETWEEN NOW() - INTERVAL 5 DAY AND NOW())) as mediaGrupo
+                            
                         FROM 
                             Sensor
                         JOIN 
                             Dados_sensor ON id_sensor = fk_sensor
-                        WHERE 
-                            grupo = '${grupo}';
+						WHERE grupo = '${grupo}'                        
+                        AND data_hora = CURDATE()
+                        LIMIT 1;
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

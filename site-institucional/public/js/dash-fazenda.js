@@ -97,8 +97,16 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                 resposta.json().then((dados) => {
                     for (var index = 0; index < dados.length; index++) {
                         var dado = dados[index];
-
+                        // var umidadeAtual = dado.umidadeAtual;
                         console.log(dado);
+
+                        // if(umidadeAtual > 60 || umidadeAtual < 40){
+                        //     situacaoCompost.innerHTML = "Alerta";
+                        //     situacaoCompost.style.color = "red";
+                        // }else{
+                        //     situacaoCompost.innerHTML = "OK";
+                        //     situacaoCompost.style.color = "green";
+                        // }
 
                         kpiMaiorNivelRegistrado.innerHTML = `${Number(dado.umidadeMaxima).toFixed(2)}% ás `;
                         kpiMaiorNivelRegistrado.innerHTML += dado.dataUmidadeMaxima.substring(11, 19);
