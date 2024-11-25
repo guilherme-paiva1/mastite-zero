@@ -36,18 +36,29 @@ async function cadastrarFazenda(req, res) {
 }
 
 
-function buscarFazendaPeloFkEmpresa(req, res) {
+async function buscarFazendaPeloFkEmpresa(req, res) {
     var fkEmpresa = req.params.fkEmpresa;
     var idFazenda = req.params.idFazenda;
 
     console.log("Buscando fazenda pela fkEmpresa...");
 
     fazendaModel.buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda)
-        .then(function (resultado) {
+        .then(async function (resultado) {
             if (resultado.length > 0) {
-                res.status(200).json(resultado);
+                const dadosGraficos = await fazendaModel.buscarDadosFazendaGrafico(idFazenda);
+                if(dadosGraficos.length > 0){
+                    console.log("Entrou no segundo if")
+                    return res.status(200).json({
+                        dados: resultado,
+                        dadosGrafico: dadosGraficos
+                    });
+                }
+                return res.status(200).json({
+                    dados: resultado,
+                    dadosGraficos: {}
+                });
             } else {
-                res.status(204).send("Nenhuma fazenda encontrada..")
+               return res.status(204).send("Nenhuma fazenda encontrada..")
             }
         }).catch(function (erro) {
             console.log(erro);

@@ -1,6 +1,6 @@
 var reqFazenda = null;
 var reqGrupo = null;
-
+var graficoBarraFazenda = null;
 
 var dataAtual = new Date()
         var diaAtual = dataAtual.getDate()
@@ -244,8 +244,8 @@ var dataAtual = new Date()
                             obterDados(sensorAnalogico, 'analogico');
                             }, 1500); */
                             
-                            async function buscarDadosFazenda(fkEmpresa, idFazenda){
-    console.log(idFazenda);
+async function buscarDadosFazenda(fkEmpresa, idFazenda){
+    
     fetch(`/fazendas/buscar/${fkEmpresa}/${idFazenda}`, {
         method: "GET",
         headers: {
@@ -260,10 +260,12 @@ var dataAtual = new Date()
                     umidadeMedia.innerHTML = "Nenhum sensor cadastrado na atual fazenda."; 
             }else{
                 resposta.json().then((dados)=> {
+                    console.log(dados);
+
                     for (var index = 0; index < dados.length; index++) {
-                        var dado = dados[index];
+                        var dado = dados.dados[index];
                         var umidade = Number(dado.umidadeAtual);
-                        console.log(dado);  
+                        console.log(dado.dados);  
                         qtdCompost.innerHTML = dado.qtdCompost;
                         alertasSessenta.innerHTML = dado.alertasSessenta;
                         alertasQuarentaECinco.innerHTML = dado.alertasQuarentaECinco;
@@ -281,8 +283,85 @@ var dataAtual = new Date()
                         }else{
                             umidadeMedia.innerHTML = `${Number(dado.umidadeMedia).toFixed(2)}%`
                         }
-                    }                    
-                })
+                    }
+
+                        var nomesComposts = [];
+                        var umidadeMediaGrafico = [];
+
+                        for (let index = 0; index < dados.dadosGrafico.length; index++) {
+                            nomesComposts.push(dados.dadosGrafico[index].nomeCompost);
+                            umidadeMediaGrafico.push(dados.dadosGrafico[index].media_umidade);
+                        }
+
+                        if(graficoBarraFazenda != null){
+                            graficoBarraFazenda.destroy();
+                            graficoBarraFazenda = new Chart(document.getElementById('grafico_fazenda').getContext('2d'), {
+                                data: {
+                                    labels: nomesComposts,
+                                    datasets: [{
+                                        type: 'bar',
+                                        label: 'Umidade média Fazenda',
+                                        borderColor: "#22603A",
+                                        backgroundColor: "#22603A",
+                                        data: umidadeMediaGrafico
+                                    }],
+                                },
+                                options: {
+                                    plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Umidade média dos Compost Barns (%)',
+                                            color: "#22603A",
+                                            font: {
+                                                size: 24,
+                                                weight: 'bold',
+                                                family: 'Poppins'
+                                            },
+                                            padding: {
+                                                top: 10,
+                                                bottom: 30
+                                            },
+                                            align: 'center',
+                                        }
+                                    },
+                                }
+                            })
+                        }else{
+                            graficoBarraFazenda = new Chart(document.getElementById('grafico_fazenda').getContext('2d'), {
+                                data: {
+                                    labels: nomesComposts,
+                                    datasets: [{
+                                        type: 'bar',
+                                        label: 'Umidade média Fazenda',
+                                        borderColor: "#22603A",
+                                        backgroundColor: "#22603A",
+                                        data: umidadeMediaGrafico
+                                    }],
+                                },
+                                options: {
+                                    plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Umidade média dos Compost Barns (%)',
+                                            color: "#22603A",
+                                            font: {
+                                                size: 24,
+                                                weight: 'bold',
+                                                family: 'Poppins'
+                                            },
+                                            padding: {
+                                                top: 10,
+                                                bottom: 30
+                                            },
+                                            align: 'center',
+                                        }
+                                    },
+                                }
+                            })
+                        }
+                       
+
+                    })            
             }
 
         }else{

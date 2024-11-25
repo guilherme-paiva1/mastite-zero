@@ -23,7 +23,7 @@ function cadastrarFazenda(nome, fkEmpresa, fkEndereco){
 // JOIN Dados_sensor ON fk_sensor = id_sensor 
 // WHERE fk_cb = id_cb AND umidade > 30) as qtdAlerta
 
-function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
+async function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
 
     var dataAtual = new Date();
     var diaAtual = dataAtual.getDate();
@@ -50,8 +50,6 @@ function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
                     WHERE cb.fk_fazenda = f.id_fazenda 
                     AND ds.umidade > 60 
                     AND ds.data_hora > NOW() - INTERVAL 7 SECOND) AS qtdCompost,
-					
-
                     
                     (SELECT AVG(ds.umidade) 
                     FROM Sensor s
@@ -86,12 +84,11 @@ function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
                     Dados_sensor ds ON ds.fk_sensor = s.id_sensor
                 WHERE 
                     f.id_fazenda = ${idFazenda}
-                     AND DATE(ds.data_hora) = CURDATE()
+                    AND DATE(ds.data_hora) = CURDATE()
                 ORDER BY
                     ds.data_hora DESC
                 LIMIT 1;
                 ;
-
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -109,9 +106,31 @@ function listarPelaEmpresa (fkEmpresa) {
 
 }
 
+async function buscarDadosFazendaGrafico(idFazenda){
+    var instrucaoSql =              `SELECT 
+                        AVG(umidade) AS media_umidade,
+                        cb.apelido as nomeCompost
+                    FROM 
+                        Fazenda f
+                    JOIN 
+                        Compost_barn cb ON cb.fk_fazenda = f.id_fazenda
+                    JOIN 
+                        Sensor s ON s.fk_cb = cb.id_cb
+                    JOIN 
+                        Dados_sensor ds ON ds.fk_sensor = s.id_sensor
+                    WHERE 
+                        f.id_fazenda = ${idFazenda}
+                    GROUP BY 
+                        cb.id_cb
+                    ORDER BY 
+                        cb.id_cb;`;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarFazendaPeloFkEndereco,
     cadastrarFazenda,
     buscarFazendaPelaFkEmpresa,
-    listarPelaEmpresa
+    listarPelaEmpresa,
+    buscarDadosFazendaGrafico
 }

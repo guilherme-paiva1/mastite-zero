@@ -43,7 +43,7 @@ app.use("/assistentes", assistenteRouter)
 
 
 
-app.listen(PORTA_APP,"0.0.0.0", function () {
+app.listen(PORTA_APP, function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
     ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##  
