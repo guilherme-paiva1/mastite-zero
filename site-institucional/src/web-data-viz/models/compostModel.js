@@ -3,7 +3,7 @@ var database = require("../database/config");
 function buscarDadosPorFazenda(fazendaId, compostId) {
 
   var instrucaoSql = `
-                 SELECT 
+                 SELECT
                   MAX(ds.umidade) AS "umidadeMaxima",
                   (SELECT ds_max.data_hora
                   FROM Dados_sensor ds_max

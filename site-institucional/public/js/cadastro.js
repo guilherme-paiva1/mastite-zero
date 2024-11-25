@@ -193,10 +193,12 @@ function cadastrarEmpresa() {
 
                                     if (resposta.ok) {
                                         divMensagem.innerHTML = `
-                                        Funcionário cadastrado com sucesso! Essas são as credenciais de acesso dele: <br>
+                                        Usuário cadastrado com sucesso! Essas são suas credenciais de acesso: <br>
                                         Email: ${email} <br>
                                         Senha: ${senha} <br>
-                                        Anote-as e repasse para o funcionário.
+                                        Anote-as. <br>
+                                        Aguarde agendamento de visita de nossa equipe técnica à sua empresa para que realizemos a instalação do sistema e 
+                                        cadastro de suas fazendas e Compost Barns! Entraremos em contato pelo e-mail fornecido durante este cadastro. 
                                         `;
                                         // listarFuncionarios();
                                     } else {
