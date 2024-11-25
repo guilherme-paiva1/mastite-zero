@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador - CBSafe</title>
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" href="./assets/icon_logo_transparente.png" type="image/icon type">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html" class="a-logo">
+                    <img src="./assets/icon_logo_transparente.png" alt="Icone vaca">
+                    <h2>CBSAFE</h2>
+                </a>
+            </div>
+
+
+            <ul class="link-navbar">
+                <li>
+                    <a href="index.html" class="a-nav">Home</a>
+                </li>
+                <li>
+                    <a href="sobrenos.html" class="a-nav">Sobre nós</a>
+                </li>
+                <li>
+                    <a href="calculadora_financeira.html" class="a-nav selected">Simulador</a>
+                </li>
+                <li>
+                    <a href="cadastro.html" class="a-nav">Cadastre-se</a>
+                </li>
+                <li>
+                    <a href="login.html" class="a-nav">Entrar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-conteudo">
+        <div class="div-conteudo calculadora">
+            <div class="div-texto texto-subtitulo" id="texto-calculadora">
+                <h1 class="titulo-calculadora">Quanto você pode perder não controlando a umidade do seu Compost Barn?
+                </h1>
+
+                <div class="campo-calculadora campo-input">
+                    <span>Quantidade de vacas no Compost Barn (total):</span>
+                    <input id="input_vacas" type="number" placeholder="Quantidade de vacas no CB">
+                    <span>Quantidade de vacas doentes:</span>
+                    No 1º lote de lactação:<input id="input_lote1" type="number" placeholder="1º lote de lactação">
+                    No 2º lote de lactação:<input id="input_lote2" type="number" placeholder="2º lote de lactação">
+                    No 3º lote de lactação<input id="input_lote3" type="number" placeholder="3º lote de lactação">
+                    <span>Preço do litro de leite atual (em R$):</span>
+                    <input id="input_preco_leite" type="number" placeholder="Preço atual (R$)">
+
+                    <button class="btn-cadastro" onclick="calcular()">Calcular</button>
+                </div>
+
+                
+            </div>
+
+            <div class="resultado-calculadora">
+                <p id="legenda-calculadora">
+                    Uma vaca saudável produz em média por semana:<br>
+                        - 315L no primeiro lote de lactação; <br>
+                        - 262.5L no segundo lote de lactação; <br>
+                        - 126L no terceiro lote de lactação; <br>
+                </p>
+                <div class="div_mensagem">
+                    <p id="mensagem_calculadora">
+                        Seus resultados serão mostrados aqui!
+                    </p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p>Entre em contato: <span>contato.cbsafe@gmail.com</span></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    // criação das variáveis
+    
+    //função acionada ao clicar no botão
+    function calcular() {
+        var vacas = 0;
+        var vacas_doentes = 0;
+        var lote1 = 0;
+        var lote2 = 0;
+        var lote3 = 0;
+        var preco_leite = 0;
+        var porcentagem_vacas_doentes = 0;
+        var litros_ideal = 0;
+        var numero_media = 0;
+    
+        //captação das informações inseridas pelo usuário
+        vacas = Number(input_vacas.value);
+        lote1 = Number(input_lote1.value);
+        lote2 = Number(input_lote2.value);
+        lote3 = Number(input_lote3.value);
+        preco_leite = Number(input_preco_leite.value);
+
+        //cálculo das vacas doentes e da porcentagem de vacas doentes entre as sadias
+        vacas_doentes = lote1 + lote2 + lote3;
+        porcentagem_vacas_doentes = ((vacas_doentes / vacas) * 100).toFixed(2);
+
+        //criação das variáveis de mensagem
+        var mensagem = "";
+        var mensagem_porcentagem = `${porcentagem_vacas_doentes}%`;
+
+        //caso a porcentagem seja maior que 10, a mensagem mudará para 'Atenção!'
+        if (porcentagem_vacas_doentes > 10) {
+            mensagem = `Atenção! `;
+            mensagem_porcentagem = `${porcentagem_vacas_doentes}%`;
+        }
+
+        //caso a porcentagem seja maior que 20, a mensagem mudará para 'Perigo!'
+        if (porcentagem_vacas_doentes > 20) {
+            mensagem = `Perigo! `;
+            mensagem_porcentagem = `${porcentagem_vacas_doentes}%`;
+        }
+
+        //Validações para calcular a média com maior precisão
+        if (lote1 >= 0) {
+            litros_ideal = 315;
+            numero_media++;
+        }
+
+        if (lote2 >= 0) {
+            litros_ideal += 265.5;
+            numero_media++;
+        }
+
+        if (lote3 >= 0) {
+            litros_ideal += 126;
+            numero_media++;
+        }
+
+        //cálculo de quantidade de litros e lucro ideal da produção
+        litros_ideal = (litros_ideal / numero_media) * vacas;
+        var lucro_ideal = (litros_ideal * preco_leite).toFixed(2);
+
+        //cálculo de quantidade de litros e lucro perdidos por conta da mastite na produção
+        var litros_perdidos = (lote1 * 315) + (lote2 * 262.5) + (lote3 * 126);
+        var lucro_perdido = (litros_perdidos * preco_leite).toFixed(2);
+
+        // cálculo da porcentagem de melhoria
+        var lucro_melhoria = (lucro_perdido * 0.5).toFixed(2);
+        var litros_melhoria = litros_perdidos * 0.5;
+
+        //estruturação da mensagem de acordo + perda na produção
+        mensagem += `Com ${lote1} vacas doentes no primeiro lote, ${lote2} no segundo lote e ${lote3} no terceiro 
+        lote, seu Compost Barn está com um total de ${vacas_doentes} vacas doentes, sendo ${mensagem_porcentagem}
+        do total de vacas no seu Compost Barn! <br> <br>
+        Caso todas as suas ${vacas} vacas estivessem saudáveis, considerando que temos quantidades iguais de vacas nos 3 lotes, a produção seria de <span class="texto-lucro"><b>${litros_ideal}L</b></span> por semana, dando um lucro de <span class="texto-lucro"><b>R$${lucro_ideal}</b></span>. <span class="texto-perda">Sua produção foi reduzida em <b>${litros_perdidos}L</b>,  
+        e você está perdendo <b>R$${lucro_perdido}</b> em 1 semana. </span><br> <br>`;
+
+        
+        mensagem += `Com nosso sistema de controle <span class="texto-lucro"> poderíamos diminuir a chance de mastite em até <b>50%</b></span>, levando sua produção reduzida para: <span class="texto-lucro"><b>${litros_melhoria}L</b></span> e diminuindo sua perda para: <span class="texto-lucro"><b>R$${lucro_melhoria}</b></span>`;
+
+        // caso não tenha nenhuma vaca doente no Compost Barn, esta será a mensagem exibida
+        if (porcentagem_vacas_doentes == 0) {
+            mensagem = `Parabéns! Seu Compost Barn está seguro. Como todas as suas ${vacas} vacas estão saudáveis, considerando que temos quantidades iguais de vacas nos 3 lotes, sua produção deve ser de <span class="texto-lucro"><b>${litros_ideal}L</b></span> por semana, dando um lucro de <span class="texto-lucro"><b>R$${lucro_ideal}</b></span>.<br>
+            <b>No entanto, é importante tomar medidas preventivas visto que a taxa média anual de incidência da mastite clínica varia de <b class="texto-perda">10</b> a <b class="texto-perda">12%</b> para a maioria dos rebanhos leiteiros e a mastite subclínica pode afetar de <b class="texto-perda">20</b> a <b class="texto-perda">50%</b> de suas vacas leiteiras sendo considerada a forma mais frequente de mastite.</b><br><br> *<b style="font-size: small;">Fonte: Embrapa </b>`;
+        }
+
+        //caso a inserção de dados seja inválida, será informado ao usuário
+        if (porcentagem_vacas_doentes > 100) {
+            mensagem = `Entrada inválida. Você tem mais vacas doentes do que vacas no Compost Barn. Revise.`;
+        }
+
+        // caso o preço do leite inserido seja igual a 0
+        if (preco_leite == 0) {
+            mensagem = `Entrada inválida. Preço do leite tem que ser maior do que 0. Revise.`
+        }
+
+        console.log(mensagem);
+
+
+        //exibição da mensagem na tela
+        mensagem_calculadora.innerHTML = mensagem;
+    }
+</script>

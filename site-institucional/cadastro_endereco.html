@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - CBSafe</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" href="./assets/icon_logo_transparente.png" type="image/icon type">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html" class="a-logo">
+                    <img src="./assets/icon_logo_transparente.png" alt="Icone vaca">
+                    <h2>CBSAFE</h2>
+                </a>
+            </div>
+
+
+            <ul class="link-navbar">
+                <li>
+                    <a href="index.html" class="a-nav">Home</a>
+                </li>
+                <li>
+                    <a href="sobrenos.html" class="a-nav">Sobre nós</a>
+                </li>
+                <li>
+                    <a href="calculadora_financeira.html" class="a-nav">Simulador</a>
+                </li>
+                <li>
+                    <a href="#" class="a-nav selected">Cadastre-se</a>
+                </li>
+                <li>
+                    <a href="login.html" class="a-nav">Entrar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-conteudo">
+        <div class="div-conteudo">
+            <div class="div-texto texto-subtitulo">
+                <h1>Cadastre seu endereço</h1>
+                <p>Já tem uma conta? <a class="link" href="login.html">Entre</a></p>
+                <div class="campo-input">
+                    <div class="linha-input">
+                        <input type="number" id="inputCEP" oninput="validarCEP()" placeholder="CEP (apenas números)">
+                        <input type="text" id="inputLogradouro" placeholder="Logradouro">
+
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanErroCEP"></span>
+                        <span class="erro" id="spanLogradouro"></span>
+
+                    </div>
+                    <div class="linha-input">
+                        <input type="text" id="inputCidade" placeholder="Cidade">
+                        <input type="text" id="inputEstado" placeholder="Estado">
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanCidade"></span>
+                        <span class="erro" id="spanEstado"></span>
+                    </div>
+
+                    <!-- <div class="linha-input">
+                        <input type="email" id="inputEmail" oninput="validarEmail()" placeholder="E-mail">
+                    </div> -->
+
+                    <!-- <div class="linha-erro">
+                        <span class="erro" id=""></span>
+                    </div> -->
+
+                    <div class="linha-input">
+                        <input type="number" id="inputNumero" placeholder="Número">
+                        <input type="text" id="inputComplemento" placeholder="Complemento">
+                    </div>
+                    <div class="linha-erro">
+                        <span class="erro" id="spanNumero"></span>
+                        <span class="erro" id="spanComplemento"></span>
+                    </div>
+                    <div id="divMensagem"></div>
+
+                    <button class="btn-cadastro" onclick="cadastrar()">Cadastrar</button>
+                </div>
+            </div>
+            <div class="div-img">
+                <img src="assets/img_vacas.jpeg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Entre em contato: <span>contato.cbsafe@gmail.com</span></p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./models/cadastro.js"></script>
