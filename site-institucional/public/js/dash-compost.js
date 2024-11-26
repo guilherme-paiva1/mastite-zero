@@ -261,9 +261,7 @@ async function buscarDadosFazenda(fkEmpresa, idFazenda){
             }else{
                 resposta.json().then((dados)=> {
                     console.log(dados);
-
-                    for (var index = 0; index < dados.length; index++) {
-                        var dado = dados.dados[index];
+                        var dado = dados.dados[0];
                         var umidade = Number(dado.umidadeAtual);
                         console.log(dado.dados);  
                         qtdCompost.innerHTML = dado.qtdCompost;
@@ -277,18 +275,16 @@ async function buscarDadosFazenda(fkEmpresa, idFazenda){
                             situacaoFazenda.innerHTML = "OK";
                             situacaoFazenda.style.color = "green";
                         }
-
                         if(dado.umidadeMedia == null){
                             umidadeMedia.innerHTML = "0%"
                         }else{
                             umidadeMedia.innerHTML = `${Number(dado.umidadeMedia).toFixed(2)}%`
                         }
-                    }
 
-                        var nomesComposts = [];
+                        var nomesComposts = []; 
                         var umidadeMediaGrafico = [];
 
-                        for (let index = 0; index < dados.dadosGrafico.length; index++) {
+                        for (var index = 0; index < dados.dadosGrafico.length; index++) {
                             nomesComposts.push(dados.dadosGrafico[index].nomeCompost);
                             umidadeMediaGrafico.push(dados.dadosGrafico[index].media_umidade);
                         }
