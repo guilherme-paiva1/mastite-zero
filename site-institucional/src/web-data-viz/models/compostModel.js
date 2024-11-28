@@ -5,14 +5,18 @@ function buscarDadosPorFazenda(fazendaId, compostId) {
   var instrucaoSql = `
                  SELECT
                   MAX(ds.umidade) AS "umidadeMaxima",
+
                   (SELECT ds_max.data_hora
                   FROM Dados_sensor ds_max
                   WHERE ds_max.fk_sensor = s.id_sensor
                     AND DATE(ds_max.data_hora) = CURDATE()
                   ORDER BY ds_max.umidade DESC
                   LIMIT 1) AS "dataUmidadeMaxima",
+  
                   AVG(ds.umidade) AS "nivelMedio",
+
                   MIN(ds.umidade) AS "nivelMinimo",
+
                   SUM(CASE WHEN ds.umidade > 60 OR ds.umidade < 40 THEN 1 ELSE 0 END) AS "qtdAlertas",
                   COUNT(
                     DISTINCT CASE 
@@ -22,6 +26,7 @@ function buscarDadosPorFazenda(fazendaId, compostId) {
                                              WHERE ds_now.fk_sensor = s.id_sensor) 
                     THEN s.id_sensor 
                    END) AS "sensoresAcima"
+
               FROM 
                   Compost_barn cb
               JOIN 
@@ -64,9 +69,25 @@ function cadastrar(areaM2, dataUltimaManutencao, fazendaId) {
   return database.executar(instrucaoSql);
 }
 
+function buscarDadosGrafico(fazendaId, compostId){
+    var instrucaoSql = `
+                        SELECT umidade as umidadeHora, data_hora as horaHora                            
+                                FROM Compost_barn 
+                                JOIN Sensor ON fk_cb = id_cb
+                                JOIN Dados_sensor ON fk_sensor = id_sensor
+                                WHERE id_cb = ${compostId}
+                                AND DATE(data_hora) = CURDATE()
+                                ORDER BY data_hora DESC
+                                LIMIT 12;      
+                              `;
+
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   buscarDadosPorFazenda,
   listarPorFazenda,
-  cadastrar
+  cadastrar,
+  buscarDadosGrafico
 }
