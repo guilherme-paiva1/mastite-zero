@@ -19,6 +19,7 @@ var app = express();
 
 var dadosRouter = require("./routes/dados_sensor");
 var usuarioRouter = require("./routes/usuarios");
+var admRouter = require("./routes/admins");
 var fazendaRouter = require("./routes/fazendas");
 var compostRouter = require("./routes/composts");
 var empresasRouter = require("./routes/empresas");
@@ -35,6 +36,7 @@ console.log(CHAVE_ACESSO);
 
 app.use("/dados_sensor", dadosRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/admins", admRouter);
 app.use("/fazendas", fazendaRouter);
 app.use("/compost", compostRouter);
 app.use("/empresas", empresasRouter);

@@ -158,8 +158,6 @@ UPDATE Compost_barn SET apelido = 'CB Gir' WHERE id_cb = 1001;
 UPDATE Compost_barn SET apelido = 'CB Holandesa' WHERE id_cb = 1002;
 UPDATE Compost_barn SET apelido = 'CB Jersey' WHERE id_cb = 1003;
 
-SELECT id_cb, apelido FROM Compost_barn WHERE fk_fazenda = 2;
-
 INSERT INTO Compost_barn (area_m2, data_ultima_manutencao, apelido, fk_fazenda) VALUES
 	('800', '2024-07-18', 'CB Variado', 1);
 
@@ -193,11 +191,17 @@ CREATE TABLE Dados_sensor(
 		FOREIGN KEY (fk_sensor)
 			REFERENCES Sensor(id_sensor)
 );
-        
--- MOSTRAR UMA MENSAGEM QUE UNE O HORÁRIO E O REGISTRO
-SELECT CONCAT('A leitura de umidade no dia e no horário ', data_hora, ' foi ', umidade, '%') AS "Registro do dado"
-	FROM Dados_sensor;
     
+CREATE TABLE Adm (
+	id_admin INT PRIMARY KEY AUTO_INCREMENT,	
+    email VARCHAR(45),
+    senha VARCHAR(45)
+);
+
+INSERT INTO Adm (email, senha) VALUES
+	('viniaoki@gmail.com', 'Urubu100@'),
+    ('lucasfurquim@gmail.com', 'Urubu100@');
+
 /* SELECT
 	Sensor.grupo, 
 	Dados_sensor.umidade,
