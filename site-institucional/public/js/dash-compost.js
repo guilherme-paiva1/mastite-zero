@@ -391,6 +391,7 @@ async function buscarDadosGrupo(grupo){
                         var dado = dados[index];                     
                         kpiSensoresFora.innerHTML = dado.sensoresFora;
                         kpiMediaGrupo.innerHTML = dado.mediaGrupo;
+                        kpiTempoResposta.innerHTML = dado.tempoResposta;
                     }                    
                 })
             }

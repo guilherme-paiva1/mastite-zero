@@ -4,25 +4,38 @@ function buscarUltimasMedidas(grupo, fkCompost) {
     console.log(grupo);
 var instrucaoSql = `
                                                 
-                       SELECT 
+                        SELECT 
                             umidade,
                             data_hora,
-                            
-                            (SELECT COUNT(id_sensor) FROM Sensor
-                            WHERE grupo = '${grupo}'
-                            AND (umidade > 60 OR umidade < 40)
-                            ) as sensoresFora,
-                            
-                            (SELECT AVG(umidade) FROM Dados_sensor
-                            WHERE fk_sensor = id_sensor
-                            AND (data_hora BETWEEN NOW() - INTERVAL 5 DAY AND NOW())) as mediaGrupo
-                            
-                        FROM 
+                            (SELECT 
+                                    TIMEDIFF(MAX(data_hora), MIN(data_hora)) AS tempoResposta
+                                FROM
+                                    dados_sensor
+                                        JOIN
+                                    sensor ON id_sensor = fk_sensor
+                                WHERE
+                                    umidade > 60
+                                        AND data_hora LIKE '2024-11-29%') AS tempoResposta,
+                            (SELECT 
+                                    COUNT(id_sensor)
+                                FROM
+                                    Sensor
+                                WHERE
+                                    grupo = 'norte'
+                                        AND (umidade > 60 OR umidade < 40)) AS sensoresFora,
+                            (SELECT 
+                                    AVG(umidade)
+                                FROM
+                                    Dados_sensor
+                                WHERE
+                                    fk_sensor = id_sensor
+                                        AND (data_hora BETWEEN NOW() - INTERVAL 5 DAY AND NOW())) AS mediaGrupo
+                        FROM
                             Sensor
-                        JOIN 
+                                JOIN
                             Dados_sensor ON id_sensor = fk_sensor
-						WHERE grupo = '${grupo}'
-                        AND fk_cb = ${fkCompost}
+                        WHERE
+                            grupo = 'norte' AND fk_cb = 1000
                         ORDER BY data_hora DESC
                         LIMIT 1;
     `;
