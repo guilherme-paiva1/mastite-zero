@@ -72,19 +72,21 @@ function cadastrar(areaM2, dataUltimaManutencao, fazendaId) {
 function buscarDadosGraficoUmidadeHora(fazendaId, compostId){
     var instrucaoSql = `
                   SELECT umidade as umidadeHora,
-                  data_hora as horaHora,
+                  TIME(data_hora) as horaHora,
                     
                     (SELECT COUNT(dss.id_dado) FROM Sensor ss
                   JOIN Dados_sensor dss
                       ON ss.id_sensor = dss.fk_sensor
                       WHERE ss.fk_cb = ${compostId}
-                      AND dss.umidade > 60) as coletasAcima,
+                      AND dss.umidade > 60
+                      AND DATE(dss.data_hora) = CURDATE()) as coletasAcima,
                       
                       (SELECT COUNT(dss.id_dado) FROM Sensor ss
                   JOIN Dados_sensor dss
                       ON ss.id_sensor = dss.fk_sensor
                       WHERE ss.fk_cb = ${compostId}
-                      AND dss.umidade < 40) as coletasAbaixo
+                      AND dss.umidade < 40
+                      AND DATE(dss.data_hora) = CURDATE()) as coletasAbaixo
                       
                   FROM Compost_barn
                     JOIN Sensor ON fk_cb = id_cb
@@ -99,7 +101,7 @@ function buscarDadosGraficoUmidadeHora(fazendaId, compostId){
 }
 
 function buscarDadosGraficoUmidadeSemana(fazendaId, compostId){
-  var instrucaoSql = `SELECT DAYNAME(ds.data_hora) as diaSemana,
+  var instrucaoSql = `SELECT WEEKDAY(ds.data_hora) as diaSemana,
                         AVG(ds.umidade) as umidadeMediaSemana
                       FROM Compost_barn cb
                         JOIN Sensor s ON s.fk_cb = cb.id_cb

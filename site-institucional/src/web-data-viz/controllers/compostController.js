@@ -11,13 +11,13 @@ function buscarDadosPorFazenda(req, res) {
             compostModel.buscarDadosGraficoUmidadeSemana(fazendaId, compostId).then((resultadoSemana) => {
               if(resultadoSemana.length > 0){
                 return res.status(200).json({
-                  dadosKpi: resultadoHora,
+                  dadosKpi: resultado,
                   dadosGraficoUmidadeHora: resultadoHora,
                   dadosGraficoUmidadeSemana: resultadoSemana
                 });
               }else{
                 return res.status(200).json({
-                  dadosKpi: resultadoHora,
+                  dadosKpi: resultado,
                   dadosGraficoUmidadeHora: resultadoHora,
                   dadosGraficoUmidadeSemana: []
                 });
@@ -25,7 +25,7 @@ function buscarDadosPorFazenda(req, res) {
             })
           }else{
             return res.status(200).json({
-              dadosKpi: resultadoHora,
+              dadosKpi: resultado,
               dadosGraficoUmidadeHora: [],
               dadosGraficoUmidadeSemana: []
             });
