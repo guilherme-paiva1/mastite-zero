@@ -69,18 +69,46 @@ function cadastrar(areaM2, dataUltimaManutencao, fazendaId) {
   return database.executar(instrucaoSql);
 }
 
-function buscarDadosGrafico(fazendaId, compostId){
+function buscarDadosGraficoUmidadeHora(fazendaId, compostId){
     var instrucaoSql = `
-                        SELECT umidade as umidadeHora, data_hora as horaHora                            
-                                FROM Compost_barn 
-                                JOIN Sensor ON fk_cb = id_cb
-                                JOIN Dados_sensor ON fk_sensor = id_sensor
-                                WHERE id_cb = ${compostId}
-                                AND DATE(data_hora) = CURDATE()
-                                ORDER BY data_hora DESC
-                                LIMIT 12;      
+                  SELECT umidade as umidadeHora,
+                  data_hora as horaHora,
+                    
+                    (SELECT COUNT(dss.id_dado) FROM Sensor ss
+                  JOIN Dados_sensor dss
+                      ON ss.id_sensor = dss.fk_sensor
+                      WHERE ss.fk_cb = ${compostId}
+                      AND dss.umidade > 60) as coletasAcima,
+                      
+                      (SELECT COUNT(dss.id_dado) FROM Sensor ss
+                  JOIN Dados_sensor dss
+                      ON ss.id_sensor = dss.fk_sensor
+                      WHERE ss.fk_cb = ${compostId}
+                      AND dss.umidade < 40) as coletasAbaixo
+                      
+                  FROM Compost_barn
+                    JOIN Sensor ON fk_cb = id_cb
+                    JOIN Dados_sensor ON fk_sensor = id_sensor
+                  WHERE id_cb = ${compostId}
+                  AND DATE(data_hora) = CURDATE()
+                  ORDER BY data_hora DESC
+                  LIMIT 12;          
                               `;
 
+    return database.executar(instrucaoSql);
+}
+
+function buscarDadosGraficoUmidadeSemana(fazendaId, compostId){
+  var instrucaoSql = `SELECT DAYNAME(ds.data_hora) as diaSemana,
+                        AVG(ds.umidade) as umidadeMediaSemana
+                      FROM Compost_barn cb
+                        JOIN Sensor s ON s.fk_cb = cb.id_cb
+                        JOIN Dados_sensor ds ON ds.fk_sensor = s.id_sensor
+                      
+                      WHERE YEARWEEK(data_hora, 1) = YEARWEEK(CURDATE(), 1)
+                        AND cb.id_cb = ${compostId}
+                        GROUP BY cb.id_cb ,ds.data_hora
+                      LIMIT 7;`
     return database.executar(instrucaoSql);
 }
 
@@ -89,5 +117,6 @@ module.exports = {
   buscarDadosPorFazenda,
   listarPorFazenda,
   cadastrar,
-  buscarDadosGrafico
+  buscarDadosGraficoUmidadeHora,
+  buscarDadosGraficoUmidadeSemana
 }
