@@ -10,9 +10,9 @@ var instrucaoSql = `
                             (SELECT 
                                     TIMEDIFF(MAX(data_hora), MIN(data_hora)) AS tempoResposta
                                 FROM
-                                    dados_sensor
+                                    Dados_sensor
                                         JOIN
-                                    sensor ON id_sensor = fk_sensor
+                                    Sensor ON id_sensor = fk_sensor
                                 WHERE
                                     umidade > 60
                                         AND data_hora LIKE '2024-11-29%') AS tempoResposta,

@@ -90,6 +90,15 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                         
                         kpiTotalAlertas.innerHTML = dadosKpi[0].qtdAlertas;
 
+                        if(Number(dadosKpi[0].sensoresAcima) > 0){
+                            situacaoCompost.innerHTML = "Alerta";
+                            situacaoCompost.style.color = "red";
+                        }else{
+                            situacaoCompost.innerHTML = "OK";
+                            situacaoCompost.style.color = "green";
+                        }
+
+
                         for (var i = 0; i < dados.dadosGraficoUmidadeSemana.length; i++) {
                             var dadoAtual = dados.dadosGraficoUmidadeSemana[i];
                             dadosUmidadeSemana[dadoAtual.diaSemana] = Number(dadoAtual.umidadeMediaSemana).toFixed(0);

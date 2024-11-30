@@ -137,7 +137,7 @@ function cadastrarFuncionario() {
 
   if (entradasValidas) {
     if (tipoConta == 'supervisor') {
-      var fkSupervisor = 'null';
+      var fkSupervisor = null;
     } else {
       var fkSupervisor = sessionStorage.ID_USUARIO;
     }
