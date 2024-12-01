@@ -1,9 +1,14 @@
 var database = require("../database/config");
 
+var dataAtual = new Date()
+var diaAtual = dataAtual.getDate()
+var mesAtual = (dataAtual.getMonth() + 1)
+var anoAtual = dataAtual.getFullYear();
+
 function buscarUltimasMedidas(grupo, fkCompost) {
     console.log(grupo);
 var instrucaoSql = `
-                                                
+
                         SELECT 
                             umidade,
                             data_hora,
@@ -15,7 +20,7 @@ var instrucaoSql = `
                                     Sensor ON id_sensor = fk_sensor
                                 WHERE
                                     umidade > 60
-                                        AND data_hora LIKE '2024-11-29%') AS tempoResposta,
+                                        AND data_hora LIKE '${anoAtual}-${mesAtual}-${diaAtual}%') AS tempoResposta,
                             (SELECT 
                                     COUNT(id_sensor)
                                 FROM
