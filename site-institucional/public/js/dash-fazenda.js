@@ -113,7 +113,7 @@ async function buscarDadosCompost(idFazenda, idCompost) {
 
                         if(sensorAnalogico != null){
                             umiMediaSemana.data.datasets[2].data = dadosUmidadeSemana;
-                            relacaoColetas.data.datasets[0].data = [dados.dadosGraficoUmidadeHora[0].coletasAcima, dados.dadosGraficoUmidadeHora[0].coletasAbaixo];
+                            relacaoColetas.data.datasets[0].data = [dados.dadosGraficoUmidadeHora[0].coletasAcima, dados.dadosGraficoUmidadeHora[0].coletasAbaixo, dados.dadosGraficoUmidadeHora[0].coletasIdeais];
                             sensorAnalogico.data.datasets[0].data = dadosUmidadeHora;
                             sensorAnalogico.data.labels = horariosUmidadeHora;
 
@@ -197,11 +197,11 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                             sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
                                 type: 'line',
                                 data: {
-                                    labels: horariosUmidadeHora,
+                                    labels: horariosUmidadeHora.reverse(),
                                     datasets: [{
                                         label: 'Umidade',
                                         borderColor: "#22603A",
-                                        data: dadosUmidadeHora
+                                        data: dadosUmidadeHora.reverse()
                                     }, {
                                         label: 'Umidade máxima (60%)',
                                         borderColor: '#b41b1b',

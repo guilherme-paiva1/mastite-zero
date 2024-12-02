@@ -101,7 +101,7 @@ function buscarDadosGraficoUmidadeHora(fazendaId, compostId){
                     JOIN Dados_sensor ON fk_sensor = id_sensor
                   WHERE id_cb = ${compostId}
                   AND DATE(data_hora) = CURDATE()
-                  ORDER BY data_hora
+                  ORDER BY data_hora DESC
                   LIMIT 12;          
                               `;
 
