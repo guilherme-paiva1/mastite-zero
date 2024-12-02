@@ -87,13 +87,21 @@ function buscarDadosGraficoUmidadeHora(fazendaId, compostId){
                       WHERE ss.fk_cb = ${compostId}
                       AND dss.umidade < 40
                       AND DATE(dss.data_hora) = CURDATE()) as coletasAbaixo
+
+
+                    (SELECT COUNT(dss.id_dado) FROM Sensor ss
+                  JOIN Dados_sensor dss
+                      ON ss.id_sensor = dss.fk_sensor
+                      WHERE ss.fk_cb = ${compostId}
+                      AND (dss.umidade > 40 AND dss.umidade < 60)
+                      AND DATE(dss.data_hora) = CURDATE()) as coletasIdeais
                       
                   FROM Compost_barn
                     JOIN Sensor ON fk_cb = id_cb
                     JOIN Dados_sensor ON fk_sensor = id_sensor
                   WHERE id_cb = ${compostId}
                   AND DATE(data_hora) = CURDATE()
-                  ORDER BY data_hora DESC
+                  ORDER BY data_hora
                   LIMIT 12;          
                               `;
 

@@ -170,8 +170,8 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                                 data: {
                                     labels: ["Valor acima do ideal","Valor ideal"],
                                     datasets: [{
-                                        data: [dados.dadosGraficoUmidadeHora[0].coletasAcima, dados.dadosGraficoUmidadeHora[0].coletasAbaixo],
-                                        backgroundColor: ["#fed859", "#22603A"]
+                                        data: [dados.dadosGraficoUmidadeHora[0].coletasAcima, dados.dadosGraficoUmidadeHora[0].coletasAbaixo, dados.dadosGraficoUmidadeHora[0].coletasIdeais],
+                                        backgroundColor: ["#fed859","#ffa500", "#22603A"]
                                     }]
                                 }, 
                                 options: {
