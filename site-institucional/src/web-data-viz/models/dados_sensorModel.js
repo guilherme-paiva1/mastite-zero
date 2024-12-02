@@ -1,26 +1,31 @@
 var database = require("../database/config");
 
-var dataAtual = new Date()
-var diaAtual = dataAtual.getDate()
-var mesAtual = (dataAtual.getMonth() + 1)
-var anoAtual = dataAtual.getFullYear();
 
 function buscarUltimasMedidas(grupo, fkCompost) {
-    console.log(grupo);
+    var dataAtual = new Date()
+    var diaAtual = dataAtual.getDate()
+    var mesAtual = (dataAtual.getMonth() + 1)
+    var anoAtual = dataAtual.getFullYear();
+
+    if(diaAtual.toString().length == 1){
+        diaAtual = "0" + diaAtual.toString();
+    }
+
+    console.log(`${anoAtual}-${mesAtual}-${diaAtual}`);
 var instrucaoSql = `
 
                         SELECT 
                             umidade,
                             data_hora,
                             (SELECT 
-                                    TIMEDIFF(MAX(data_hora), MIN(data_hora)) AS tempoResposta
+                                    TIMEDIFF(MAX(dds.data_hora), MIN(dds.data_hora))
                                 FROM
-                                    Dados_sensor
+                                    Dados_sensor dds
                                         JOIN
-                                    Sensor ON id_sensor = fk_sensor
+                                    Sensor ON id_sensor = dds.fk_sensor
                                 WHERE
-                                    umidade > 60
-                                        AND data_hora LIKE '${anoAtual}-${mesAtual}-${diaAtual}%') AS tempoResposta,
+                                    dds.umidade > 60
+                                        AND dds.data_hora LIKE '${anoAtual}-${mesAtual}-${diaAtual} %') AS tempoResposta,
                             (SELECT 
                                     COUNT(id_sensor)
                                 FROM
@@ -40,7 +45,7 @@ var instrucaoSql = `
                                 JOIN
                             Dados_sensor ON id_sensor = fk_sensor
                         WHERE
-                            grupo = 'norte' AND fk_cb = 1000
+                            grupo = '${grupo}' AND fk_cb = ${fkCompost}
                         ORDER BY data_hora DESC
                         LIMIT 1;
     `;
