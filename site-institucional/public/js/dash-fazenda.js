@@ -112,10 +112,13 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                         
 
                         if(sensorAnalogico != null){
+                            var labelHoraInversa = horariosUmidadeHora.reverse();
+                            var umidadeHoraInversa = dadosUmidadeHora.reverse();
+
                             umiMediaSemana.data.datasets[2].data = dadosUmidadeSemana;
                             relacaoColetas.data.datasets[0].data = [dados.dadosGraficoUmidadeHora[0].coletasAcima, dados.dadosGraficoUmidadeHora[0].coletasAbaixo, dados.dadosGraficoUmidadeHora[0].coletasIdeais];
-                            sensorAnalogico.data.datasets[0].data = dadosUmidadeHora;
-                            sensorAnalogico.data.labels = horariosUmidadeHora;
+                            sensorAnalogico.data.datasets[0].data = umidadeHoraInversa;
+                            sensorAnalogico.data.labels = labelHoraInversa;
 
                             umiMediaSemana.update();
                             relacaoColetas.update();
@@ -168,7 +171,7 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                             relacaoColetas = new Chart(document.getElementById('relacaoColetas').getContext('2d'), {
                                 type: 'pie',
                                 data: {
-                                    labels: ["Valor acima do ideal","Valor ideal"],
+                                    labels: ["Valor acima do ideal", "Valor abaixo do ideal", "Valor ideal"],
                                     datasets: [{
                                         data: [dados.dadosGraficoUmidadeHora[0].coletasAcima, dados.dadosGraficoUmidadeHora[0].coletasAbaixo, dados.dadosGraficoUmidadeHora[0].coletasIdeais],
                                         backgroundColor: ["#fed859","#ffa500", "#22603A"]
@@ -194,14 +197,16 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                                     },
                                 }
                             });
+                            var labelHoraInversa = horariosUmidadeHora.reverse();
+                            var umidadeHoraInversa = dadosUmidadeHora.reverse();
                             sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
                                 type: 'line',
                                 data: {
-                                    labels: horariosUmidadeHora.reverse(),
+                                    labels: labelHoraInversa,
                                     datasets: [{
                                         label: 'Umidade',
                                         borderColor: "#22603A",
-                                        data: dadosUmidadeHora.reverse()
+                                        data: umidadeHoraInversa
                                     }, {
                                         label: 'Umidade máxima (60%)',
                                         borderColor: '#b41b1b',
