@@ -86,7 +86,7 @@ function buscarDadosGraficoUmidadeHora(fazendaId, compostId){
                       ON ss.id_sensor = dss.fk_sensor
                       WHERE ss.fk_cb = ${compostId}
                       AND dss.umidade < 40
-                      AND DATE(dss.data_hora) = CURDATE()) as coletasAbaixo
+                      AND DATE(dss.data_hora) = CURDATE()) as coletasAbaixo,
 
 
                     (SELECT COUNT(dss.id_dado) FROM Sensor ss
