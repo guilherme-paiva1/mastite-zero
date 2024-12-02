@@ -80,9 +80,13 @@ async function buscarDadosCompost(idFazenda, idCompost) {
                         var dadosUmidadeHora = [];
                         var horariosUmidadeHora = [];
                         var dadosUmidadeSemana = [0,0,0,0,0,0];
-
+                        
+                        // var dataUmidadeMaxima = dadosKpi[0].dataUmidadeMaxima.shift().toLocaleString("pt-BR", {
+                        //     timeZone: "America/Sao_Paulo"
+                        // });
+                        console.log(dadosKpi[0].dataUmidadeMaxima);
                         kpiMaiorNivelRegistrado.innerHTML = `${Number(dadosKpi[0].umidadeMaxima).toFixed(2)}% ás `;
-                        kpiMaiorNivelRegistrado.innerHTML += dadosKpi[0].dataUmidadeMaxima.substring(11, 19);
+                         kpiMaiorNivelRegistrado.innerHTML += dadosKpi[0].dataUmidadeMaxima.substring(11, 19);
                         kpiNivelMedioRegistrado.innerHTML = `${Number(dadosKpi[0].nivelMedio).toFixed(2)}%`;
                         kpiNivelMinimoRegistrado.innerHTML = `${Number(dadosKpi[0].nivelMinimo).toFixed(2)}%`;
                         

@@ -7,7 +7,7 @@ function buscarDadosPorFazenda(req, res) {
   compostModel.buscarDadosPorFazenda(fazendaId, compostId).then((resultado) => {
       if (resultado.length > 0) {
         compostModel.buscarDadosGraficoUmidadeHora(fazendaId, compostId).then((resultadoHora) => {
-          if(resultado.length > 0){
+          if(resultadoHora.length > 0){
             compostModel.buscarDadosGraficoUmidadeSemana(fazendaId, compostId).then((resultadoSemana) => {
               if(resultadoSemana.length > 0){
                 return res.status(200).json({
