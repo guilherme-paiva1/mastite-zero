@@ -16,7 +16,7 @@ const serial = async (
 ) => {
 
     // conexão com o banco de dados MySQL
-    let poolBancoDados1 = mysql.createPool(
+    let poolBancoRemoto = mysql.createPool(
         {
             host: '10.18.33.127',
             user: 'svc_cbsafe',
@@ -26,7 +26,7 @@ const serial = async (
         }
     ).promise();
 
-    let poolBancoDados2 = mysql.createPool(
+    let poolBancoLocal = mysql.createPool(
         {
             host: 'localhost',
             user: 'svc_cbsafe',
@@ -81,13 +81,13 @@ const serial = async (
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
-            await poolBancoDados1.execute(
+            await poolBancoRemoto.execute(
                 'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
                 [sensorAnalogico, dataFinal, fkCompostBarn]
             );
             console.log("valores inseridos no banco remoto: ", sensorAnalogico);
 
-            await poolBancoDados2.execute(
+            await poolBancoLocal.execute(
                 'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
                 [sensorAnalogico, dataFinal, fkCompostBarn]
             );
