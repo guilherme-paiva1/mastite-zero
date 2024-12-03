@@ -16,7 +16,17 @@ const serial = async (
 ) => {
 
     // conexão com o banco de dados MySQL
-    let poolBancoDados = mysql.createPool(
+    let poolBancoRemoto = mysql.createPool(
+        {
+            host: '10.18.33.127',
+            user: 'svc_cbsafe',
+            password: 'Urubu100@',
+            database: 'cbsafe',
+            port: 3307
+        }
+    ).promise();
+
+    let poolBancoLocal = mysql.createPool(
         {
             host: 'localhost',
             user: 'svc_cbsafe',
@@ -51,34 +61,37 @@ const serial = async (
         console.log(data);
         const valores = data.split(';');
         const sensorAnalogico = parseFloat(valores[0]);
-        const fkSensor = parseInt(valores[1]);
-        console.log(sensorAnalogico)
+        const fkCompostBarn = parseInt(valores[1]);
+
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
 
-        
-        var dataAtual = new Date();
-        var diaAtual = dataAtual.getDate();
-        var mesAtual = (dataAtual.getMonth() + 1);
-        var anoAtual = dataAtual.getFullYear();
-        
-        var horaAtual = dataAtual.getHours();
-        var minutoAtual = dataAtual.getMinutes();
-        var segundoAtual = dataAtual.getSeconds();
+        const dataAtual = new Date();
 
+        var dataFinal = "";
 
-        var dataFinal = `${anoAtual}-${mesAtual}-${diaAtual} ${horaAtual}:${minutoAtual}:${segundoAtual}`;
-        
+        dataFinal += dataAtual.getFullYear().toString() + "-";
+        dataFinal += dataAtual.getMonth().toString() + "-";
+        dataFinal += dataAtual.getDate().toString() + " ";
+        dataFinal += dataAtual.getHours().toString() + ":";
+        dataFinal += dataAtual.getMinutes().toString() + ":";
+        dataFinal += dataAtual.getSeconds().toString();
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
-            await poolBancoDados.execute(
-                'INSERT INTO Dados_sensor (umidade, data_hora, fk_sensor) VALUES (?, ?, ?)',
-                [sensorAnalogico, dataFinal, fkSensor]
+            await poolBancoRemoto.execute(
+                'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
+                [sensorAnalogico, dataFinal, fkCompostBarn]
             );
-            console.log("valores inseridos no banco: ", sensorAnalogico);
+            console.log("valores inseridos no banco remoto: ", sensorAnalogico);
+
+            await poolBancoLocal.execute(
+                'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
+                [sensorAnalogico, dataFinal, fkCompostBarn]
+            );
+            console.log("valores inseridos no banco local: ", sensorAnalogico);
 
         }
 
