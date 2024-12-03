@@ -82,13 +82,13 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoRemoto.execute(
-                'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
+                'INSERT INTO Dados_sensor (umidade, data_hora, fk_sensor) VALUES (?, ?, ?)',
                 [sensorAnalogico, dataFinal, fkCompostBarn]
             );
             console.log("valores inseridos no banco remoto: ", sensorAnalogico);
 
             await poolBancoLocal.execute(
-                'INSERT INTO Dados_sensor (umidade, data_hora, fk_compost_barn) VALUES (?, ?, ?)',
+                'INSERT INTO Dados_sensor (umidade, data_hora, fk_sensor) VALUES (?, ?, ?)',
                 [sensorAnalogico, dataFinal, fkCompostBarn]
             );
             console.log("valores inseridos no banco local: ", sensorAnalogico);
