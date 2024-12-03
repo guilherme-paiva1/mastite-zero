@@ -117,7 +117,9 @@ function buscarDadosGraficoUmidadeSemana(fazendaId, compostId){
                       
                       WHERE YEARWEEK(data_hora, 1) = YEARWEEK(CURDATE(), 1)
                         AND cb.id_cb = ${compostId}
-                        GROUP BY cb.id_cb ,ds.data_hora
+                      GROUP BY cb.id_cb ,ds.data_hora
+                                  
+                      ORDER BY ds.data_hora DESC
                       LIMIT 7;`
     return database.executar(instrucaoSql);
 }
