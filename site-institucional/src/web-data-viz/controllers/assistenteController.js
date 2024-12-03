@@ -4,7 +4,7 @@ var assistenteModel = require("../models/assistenteModel");
 
 async function pergunta(req, res){
   const chatIA = new GoogleGenerativeAI(app.CHAVE_ACESSO);
-  const mensagem = req.body.mensagem;
+  const mensagem = req.body.pergunta;
 
   const modeloIA = chatIA.getGenerativeModel({ model: "gemini-pro" });
 
@@ -12,7 +12,7 @@ async function pergunta(req, res){
 
       assistenteModel.pergunta(mensagem,modeloIA).then((resposta)=> {
         if(resposta.length > 0){
-          return res.status(200).json(resposta);
+          return res.status(200).json({resultado: resposta});
         }else{
           return res.status(201).json({});
         }
