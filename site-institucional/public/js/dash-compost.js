@@ -3,9 +3,15 @@ var reqGrupo = null;
 var graficoBarraFazenda = null;
 
 var dataAtual = new Date()
-        var diaAtual = dataAtual.getDate()
+        var diaAtual = dataAtual.getDate().toString()
         var mesAtual = (dataAtual.getMonth() + 1)
         var anoAtual = dataAtual.getFullYear()
+        // var diaFormatado = "0";
+
+        // if(diaAtual.length == 1){
+        //     diaAtual = "0" + diaAtual;
+        //     console.log(diaAtual)
+        // }
 
         titulo_dashboard_compost.innerHTML = ` - ${diaAtual}/${mesAtual}/${anoAtual}`
         // legenda_dashboard_compost.innerHTML = `Dados do Compost Barn referente ao dia ${diaAtual}/${mesAtual}/${anoAtual}.`
