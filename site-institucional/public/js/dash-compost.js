@@ -138,7 +138,8 @@ async function buscarDadosFazenda(fkEmpresa, idFazenda){
                     console.log(dados);
                         var dado = dados.dados[0];
                         var umidade = Number(dado.umidadeAtual);
-                        console.log(dado.dados);  
+
+                        console.log(dado);
                         qtdCompost.innerHTML = dado.qtdCompost;
                         alertasSessenta.innerHTML = dado.alertasSessenta;
                         alertasQuarentaECinco.innerHTML = dado.alertasQuarentaECinco;

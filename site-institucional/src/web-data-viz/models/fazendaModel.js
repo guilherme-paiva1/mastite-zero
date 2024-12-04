@@ -85,7 +85,7 @@ async function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
                 WHERE 
                     f.id_fazenda = ${idFazenda}
                 ORDER BY
-                    ds.data_hora DESC
+                    ds.id_dado DESC
                 LIMIT 1;
                 ;
     `;
