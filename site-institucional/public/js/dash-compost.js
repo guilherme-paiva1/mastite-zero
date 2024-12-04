@@ -276,7 +276,7 @@ async function buscarDadosGrupo(grupo){
                             situacaoGrupo.style.color = "green";
                         }               
                         kpiSensoresFora.innerHTML = dado.sensoresFora;
-                        kpiMediaGrupo.innerHTML = dado.mediaGrupo;
+                        kpiMediaGrupo.innerHTML = Number(dado.mediaGrupo).toFixed(2).toString() + "%";
                         kpiTempoResposta.innerHTML = dado.tempoResposta;
                     }                    
                 })
