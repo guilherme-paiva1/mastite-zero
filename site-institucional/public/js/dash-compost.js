@@ -266,7 +266,14 @@ async function buscarDadosGrupo(grupo){
                     console.log(`Dados do grupo de sensor ${dados}`)
 
                     for (var index = 0; index < dados.length; index++) {
-                        var dado = dados[index];                     
+                        var dado = dados[index];
+                        if(dado.umidadeAtual > 60 || dado.umidadeAtual < 40){
+                            situacaoGrupo.innerHTML = "Alerta";
+                            situacaoGrupo.style.color = "red";
+                        }else{
+                            situacaoGrupo.innerHTML = "OK";
+                            situacaoGrupo.style.color = "green";
+                        }               
                         kpiSensoresFora.innerHTML = dado.sensoresFora;
                         kpiMediaGrupo.innerHTML = dado.mediaGrupo;
                         kpiTempoResposta.innerHTML = dado.tempoResposta;

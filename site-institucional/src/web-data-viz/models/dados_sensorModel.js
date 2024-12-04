@@ -15,7 +15,7 @@ function buscarUltimasMedidas(grupo, fkCompost) {
 var instrucaoSql = `
 
                         SELECT 
-                            umidade,
+                            umidade as umidadeAtual,
                             data_hora,
                             (SELECT 
                                     TIMEDIFF(MAX(dds.data_hora), MIN(dds.data_hora))
@@ -46,6 +46,7 @@ var instrucaoSql = `
                             Dados_sensor ON id_sensor = fk_sensor
                         WHERE
                             grupo = '${grupo}' AND fk_cb = ${fkCompost}
+                            AND DATE(data_hora) = CURDATE() 
                         ORDER BY data_hora DESC
                         LIMIT 1;
     `;
