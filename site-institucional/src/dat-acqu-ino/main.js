@@ -69,9 +69,11 @@ const serial = async (
         const dataAtual = new Date();
 
         var dataFinal = "";
+        
+        var mes = Number(dataAtual.getMonth()) + 1
 
         dataFinal += dataAtual.getFullYear().toString() + "-";
-        dataFinal += dataAtual.getMonth().toString() + "-";
+        dataFinal += mes.toString() + "-";
         dataFinal += dataAtual.getDate().toString() + " ";
         dataFinal += dataAtual.getHours().toString() + ":";
         dataFinal += dataAtual.getMinutes().toString() + ":";
