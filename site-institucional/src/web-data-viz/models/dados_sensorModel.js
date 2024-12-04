@@ -46,7 +46,6 @@ var instrucaoSql = `
                             Dados_sensor ON id_sensor = fk_sensor
                         WHERE
                             grupo = '${grupo}' AND fk_cb = ${fkCompost}
-                            AND DATE(data_hora) = CURDATE() 
                         ORDER BY data_hora DESC
                         LIMIT 1;
     `;
