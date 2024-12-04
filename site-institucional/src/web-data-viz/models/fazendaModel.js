@@ -84,7 +84,6 @@ async function buscarFazendaPelaFkEmpresa(fkEmpresa, idFazenda) {
                     Dados_sensor ds ON ds.fk_sensor = s.id_sensor
                 WHERE 
                     f.id_fazenda = ${idFazenda}
-                    AND DATE(ds.data_hora) = CURDATE()
                 ORDER BY
                     ds.data_hora DESC
                 LIMIT 1;
